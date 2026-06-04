@@ -1,6 +1,13 @@
 import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
 import { ContactForm } from "@/components/sections/contacto/ContactForm";
 import { ContactInfo } from "@/components/sections/contacto/ContactInfo";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("contacto.hero");
+  return { title: `${t("title")} | Business Beans Perú` };
+}
 
 function ContactoHero() {
   const t = useTranslations("contacto.hero");

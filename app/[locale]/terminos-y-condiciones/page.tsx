@@ -1,4 +1,11 @@
 import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("terminos");
+  return { title: `${t("title")} | Business Beans Perú` };
+}
 
 function TerminosHero() {
   const t = useTranslations("terminos");

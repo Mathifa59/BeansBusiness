@@ -1,5 +1,12 @@
 import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
 import { ReclamacionForm } from "@/components/sections/reclamaciones/ReclamacionForm";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("reclamaciones.hero");
+  return { title: `${t("title")} | Business Beans Perú` };
+}
 
 function ReclamacionesHero() {
   const t = useTranslations("reclamaciones.hero");

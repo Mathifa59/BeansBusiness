@@ -12,23 +12,25 @@ export function HeroSection() {
 
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
-      {/* Gradient background */}
-      <div className="gradient-hero absolute inset-0" />
+      {/* Video background */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover"
+      >
+        <source src="/hero-cultivo.mp4" type="video/mp4" />
+      </video>
 
-      {/* Blob decorations */}
-      <div className="blur-blob absolute -left-32 -top-32 h-96 w-96 rounded-full bg-[oklch(0.72_0.14_55)]" />
-      <div className="blur-blob absolute -bottom-32 -right-32 h-[500px] w-[500px] rounded-full bg-[oklch(0.32_0.10_148)]" />
-      <div className="blur-blob absolute left-1/2 top-1/3 h-64 w-64 -translate-x-1/2 rounded-full bg-[oklch(0.72_0.12_148)]" />
+      {/* Dark gradient overlay — mantiene legibilidad del texto */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.20_0.08_148)]/70 via-[oklch(0.20_0.08_148)]/50 to-[oklch(0.15_0.06_148)]/80" />
 
-      {/* Grid overlay */}
-      <div
-        className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage:
-            "linear-gradient(oklch(1 0 0 / 0.1) 1px, transparent 1px), linear-gradient(90deg, oklch(1 0 0 / 0.1) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
+      {/* Tint verde sutil sobre el video */}
+      <div className="absolute inset-0 bg-[oklch(0.32_0.10_148)]/30" />
+
+      {/* Blob naranja decorativo */}
+      <div className="blur-blob absolute -right-32 top-1/4 h-96 w-96 rounded-full bg-[oklch(0.72_0.14_55)]" />
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 py-32 text-center lg:px-8">
         <motion.span
@@ -54,7 +56,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/75"
+          className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/80"
         >
           {t("subheadline")}
         </motion.p>

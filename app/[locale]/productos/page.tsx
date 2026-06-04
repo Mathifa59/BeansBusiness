@@ -1,5 +1,12 @@
 import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
 import { ProductsGrid } from "@/components/sections/productos/ProductsGrid";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("productos.hero");
+  return { title: `${t("title")} | Business Beans Perú` };
+}
 
 function ProductosHero() {
   const t = useTranslations("productos.hero");

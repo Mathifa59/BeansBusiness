@@ -1,0 +1,318 @@
+{
+  "nav": {
+    "nosotros": "About Us",
+    "productos": "Products",
+    "mercados": "Markets",
+    "contacto": "Contact",
+    "reclamaciones": "Complaints Book",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu"
+  },
+  "home": {
+    "hero": {
+      "tagline": "Peruvian Agro-Exporter",
+      "headline": "Premium quality beans for the world",
+      "subheadline": "We export the finest varieties of Peruvian beans to the most demanding international markets, backed by certified quality standards.",
+      "cta": "View our products",
+      "ctaSecondary": "Contact us"
+    },
+    "about": {
+      "label": "Who we are",
+      "title": "Export tradition with a global vision",
+      "description": "Business Beans Perú SRL is an agro-export company specializing in the production and export of high-quality beans. We work alongside Peruvian farmers to bring the best of Peruvian agriculture to international markets.",
+      "cta": "Learn more"
+    },
+    "products": {
+      "label": "Our products",
+      "title": "Premium Peruvian bean varieties",
+      "description": "We offer the most in-demand varieties on the international market, grown in the finest agricultural regions of Peru.",
+      "cta": "View all products"
+    },
+    "markets": {
+      "label": "Export markets",
+      "title": "Presence in key global markets",
+      "description": "We export to the Americas, Europe and Asia, meeting the strictest quality and food safety standards.",
+      "cta": "View markets"
+    },
+    "certifications": {
+      "label": "Certifications",
+      "title": "Internationally certified quality",
+      "description": "Our processes and products hold international certifications that guarantee quality, food safety and good agricultural practices."
+    },
+    "contactCta": {
+      "title": "Interested in importing our products?",
+      "description": "Contact us to learn about our commercial terms, stock availability and export capacity.",
+      "cta": "Request information"
+    }
+  },
+  "nosotros": {
+    "hero": {
+      "label": "Our company",
+      "title": "Business Beans Perú SRL",
+      "description": "We are a Peruvian agro-export company committed to quality and sustainability."
+    },
+    "history": {
+      "label": "Our history",
+      "title": "Roots in the land, vision in the world",
+      "p1": "Business Beans Perú SRL was born from a passion for Peruvian agriculture and the conviction that Peruvian beans have the potential to conquer the most demanding international markets.",
+      "p2": "Since our founding, we have worked alongside local producers, implementing good agricultural practices and quality standards that allow us to offer a product of excellence.",
+      "p3": "Today we are a reference company in bean exports, with a presence in multiple international markets and a fully traceable supply chain."
+    },
+    "mission": {
+      "label": "Mission",
+      "title": "Our mission",
+      "description": "To export high-quality Peruvian beans to the world, creating value for our farmers, clients, and society, with responsible and sustainable management."
+    },
+    "vision": {
+      "label": "Vision",
+      "title": "Our vision",
+      "description": "To be the most recognized bean agro-export company in Latin America, a benchmark for quality, innovation and fair trade by 2030."
+    },
+    "values": {
+      "label": "Values",
+      "title": "What guides us",
+      "quality": {
+        "title": "Quality",
+        "description": "Certified processes and thorough control at every stage of the production chain."
+      },
+      "sustainability": {
+        "title": "Sustainability",
+        "description": "Committed to the environment and the well-being of agricultural communities."
+      },
+      "trust": {
+        "title": "Trust",
+        "description": "Transparent business relationships based on commitment and honesty."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "Continuous process improvement to adapt to the demands of the global market."
+      }
+    },
+    "team": {
+      "label": "Our team",
+      "title": "The people behind Business Beans",
+      "description": "A multidisciplinary team with expertise in agribusiness, international trade and food quality."
+    }
+  },
+  "productos": {
+    "hero": {
+      "label": "Our products",
+      "title": "Peruvian export beans",
+      "description": "Selected, processed and certified varieties for the most demanding international markets."
+    },
+    "specs": {
+      "humidity": "Humidity",
+      "purity": "Purity",
+      "packaging": "Packaging",
+      "origin": "Origin",
+      "certification": "Certification"
+    },
+    "canario": {
+      "name": "Canario Bean",
+      "description": "One of the most appreciated varieties in the Peruvian and international market. Deep yellow grain, creamy texture and mild flavor. Ideal for Latin American and European markets."
+    },
+    "castilla": {
+      "name": "Castilla Bean (Black-eyed pea)",
+      "description": "High-demand variety in Central American and Caribbean markets. Cream-colored grain with a small black eye, rich in protein and excellent culinary yield."
+    },
+    "panamito": {
+      "name": "Panamito Bean",
+      "description": "Small-grained, light cream-colored variety. Highly valued in Asian markets for its firm texture and delicate flavor. High demand in Japan and other Pacific markets."
+    },
+    "loctao": {
+      "name": "Loctao / Mung Bean",
+      "description": "Green legume highly valued in Asian cuisine. We export both as dry grain and in processed form. High demand in Southeast Asian markets."
+    },
+    "specsTitle": "Technical specifications",
+    "requestInfo": "Request commercial information",
+    "origin": "Peru"
+  },
+  "mercados": {
+    "hero": {
+      "label": "Export markets",
+      "title": "Taking Peruvian beans to the world",
+      "description": "We export to the most dynamic markets in the Americas, Europe and Asia, meeting the highest international standards."
+    },
+    "regions": {
+      "southAmerica": "South America",
+      "northAmerica": "North America",
+      "europe": "Europe",
+      "asia": "Asia"
+    },
+    "colombia": "Colombia",
+    "ecuador": "Ecuador",
+    "usa": "United States",
+    "spain": "Spain",
+    "italy": "Italy",
+    "japan": "Japan",
+    "requirements": {
+      "title": "We meet each market's requirements",
+      "description": "Each destination has its own import regulations, phytosanitary requirements and quality standards. Our specialized team ensures compliance with all applicable regulations in each target market.",
+      "phytosanitary": "Phytosanitary certificates",
+      "traceability": "Full traceability",
+      "labeling": "Labeling per local regulations",
+      "insurance": "International cargo insurance"
+    },
+    "cta": {
+      "title": "Your market not on the list?",
+      "description": "We are constantly evaluating new markets. Contact us to explore commercial opportunities.",
+      "button": "Check availability"
+    }
+  },
+  "contacto": {
+    "hero": {
+      "label": "Contact us",
+      "title": "Let's talk business",
+      "description": "Fill out the form and our commercial team will get back to you within 24 business hours."
+    },
+    "form": {
+      "nombre": "Full name",
+      "nombrePlaceholder": "Your full name",
+      "empresa": "Company",
+      "empresaPlaceholder": "Your company name",
+      "email": "Email address",
+      "emailPlaceholder": "email@company.com",
+      "telefono": "Phone (optional)",
+      "telefonoPlaceholder": "+1 555 000 0000",
+      "mensaje": "Message",
+      "mensajePlaceholder": "Tell us about your requirements...",
+      "submit": "Send message",
+      "submitting": "Sending...",
+      "success": "Message sent! We'll be in touch soon.",
+      "error": "Error sending message. Please try again."
+    },
+    "info": {
+      "title": "Contact information",
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email address",
+      "hours": "Office hours",
+      "hoursValue": "Monday to Friday, 9:00 AM — 6:00 PM (PET)"
+    }
+  },
+  "reclamaciones": {
+    "hero": {
+      "title": "Complaints Book",
+      "description": "In accordance with the Consumer Protection and Defense Code (Law No. 29571), Business Beans Perú SRL makes this Complaints Book available to you."
+    },
+    "proveedor": {
+      "title": "Provider information",
+      "razonSocial": "Company name",
+      "ruc": "Tax ID (RUC)",
+      "direccion": "Address"
+    },
+    "consumidor": {
+      "title": "Consumer information",
+      "nombreCompleto": "Full name",
+      "tipoDocumento": "Document type",
+      "dni": "National ID (DNI)",
+      "ce": "Foreign Resident Card",
+      "pasaporte": "Passport",
+      "numeroDocumento": "Document number",
+      "telefono": "Phone",
+      "email": "Email address",
+      "direccion": "Address",
+      "esMenorDeEdad": "The consumer is a minor",
+      "nombreApoderado": "Guardian's name",
+      "dniApoderado": "Guardian's ID number"
+    },
+    "bienServicio": {
+      "title": "Product or service identification",
+      "tipo": "Type",
+      "producto": "Product",
+      "servicio": "Service",
+      "descripcion": "Description of the product or service",
+      "montoReclamado": "Amount claimed (S/.) — optional"
+    },
+    "detalle": {
+      "title": "Complaint details",
+      "tipo": "Complaint type",
+      "reclamo": "Claim",
+      "queja": "Complaint",
+      "reclamoDesc": "Disagreement related to the purchased product or service.",
+      "quejaDesc": "Disagreement not related to the product or service, referring to customer service.",
+      "descripcion": "Problem description",
+      "descripcionPlaceholder": "Describe in detail the reason for your claim...",
+      "pedido": "Consumer's request",
+      "pedidoPlaceholder": "Indicate what solution you expect from the company...",
+      "declaracion": "I declare that the information provided is truthful and I take responsibility for its content."
+    },
+    "submit": "Submit complaint",
+    "submitting": "Submitting...",
+    "success": {
+      "title": "Complaint registered",
+      "codeLabel": "Complaint code",
+      "message": "We have sent a copy of your complaint to the registered email address.",
+      "deadline": "In accordance with current regulations, Business Beans Perú SRL will respond to your complaint within a maximum of 15 business days.",
+      "newClaim": "Submit a new complaint"
+    },
+    "error": "Error submitting complaint. Please try again."
+  },
+  "terminos": {
+    "title": "Terms and Conditions",
+    "lastUpdated": "Last updated: June 2025",
+    "sections": {
+      "general": {
+        "title": "1. General provisions",
+        "content": "These Terms and Conditions govern access to and use of the Business Beans Perú SRL website. By accessing this site, you agree to be bound by these terms."
+      },
+      "services": {
+        "title": "2. Description of services",
+        "content": "Business Beans Perú SRL is an agro-export company that provides information about its products and export services through this website. This site has an informational and B2B commercial nature."
+      },
+      "ip": {
+        "title": "3. Intellectual property",
+        "content": "All content on this website, including texts, images, logos and designs, is the property of Business Beans Perú SRL and is protected by applicable intellectual property laws."
+      },
+      "privacy": {
+        "title": "4. Privacy policy",
+        "content": "Personal data collected through the forms on this site will be processed in accordance with Law No. 29733, Peru's Personal Data Protection Law, and will be used exclusively to respond to your inquiries."
+      },
+      "liability": {
+        "title": "5. Limitation of liability",
+        "content": "Business Beans Perú SRL is not responsible for damages arising from the use of information contained on this site. The information presented is for reference purposes and may be subject to change."
+      },
+      "law": {
+        "title": "6. Applicable law",
+        "content": "These terms are governed by Peruvian law. Any dispute will be submitted to the competent courts of the city of Lima, Peru."
+      },
+      "contact": {
+        "title": "7. Contact",
+        "content": "For any questions about these Terms and Conditions, you may contact us at: info@businessbeans.com"
+      }
+    }
+  },
+  "footer": {
+    "description": "Peruvian agro-export company specializing in the export of high-quality beans to international markets.",
+    "links": {
+      "title": "Navigation",
+      "nosotros": "About Us",
+      "productos": "Products",
+      "mercados": "Markets",
+      "contacto": "Contact"
+    },
+    "legal": {
+      "title": "Legal",
+      "reclamaciones": "Complaints Book",
+      "terminos": "Terms and Conditions"
+    },
+    "contact": {
+      "title": "Contact"
+    },
+    "copyright": "Business Beans Perú SRL. All rights reserved."
+  },
+  "certifications": {
+    "globalGap": {
+      "name": "GLOBAL G.A.P.",
+      "description": "Good Agricultural Practice certification that guarantees the sustainability and safety of our production processes."
+    },
+    "haccp": {
+      "name": "HACCP",
+      "description": "Hazard Analysis and Critical Control Points system that ensures food safety throughout the supply chain."
+    },
+    "iso": {
+      "name": "ISO 22000",
+      "description": "Food Safety Management System that integrates HACCP principles with quality management systems."
+    }
+  }
+}

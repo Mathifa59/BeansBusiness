@@ -1,0 +1,318 @@
+{
+  "nav": {
+    "nosotros": "Nosotros",
+    "productos": "Productos",
+    "mercados": "Mercados",
+    "contacto": "Contacto",
+    "reclamaciones": "Libro de Reclamaciones",
+    "menuOpen": "Abrir menú",
+    "menuClose": "Cerrar menú"
+  },
+  "home": {
+    "hero": {
+      "tagline": "Agroexportadora Peruana",
+      "headline": "Frejoles de calidad premium para el mundo",
+      "subheadline": "Exportamos las mejores variedades de frejoles peruanos a los mercados internacionales más exigentes, con estándares de calidad certificados.",
+      "cta": "Ver nuestros productos",
+      "ctaSecondary": "Contáctanos"
+    },
+    "about": {
+      "label": "Quiénes somos",
+      "title": "Tradición exportadora con visión global",
+      "description": "Business Beans Perú SRL es una empresa agroexportadora especializada en la producción y exportación de frejoles de alta calidad. Trabajamos de la mano con agricultores peruanos para llevar lo mejor del campo peruano a los mercados internacionales.",
+      "cta": "Conocer más"
+    },
+    "products": {
+      "label": "Nuestros productos",
+      "title": "Variedades premium de frejol peruano",
+      "description": "Ofrecemos las variedades más demandadas del mercado internacional, cultivadas en las mejores zonas agrícolas del Perú.",
+      "cta": "Ver todos los productos"
+    },
+    "markets": {
+      "label": "Mercados de exportación",
+      "title": "Presencia en los principales mercados globales",
+      "description": "Exportamos a América, Europa y Asia, cumpliendo con los más estrictos estándares de calidad e inocuidad alimentaria.",
+      "cta": "Ver mercados"
+    },
+    "certifications": {
+      "label": "Certificaciones",
+      "title": "Calidad certificada internacionalmente",
+      "description": "Nuestros procesos y productos cuentan con certificaciones internacionales que garantizan calidad, seguridad alimentaria y buenas prácticas agrícolas."
+    },
+    "contactCta": {
+      "title": "¿Interesado en importar nuestros productos?",
+      "description": "Contáctenos para conocer nuestras condiciones comerciales, disponibilidad de stock y capacidad de exportación.",
+      "cta": "Solicitar información"
+    }
+  },
+  "nosotros": {
+    "hero": {
+      "label": "Nuestra empresa",
+      "title": "Business Beans Perú SRL",
+      "description": "Somos una empresa agroexportadora peruana comprometida con la calidad y la sostenibilidad."
+    },
+    "history": {
+      "label": "Nuestra historia",
+      "title": "Raíces en la tierra, visión en el mundo",
+      "p1": "Business Beans Perú SRL nació de la pasión por el agro peruano y la convicción de que los frejoles peruanos tienen el potencial de conquistar los mercados internacionales más exigentes.",
+      "p2": "Desde nuestros inicios, hemos trabajado de la mano con productores locales, implementando buenas prácticas agrícolas y estándares de calidad que nos permiten ofrecer un producto de excelencia.",
+      "p3": "Hoy somos una empresa de referencia en la exportación de frejoles, con presencia en múltiples mercados internacionales y una cadena de suministro trazable de punta a punta."
+    },
+    "mission": {
+      "label": "Misión",
+      "title": "Nuestra misión",
+      "description": "Exportar frejoles peruanos de alta calidad al mundo, generando valor para nuestros agricultores, clientes y la sociedad, con una gestión responsable y sostenible."
+    },
+    "vision": {
+      "label": "Visión",
+      "title": "Nuestra visión",
+      "description": "Ser la empresa agroexportadora de frejoles más reconocida de Latinoamérica, referente en calidad, innovación y comercio justo para el año 2030."
+    },
+    "values": {
+      "label": "Valores",
+      "title": "Lo que nos guía",
+      "quality": {
+        "title": "Calidad",
+        "description": "Procesos certificados y control exhaustivo en cada etapa de la cadena productiva."
+      },
+      "sustainability": {
+        "title": "Sostenibilidad",
+        "description": "Comprometidos con el medio ambiente y el bienestar de las comunidades agrícolas."
+      },
+      "trust": {
+        "title": "Confianza",
+        "description": "Relaciones comerciales transparentes, basadas en el cumplimiento y la honestidad."
+      },
+      "innovation": {
+        "title": "Innovación",
+        "description": "Mejora continua de procesos para adaptarnos a las exigencias del mercado global."
+      }
+    },
+    "team": {
+      "label": "Nuestro equipo",
+      "title": "Las personas detrás de Business Beans",
+      "description": "Un equipo multidisciplinario con experiencia en agronegocios, comercio exterior y calidad alimentaria."
+    }
+  },
+  "productos": {
+    "hero": {
+      "label": "Nuestros productos",
+      "title": "Frejoles peruanos de exportación",
+      "description": "Variedades seleccionadas, procesadas y certificadas para los mercados internacionales más exigentes."
+    },
+    "specs": {
+      "humidity": "Humedad",
+      "purity": "Pureza",
+      "packaging": "Presentación",
+      "origin": "Origen",
+      "certification": "Certificación"
+    },
+    "canario": {
+      "name": "Frejol Canario",
+      "description": "Una de las variedades más apreciadas del mercado peruano e internacional. Grano de color amarillo intenso, textura cremosa y sabor suave. Ideal para mercados de América Latina y Europa."
+    },
+    "castilla": {
+      "name": "Frejol Castilla (Caupí)",
+      "description": "Variedad de alta demanda en mercados de América Central y el Caribe. Grano de color crema con pequeño ojo negro, rico en proteínas y de excelente rendimiento culinario."
+    },
+    "panamito": {
+      "name": "Frejol Panamito",
+      "description": "Variedad de grano pequeño y color crema claro. Muy valorada en los mercados asiáticos por su textura firme y sabor delicado. Alta demanda en Japón y otros mercados del Pacífico."
+    },
+    "loctao": {
+      "name": "Frejol de Palo / Loctao",
+      "description": "Legumbre verde muy valorada en la gastronomía asiática. Exportamos tanto en grano seco como en forma procesada. Alta demanda en mercados del Sudeste Asiático."
+    },
+    "specsTitle": "Especificaciones técnicas",
+    "requestInfo": "Solicitar información comercial",
+    "origin": "Perú"
+  },
+  "mercados": {
+    "hero": {
+      "label": "Mercados de exportación",
+      "title": "Llevamos el frejol peruano al mundo",
+      "description": "Exportamos a los mercados más dinámicos de América, Europa y Asia, cumpliendo con los más altos estándares internacionales."
+    },
+    "regions": {
+      "southAmerica": "América del Sur",
+      "northAmerica": "América del Norte",
+      "europe": "Europa",
+      "asia": "Asia"
+    },
+    "colombia": "Colombia",
+    "ecuador": "Ecuador",
+    "usa": "Estados Unidos",
+    "spain": "España",
+    "italy": "Italia",
+    "japan": "Japón",
+    "requirements": {
+      "title": "Cumplimos con los requisitos de cada mercado",
+      "description": "Cada destino tiene sus propias normativas de importación, requisitos fitosanitarios y estándares de calidad. Nuestro equipo especializado garantiza el cumplimiento de todas las regulaciones vigentes en cada mercado destino.",
+      "phytosanitary": "Certificados fitosanitarios",
+      "traceability": "Trazabilidad completa",
+      "labeling": "Etiquetado según normativa local",
+      "insurance": "Seguro de carga internacional"
+    },
+    "cta": {
+      "title": "¿Su mercado no está en la lista?",
+      "description": "Evaluamos constantemente nuevos mercados. Contáctenos para explorar posibilidades comerciales.",
+      "button": "Consultar disponibilidad"
+    }
+  },
+  "contacto": {
+    "hero": {
+      "label": "Contáctenos",
+      "title": "Hablemos de negocios",
+      "description": "Complete el formulario y nuestro equipo comercial se comunicará con usted en menos de 24 horas hábiles."
+    },
+    "form": {
+      "nombre": "Nombre completo",
+      "nombrePlaceholder": "Su nombre completo",
+      "empresa": "Empresa",
+      "empresaPlaceholder": "Nombre de su empresa",
+      "email": "Correo electrónico",
+      "emailPlaceholder": "correo@empresa.com",
+      "telefono": "Teléfono (opcional)",
+      "telefonoPlaceholder": "+1 555 000 0000",
+      "mensaje": "Mensaje",
+      "mensajePlaceholder": "Cuéntenos sobre su requerimiento...",
+      "submit": "Enviar mensaje",
+      "submitting": "Enviando...",
+      "success": "¡Mensaje enviado! Nos comunicaremos pronto.",
+      "error": "Error al enviar. Intente nuevamente."
+    },
+    "info": {
+      "title": "Información de contacto",
+      "address": "Dirección",
+      "phone": "Teléfono",
+      "email": "Correo electrónico",
+      "hours": "Horario de atención",
+      "hoursValue": "Lunes a Viernes, 9:00 — 18:00 (PET)"
+    }
+  },
+  "reclamaciones": {
+    "hero": {
+      "title": "Libro de Reclamaciones",
+      "description": "De acuerdo con el Código de Protección y Defensa del Consumidor (Ley N° 29571), Business Beans Perú SRL pone a su disposición el presente Libro de Reclamaciones."
+    },
+    "proveedor": {
+      "title": "Datos del proveedor",
+      "razonSocial": "Razón social",
+      "ruc": "RUC",
+      "direccion": "Dirección"
+    },
+    "consumidor": {
+      "title": "Datos del consumidor",
+      "nombreCompleto": "Nombre completo",
+      "tipoDocumento": "Tipo de documento",
+      "dni": "DNI",
+      "ce": "Carné de Extranjería",
+      "pasaporte": "Pasaporte",
+      "numeroDocumento": "Número de documento",
+      "telefono": "Teléfono",
+      "email": "Correo electrónico",
+      "direccion": "Dirección",
+      "esMenorDeEdad": "El consumidor es menor de edad",
+      "nombreApoderado": "Nombre del apoderado",
+      "dniApoderado": "DNI del apoderado"
+    },
+    "bienServicio": {
+      "title": "Identificación del bien o servicio",
+      "tipo": "Tipo",
+      "producto": "Producto",
+      "servicio": "Servicio",
+      "descripcion": "Descripción del bien o servicio",
+      "montoReclamado": "Monto reclamado (S/.) — opcional"
+    },
+    "detalle": {
+      "title": "Detalle de la reclamación",
+      "tipo": "Tipo de reclamación",
+      "reclamo": "Reclamo",
+      "queja": "Queja",
+      "reclamoDesc": "Disconformidad relacionada con el producto o servicio adquirido.",
+      "quejaDesc": "Disconformidad no relacionada con el producto o servicio, referida a la atención al consumidor.",
+      "descripcion": "Descripción del problema",
+      "descripcionPlaceholder": "Describa detalladamente el motivo de su reclamación...",
+      "pedido": "Pedido del consumidor",
+      "pedidoPlaceholder": "Indique qué solución espera de la empresa...",
+      "declaracion": "Declaro que la información proporcionada es verídica y me hago responsable de su contenido."
+    },
+    "submit": "Enviar reclamación",
+    "submitting": "Enviando...",
+    "success": {
+      "title": "Reclamación registrada",
+      "codeLabel": "Código de reclamación",
+      "message": "Hemos enviado una copia de su reclamación al correo electrónico registrado.",
+      "deadline": "De acuerdo con la normativa vigente, Business Beans Perú SRL atenderá su reclamación en un plazo máximo de 15 días hábiles.",
+      "newClaim": "Registrar nueva reclamación"
+    },
+    "error": "Error al enviar la reclamación. Intente nuevamente."
+  },
+  "terminos": {
+    "title": "Términos y Condiciones",
+    "lastUpdated": "Última actualización: Junio 2025",
+    "sections": {
+      "general": {
+        "title": "1. Disposiciones generales",
+        "content": "Los presentes Términos y Condiciones regulan el acceso y uso del sitio web de Business Beans Perú SRL. Al acceder a este sitio, usted acepta quedar vinculado por estos términos."
+      },
+      "services": {
+        "title": "2. Descripción de servicios",
+        "content": "Business Beans Perú SRL es una empresa agroexportadora que ofrece información sobre sus productos y servicios de exportación a través de este sitio web. Este sitio tiene carácter informativo y comercial B2B."
+      },
+      "ip": {
+        "title": "3. Propiedad intelectual",
+        "content": "Todos los contenidos de este sitio web, incluyendo textos, imágenes, logotipos y diseños, son propiedad de Business Beans Perú SRL y están protegidos por las leyes de propiedad intelectual aplicables."
+      },
+      "privacy": {
+        "title": "4. Política de privacidad",
+        "content": "Los datos personales recopilados a través de los formularios de este sitio serán tratados conforme a la Ley N° 29733, Ley de Protección de Datos Personales del Perú, y serán utilizados exclusivamente para responder a sus consultas."
+      },
+      "liability": {
+        "title": "5. Limitación de responsabilidad",
+        "content": "Business Beans Perú SRL no se responsabiliza por daños derivados del uso de la información contenida en este sitio. La información presentada tiene carácter referencial y puede estar sujeta a cambios."
+      },
+      "law": {
+        "title": "6. Ley aplicable",
+        "content": "Los presentes términos se rigen por la legislación peruana. Cualquier controversia será sometida a los tribunales competentes de la ciudad de Lima, Perú."
+      },
+      "contact": {
+        "title": "7. Contacto",
+        "content": "Para cualquier consulta sobre estos Términos y Condiciones, puede contactarnos en: info@businessbeans.com"
+      }
+    }
+  },
+  "footer": {
+    "description": "Empresa agroexportadora peruana especializada en la exportación de frejoles de alta calidad a los mercados internacionales.",
+    "links": {
+      "title": "Navegación",
+      "nosotros": "Nosotros",
+      "productos": "Productos",
+      "mercados": "Mercados",
+      "contacto": "Contacto"
+    },
+    "legal": {
+      "title": "Legal",
+      "reclamaciones": "Libro de Reclamaciones",
+      "terminos": "Términos y Condiciones"
+    },
+    "contact": {
+      "title": "Contacto"
+    },
+    "copyright": "Business Beans Perú SRL. Todos los derechos reservados."
+  },
+  "certifications": {
+    "globalGap": {
+      "name": "GLOBAL G.A.P.",
+      "description": "Certificación de Buenas Prácticas Agrícolas que garantiza la sostenibilidad y seguridad de nuestros procesos productivos."
+    },
+    "haccp": {
+      "name": "HACCP",
+      "description": "Sistema de Análisis de Peligros y Puntos de Control Crítico que asegura la inocuidad alimentaria en toda la cadena."
+    },
+    "iso": {
+      "name": "ISO 22000",
+      "description": "Sistema de Gestión de Seguridad Alimentaria que integra los principios del HACCP con los sistemas de gestión de calidad."
+    }
+  }
+}

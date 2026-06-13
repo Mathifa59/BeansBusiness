@@ -1,25 +1,18 @@
 export interface Product {
   id: string;
   nameKey: string;
+  shortDescriptionKey: string;
   descriptionKey: string;
-  specs: ProductSpec[];
-  category: string;
-}
-
-export interface ProductSpec {
-  labelKey: string;
-  value: string;
-}
-
-export interface Market {
-  id: string;
-  nameKey: string;
-  region: string;
-  flag: string;
+  tariffCode: string;
+  availability: "all-year" | "seasonal";
+  seasonalityKey: string;
+  destinationsKey: string;
+  certificationsKey: string;
 }
 
 export interface Certification {
   id: string;
+  icon: "shield" | "check-circle" | "award";
   nameKey: string;
   descriptionKey: string;
 }

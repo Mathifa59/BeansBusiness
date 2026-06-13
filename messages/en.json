@@ -1,194 +1,360 @@
 {
   "nav": {
+    "home": "Home",
     "nosotros": "About Us",
     "productos": "Products",
-    "mercados": "Markets",
-    "contacto": "Contact",
-    "reclamaciones": "Complaints Book",
+    "presencia": "Presence",
+    "contacto": "Contact Us",
     "menuOpen": "Open menu",
     "menuClose": "Close menu"
   },
+  "common": {
+    "whatsappTooltip": "Let's talk?",
+    "learnMore": "Learn more",
+    "contactUs": "Contact us"
+  },
   "home": {
     "hero": {
-      "tagline": "Peruvian Agro-Exporter",
-      "headline": "Premium quality beans for the world",
-      "subheadline": "We export the finest varieties of Peruvian beans to the most demanding international markets, backed by certified quality standards.",
-      "cta": "View our products",
+      "eyebrow": "PERUVIAN AGRO-EXPORTER",
+      "title": "From Peru's fields\nto the world",
+      "subtitle": "Export-grade legumes and agricultural products\nwith certified quality — FDA · SENASA · HACCP",
+      "ctaPrimary": "Explore products",
       "ctaSecondary": "Contact us"
     },
+    "stats": {
+      "items": {
+        "tons": { "value": "500+", "label": "Tons exported" },
+        "countries": { "value": "15+", "label": "Destination countries" },
+        "certifications": { "value": "3", "label": "International certifications" },
+        "experience": { "value": "10+", "label": "Years of experience" }
+      }
+    },
     "about": {
-      "label": "Who we are",
-      "title": "Export tradition with a global vision",
-      "description": "Business Beans Perú SRL is an agro-export company specializing in the production and export of high-quality beans. We work alongside Peruvian farmers to bring the best of Peruvian agriculture to international markets.",
+      "eyebrow": "WHO WE ARE",
+      "title": "Connecting Peru's agricultural richness with the world",
+      "description": "Business Beans Perú was founded with the mission of bringing the best of Peruvian agriculture to national and international markets. We specialize in the selection, processing, and export of high-quality legumes, operating under the strictest food safety standards.",
+      "features": [
+        "FDA, SENASA, and HACCP certified processes",
+        "Technified selection with state-of-the-art machinery",
+        "Full traceability from field to destination"
+      ],
       "cta": "Learn more"
     },
     "products": {
-      "label": "Our products",
-      "title": "Premium Peruvian bean varieties",
-      "description": "We offer the most in-demand varieties on the international market, grown in the finest agricultural regions of Peru.",
+      "eyebrow": "OUR PRODUCTS",
+      "title": "Peruvian export-grade legumes",
+      "subtitle": "Selected under the highest quality standards for demanding markets",
       "cta": "View all products"
     },
-    "markets": {
-      "label": "Export markets",
-      "title": "Presence in key global markets",
-      "description": "We export to the Americas, Europe and Asia, meeting the strictest quality and food safety standards.",
-      "cta": "View markets"
-    },
     "certifications": {
-      "label": "Certifications",
-      "title": "Internationally certified quality",
-      "description": "Our processes and products hold international certifications that guarantee quality, food safety and good agricultural practices."
-    },
-    "contactCta": {
-      "title": "Interested in importing our products?",
-      "description": "Contact us to learn about our commercial terms, stock availability and export capacity.",
-      "cta": "Request information"
-    }
-  },
-  "nosotros": {
-    "hero": {
-      "label": "Our company",
-      "title": "Business Beans Perú SRL",
-      "description": "We are a Peruvian agro-export company committed to quality and sustainability."
-    },
-    "history": {
-      "label": "Our history",
-      "title": "Roots in the land, vision in the world",
-      "p1": "Business Beans Perú SRL was born from a passion for Peruvian agriculture and the conviction that Peruvian beans have the potential to conquer the most demanding international markets.",
-      "p2": "Since our founding, we have worked alongside local producers, implementing good agricultural practices and quality standards that allow us to offer a product of excellence.",
-      "p3": "Today we are a reference company in bean exports, with a presence in multiple international markets and a fully traceable supply chain."
-    },
-    "mission": {
-      "label": "Mission",
-      "title": "Our mission",
-      "description": "To export high-quality Peruvian beans to the world, creating value for our farmers, clients, and society, with responsible and sustainable management."
-    },
-    "vision": {
-      "label": "Vision",
-      "title": "Our vision",
-      "description": "To be the most recognized bean agro-export company in Latin America, a benchmark for quality, innovation and fair trade by 2030."
-    },
-    "values": {
-      "label": "Values",
-      "title": "What guides us",
-      "quality": {
-        "title": "Quality",
-        "description": "Certified processes and thorough control at every stage of the production chain."
-      },
-      "sustainability": {
-        "title": "Sustainability",
-        "description": "Committed to the environment and the well-being of agricultural communities."
-      },
-      "trust": {
-        "title": "Trust",
-        "description": "Transparent business relationships based on commitment and honesty."
-      },
-      "innovation": {
-        "title": "Innovation",
-        "description": "Continuous process improvement to adapt to the demands of the global market."
+      "eyebrow": "QUALITY STANDARDS",
+      "title": "Certified to export to the world",
+      "items": {
+        "fda": {
+          "name": "FDA",
+          "description": "Food and Drug Administration — Authorization to export to the United States"
+        },
+        "senasa": {
+          "name": "SENASA",
+          "description": "National Agricultural Health Service — Peruvian phytosanitary certification"
+        },
+        "haccp": {
+          "name": "HACCP",
+          "description": "Hazard Analysis and Critical Control Points — Guaranteed food safety"
+        }
       }
     },
-    "team": {
-      "label": "Our team",
-      "title": "The people behind Business Beans",
-      "description": "A multidisciplinary team with expertise in agribusiness, international trade and food quality."
+    "finalCta": {
+      "title": "Ready to import Peruvian quality?",
+      "subtitle": "Contact us today and receive detailed information about our products, certifications, and export terms.",
+      "ctaPrimary": "Request a quote",
+      "ctaSecondary": "WhatsApp"
     }
   },
-  "productos": {
+  "about": {
     "hero": {
-      "label": "Our products",
-      "title": "Peruvian export beans",
-      "description": "Selected, processed and certified varieties for the most demanding international markets."
+      "breadcrumb": "Home / About Us",
+      "eyebrow": "OUR STORY",
+      "title": "We bring Peru's finest\nagriculture to the world",
+      "subtitle": "We are a Peruvian company committed to quality, sustainability, and the development of the national agro-export sector."
+    },
+    "missionVision": {
+      "vision": {
+        "title": "Vision",
+        "description": "To establish ourselves as a leading company in the trade and export of Peruvian legumes and agricultural products, with presence in key international markets, distinguished by product quality, process innovation, and sustainability commitment."
+      },
+      "mission": {
+        "title": "Mission",
+        "description": "To connect Peru's agricultural wealth with national and international markets, offering high-quality legumes and agro-industrial products that meet standards of trust, efficiency, and sustainability, strengthening solid commercial relationships and generating value for clients, producers, and strategic allies."
+      }
+    },
+    "values": {
+      "eyebrow": "WHAT DEFINES US",
+      "title": "Our values",
+      "items": {
+        "quality": {
+          "name": "Quality",
+          "description": "We select only the finest grains under strict quality control protocols at every stage of the process."
+        },
+        "trust": {
+          "name": "Trust",
+          "description": "We build lasting commercial relationships based on transparency, compliance, and honesty."
+        },
+        "sustainability": {
+          "name": "Sustainability",
+          "description": "We work with responsible producers and promote agricultural practices that care for the environment."
+        },
+        "innovation": {
+          "name": "Innovation",
+          "description": "We incorporate advanced selection technology to ensure product uniformity, cleanliness, and traceability."
+        },
+        "efficiency": {
+          "name": "Efficiency",
+          "description": "We optimize every process from selection to shipment to meet international deadlines and standards."
+        },
+        "commitment": {
+          "name": "Commitment",
+          "description": "We are committed to our clients' success and the development of Peruvian agriculture."
+        }
+      }
+    },
+    "process": {
+      "eyebrow": "HOW WE WORK",
+      "title": "From field to container",
+      "steps": {
+        "selection": {
+          "name": "Selection",
+          "description": "We identify and evaluate the best agricultural lots in the country, working directly with certified producers."
+        },
+        "processing": {
+          "name": "Processing",
+          "description": "We process the grain with state-of-the-art sorting machinery, removing imperfections and ensuring uniform calibers."
+        },
+        "certification": {
+          "name": "Certification",
+          "description": "We verify compliance with all phytosanitary and food safety standards: FDA, SENASA, HACCP."
+        },
+        "export": {
+          "name": "Export",
+          "description": "We manage complete international logistics: documentation, traceability, and shipment to destination markets."
+        }
+      }
+    },
+    "commitment": {
+      "quote": "We believe quality is not a destination, but the starting point of every shipment that leaves Peru for the world.",
+      "signature": "— Business Beans Perú"
+    }
+  },
+  "products": {
+    "hero": {
+      "eyebrow": "EXPORT CATALOG",
+      "title": "Peruvian legumes\nfor the world",
+      "subtitle": "Exportable products with international certification, guaranteed seasonal availability, and precise tariff headings."
+    },
+    "filters": {
+      "certificationLabel": "Certification",
+      "certificationAll": "All",
+      "availabilityLabel": "Availability",
+      "availabilityAll": "Year-round",
+      "availabilitySeasonal": "Seasonal"
     },
     "specs": {
-      "humidity": "Humidity",
-      "purity": "Purity",
-      "packaging": "Packaging",
-      "origin": "Origin",
-      "certification": "Certification"
+      "tariffCode": "Tariff heading",
+      "seasonality": "Seasonality",
+      "destinations": "Main destinations",
+      "certifications": "Certifications"
     },
-    "canario": {
-      "name": "Canario Bean",
-      "description": "One of the most appreciated varieties in the Peruvian and international market. Deep yellow grain, creamy texture and mild flavor. Ideal for Latin American and European markets."
+    "viewDetails": "View details",
+    "requestQuote": "Request quote",
+    "items": {
+      "frijol-canario": {
+        "name": "Canary Bean",
+        "shortDescription": "Large grain, intense yellow color. Ideal for Latin American and European markets.",
+        "description": "Canary Bean is one of Peru's flagship export grains. With its intense yellow color and smooth texture, it stands out for its high protein value and culinary versatility. Graded and classified by caliber to meet the standards of the most demanding international importers.",
+        "tariffCode": "0713.33.90.00",
+        "seasonality": "Available year-round (main harvest: March–July)",
+        "destinations": ["United States", "Spain", "Chile", "Bolivia"],
+        "certifications": ["FDA", "SENASA"]
+      },
+      "pallar-baby": {
+        "name": "Baby Lima Bean",
+        "shortDescription": "Soft and creamy legume. High demand in Asia and Europe.",
+        "description": "Baby Lima Bean is one of the most valued legumes in Asian and European markets. With its creamy texture and delicate flavor, it is ideal for high-end gastronomy and industrial processing. Peru is one of the world's leading producers of this variety.",
+        "tariffCode": "0713.22.00.00",
+        "seasonality": "Harvest: June–October",
+        "destinations": ["Japan", "Spain", "Italy", "United States"],
+        "certifications": ["HACCP", "SENASA"]
+      },
+      "lenteja-verde": {
+        "name": "Green Lentil",
+        "shortDescription": "High protein content. Excellent hydration rate for industrial processing.",
+        "description": "Peruvian Green Lentil is characterized by its high protein content, excellent hydration rate, and caliber uniformity. Widely used in the food industry for processing and packaging.",
+        "tariffCode": "0713.40.00.00",
+        "seasonality": "Available year-round",
+        "destinations": ["Colombia", "Mexico", "Spain", "Argentina"],
+        "certifications": ["FDA", "HACCP"]
+      },
+      "frijol-castilla": {
+        "name": "Black-eyed Pea",
+        "shortDescription": "Traditional from the Peruvian coast. Superior nutritional profile for organic market.",
+        "description": "Traditional to the Peruvian coast, the Black-eyed Pea is recognized for its superior nutritional profile and culinary versatility. Available in conventional and certified organic varieties.",
+        "tariffCode": "0713.33.20.00",
+        "seasonality": "Harvest: January–May",
+        "destinations": ["United States", "Venezuela", "Colombia", "Spain"],
+        "certifications": ["SENASA", "Organic"]
+      },
+      "garbanzo": {
+        "name": "Chickpea",
+        "shortDescription": "Uniform calibers meeting Middle Eastern and European importer requirements.",
+        "description": "Peruvian Chickpea is sold in 8–9 mm and 9–10 mm calibers, meeting the requirements of Mediterranean and Middle Eastern markets. Rigorous cleaning process guarantees minimal impurities.",
+        "tariffCode": "0713.20.00.00",
+        "seasonality": "Harvest: May–September",
+        "destinations": ["Spain", "Italy", "Turkey", "Mexico"],
+        "certifications": ["FDA", "HACCP"]
+      },
+      "maiz-gigante-cusco": {
+        "name": "Giant Cusco Corn",
+        "shortDescription": "Peruvian flagship product. Growing demand in premium markets and foodservice.",
+        "description": "Giant Cusco Corn is a world-unique product originating from Peru's Andean valleys. With exceptionally large kernels and distinctive flavor, it is in high demand in gourmet and international premium snack markets.",
+        "tariffCode": "1005.90.20.00",
+        "seasonality": "Harvest: July–October",
+        "destinations": ["Japan", "United States", "Spain", "Australia"],
+        "certifications": ["SENASA", "Premium"]
+      }
     },
-    "castilla": {
-      "name": "Castilla Bean (Black-eyed pea)",
-      "description": "High-demand variety in Central American and Caribbean markets. Cream-colored grain with a small black eye, rich in protein and excellent culinary yield."
-    },
-    "panamito": {
-      "name": "Panamito Bean",
-      "description": "Small-grained, light cream-colored variety. Highly valued in Asian markets for its firm texture and delicate flavor. High demand in Japan and other Pacific markets."
-    },
-    "loctao": {
-      "name": "Loctao / Mung Bean",
-      "description": "Green legume highly valued in Asian cuisine. We export both as dry grain and in processed form. High demand in Southeast Asian markets."
-    },
-    "specsTitle": "Technical specifications",
-    "requestInfo": "Request commercial information",
-    "origin": "Peru"
-  },
-  "mercados": {
-    "hero": {
-      "label": "Export markets",
-      "title": "Taking Peruvian beans to the world",
-      "description": "We export to the most dynamic markets in the Americas, Europe and Asia, meeting the highest international standards."
-    },
-    "regions": {
-      "southAmerica": "South America",
-      "northAmerica": "North America",
-      "europe": "Europe",
-      "asia": "Asia"
-    },
-    "colombia": "Colombia",
-    "ecuador": "Ecuador",
-    "usa": "United States",
-    "spain": "Spain",
-    "italy": "Italy",
-    "japan": "Japan",
-    "requirements": {
-      "title": "We meet each market's requirements",
-      "description": "Each destination has its own import regulations, phytosanitary requirements and quality standards. Our specialized team ensures compliance with all applicable regulations in each target market.",
-      "phytosanitary": "Phytosanitary certificates",
-      "traceability": "Full traceability",
-      "labeling": "Labeling per local regulations",
-      "insurance": "International cargo insurance"
-    },
-    "cta": {
-      "title": "Your market not on the list?",
-      "description": "We are constantly evaluating new markets. Contact us to explore commercial opportunities.",
-      "button": "Check availability"
+    "catalog": {
+      "title": "Looking for detailed technical specifications?",
+      "subtitle": "Download our complete export catalog in PDF with technical sheets, certifications, and commercial terms.",
+      "cta": "Download catalog"
     }
   },
-  "contacto": {
+  "presence": {
     "hero": {
-      "label": "Contact us",
+      "eyebrow": "INTERNATIONAL PRESENCE",
+      "title": "Our products reach\n15+ countries",
+      "subtitle": "From Lima, we connect Peruvian production with importers and distributors worldwide."
+    },
+    "regions": {
+      "eyebrow": "EXPORT REGIONS",
+      "title": "A trade network present across four continents",
+      "items": {
+        "northAmerica": {
+          "name": "North America",
+          "countries": ["United States"],
+          "shipments": "180+ shipments"
+        },
+        "europe": {
+          "name": "Europe",
+          "countries": ["Spain", "Italy", "France", "Germany"],
+          "shipments": "240+ shipments"
+        },
+        "latam": {
+          "name": "Latin America",
+          "countries": ["Colombia", "Mexico", "Chile", "Argentina", "Bolivia", "Venezuela"],
+          "shipments": "310+ shipments"
+        },
+        "asia": {
+          "name": "Asia",
+          "countries": ["Japan", "South Korea"],
+          "shipments": "95+ shipments"
+        },
+        "middleEast": {
+          "name": "Middle East",
+          "countries": ["Turkey", "United Arab Emirates"],
+          "shipments": "60+ shipments"
+        }
+      }
+    },
+    "institutional": {
+      "eyebrow": "INSTITUTIONAL SUPPORT",
+      "title": "Aligned with Peru's export promotion",
+      "description": "Business Beans Perú operates in alignment with the export promotion objectives driven by PROMPERÚ and MINCETUR, contributing to increasing the international visibility of Peru's exports and strengthening agro-export sector competitiveness."
+    },
+    "testimonials": {
+      "eyebrow": "OUR TRADE PARTNERS",
+      "title": "Our clients' trust is our greatest reference",
+      "items": [
+        {
+          "text": "Business Beans has supplied us with excellent quality Canary Beans for three consecutive seasons. The consistency in grain caliber and cleanliness is remarkable.",
+          "name": "Importadora del Sur",
+          "country": "Spain",
+          "flag": "🇪🇸"
+        },
+        {
+          "text": "Export documentation always arrives complete and on time. The logistics process with Business Beans is efficient and seamless.",
+          "name": "Pacific Trade Co.",
+          "country": "Japan",
+          "flag": "🇯🇵"
+        },
+        {
+          "text": "The Giant Cusco Corn we import from Business Beans is the highest-turnover product in our gourmet line. Unmatched Peruvian quality.",
+          "name": "Gourmet Imports USA",
+          "country": "United States",
+          "flag": "🇺🇸"
+        }
+      ]
+    }
+  },
+  "contact": {
+    "hero": {
       "title": "Let's talk business",
-      "description": "Fill out the form and our commercial team will get back to you within 24 business hours."
+      "subtitle": "Fill out the form and our commercial team will respond within 24 hours."
     },
     "form": {
-      "nombre": "Full name",
-      "nombrePlaceholder": "Your full name",
-      "empresa": "Company",
-      "empresaPlaceholder": "Your company name",
-      "email": "Email address",
+      "participantLabel": "Participant",
+      "participantOptions": {
+        "importer": "Importer",
+        "distributor": "Distributor",
+        "institution": "Public institution",
+        "other": "Other"
+      },
+      "nameLabel": "Full name",
+      "namePlaceholder": "Your full name",
+      "companyLabel": "Company",
+      "companyPlaceholder": "Your company name",
+      "countryLabel": "Country",
+      "countryPlaceholder": "Country of origin",
+      "emailLabel": "Email address",
       "emailPlaceholder": "email@company.com",
-      "telefono": "Phone (optional)",
-      "telefonoPlaceholder": "+1 555 000 0000",
-      "mensaje": "Message",
-      "mensajePlaceholder": "Tell us about your requirements...",
-      "submit": "Send message",
+      "phoneLabel": "Phone / WhatsApp",
+      "phonePlaceholder": "+1 555 000 0000",
+      "productLabel": "Product of interest",
+      "productOptions": {
+        "frijol-canario": "Canary Bean",
+        "pallar-baby": "Baby Lima Bean",
+        "lenteja-verde": "Green Lentil",
+        "frijol-castilla": "Black-eyed Pea",
+        "garbanzo": "Chickpea",
+        "maiz-gigante-cusco": "Giant Cusco Corn",
+        "other": "Other"
+      },
+      "messageLabel": "Message",
+      "messagePlaceholder": "Tell us about your requirement: estimated volume, frequency, destination market...",
+      "submit": "Send request",
       "submitting": "Sending...",
-      "success": "Message sent! We'll be in touch soon.",
-      "error": "Error sending message. Please try again."
+      "success": "Request sent! Our commercial team will contact you soon.",
+      "error": "Error sending request. Please try again."
     },
     "info": {
       "title": "Contact information",
-      "address": "Address",
-      "phone": "Phone",
-      "email": "Email address",
-      "hours": "Office hours",
-      "hoursValue": "Monday to Friday, 9:00 AM — 6:00 PM (PET)"
+      "location": "Lima, Peru",
+      "phone": "+51 920 833 371",
+      "whatsapp": "WhatsApp: +51 920 833 371",
+      "facebook": "Facebook: businessbeansperu",
+      "instagram": "Instagram: businessbeansperu",
+      "whatsappCta": "Message on WhatsApp"
     }
+  },
+  "footer": {
+    "description": "Peruvian agro-export company specializing in the selection, processing, and export of high-quality legumes to the most demanding international markets.",
+    "company": {
+      "title": "Company"
+    },
+    "productsTitle": "Products",
+    "certificationsTitle": "Certifications",
+    "socialTitle": "Social Media",
+    "terms": "Terms and Conditions",
+    "complaints": "Complaints Book"
   },
   "reclamaciones": {
     "hero": {
@@ -280,39 +446,6 @@
         "title": "7. Contact",
         "content": "For any questions about these Terms and Conditions, you may contact us at: info@businessbeans.com"
       }
-    }
-  },
-  "footer": {
-    "description": "Peruvian agro-export company specializing in the export of high-quality beans to international markets.",
-    "links": {
-      "title": "Navigation",
-      "nosotros": "About Us",
-      "productos": "Products",
-      "mercados": "Markets",
-      "contacto": "Contact"
-    },
-    "legal": {
-      "title": "Legal",
-      "reclamaciones": "Complaints Book",
-      "terminos": "Terms and Conditions"
-    },
-    "contact": {
-      "title": "Contact"
-    },
-    "copyright": "Business Beans Perú SRL. All rights reserved."
-  },
-  "certifications": {
-    "globalGap": {
-      "name": "GLOBAL G.A.P.",
-      "description": "Good Agricultural Practice certification that guarantees the sustainability and safety of our production processes."
-    },
-    "haccp": {
-      "name": "HACCP",
-      "description": "Hazard Analysis and Critical Control Points system that ensures food safety throughout the supply chain."
-    },
-    "iso": {
-      "name": "ISO 22000",
-      "description": "Food Safety Management System that integrates HACCP principles with quality management systems."
     }
   }
 }

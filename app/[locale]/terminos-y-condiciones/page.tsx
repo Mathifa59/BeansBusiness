@@ -1,6 +1,9 @@
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
+import { SectionWrapper } from "@/components/ui/section-wrapper";
+import { AnimatedSection } from "@/components/ui/animated-section";
+import { fadeUp, staggerContainer } from "@/lib/animations";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("terminos");
@@ -10,12 +13,14 @@ export async function generateMetadata(): Promise<Metadata> {
 function TerminosHero() {
   const t = useTranslations("terminos");
   return (
-    <section className="relative overflow-hidden pb-0 pt-32">
-      <div className="gradient-hero absolute inset-0" />
-      <div className="blur-blob absolute -left-16 bottom-0 h-72 w-72 rounded-full bg-[oklch(0.72_0.14_55)]" />
-      <div className="relative z-10 mx-auto max-w-4xl px-6 pb-16 text-center text-white lg:px-8">
-        <h1 className="text-4xl font-black tracking-tight lg:text-5xl">{t("title")}</h1>
-        <p className="mt-4 text-sm text-white/50">{t("lastUpdated")}</p>
+    <section className="gradient-hero relative overflow-hidden pb-16 pt-32">
+      <div className="absolute inset-0 bg-dark/30" />
+      <div className="blur-blob absolute -left-16 bottom-0 h-72 w-72 rounded-full bg-accent/30" />
+      <div className="relative z-10 mx-auto max-w-4xl px-6 text-center text-white lg:px-8">
+        <AnimatedSection variants={fadeUp}>
+          <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">{t("title")}</h1>
+          <p className="mt-4 text-sm text-white/50">{t("lastUpdated")}</p>
+        </AnimatedSection>
       </div>
     </section>
   );
@@ -36,22 +41,23 @@ export default function TerminosPage() {
   return (
     <>
       <TerminosHero />
-      <div className="pb-24 pt-16">
-        <div className="mx-auto max-w-3xl px-6 lg:px-8">
-          <div className="space-y-10">
-            {sectionKeys.map((key) => (
-              <section key={key}>
-                <h2 className="text-lg font-bold text-foreground">
-                  {t(`sections.${key}.title`)}
-                </h2>
-                <p className="mt-3 leading-relaxed text-muted-foreground">
-                  {t(`sections.${key}.content`)}
-                </p>
-              </section>
-            ))}
-          </div>
-        </div>
-      </div>
+      <SectionWrapper bg="off-white" innerClassName="max-w-3xl">
+        <AnimatedSection
+          variants={staggerContainer}
+          className="space-y-10 rounded-2xl bg-white p-8 shadow-sm sm:p-10"
+        >
+          {sectionKeys.map((key) => (
+            <AnimatedSection key={key} variants={fadeUp}>
+              <h2 className="text-lg font-bold text-dark">
+                {t(`sections.${key}.title`)}
+              </h2>
+              <p className="mt-3 leading-relaxed text-gray-700">
+                {t(`sections.${key}.content`)}
+              </p>
+            </AnimatedSection>
+          ))}
+        </AnimatedSection>
+      </SectionWrapper>
     </>
   );
 }

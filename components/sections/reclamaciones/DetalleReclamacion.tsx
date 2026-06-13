@@ -19,7 +19,7 @@ export function DetalleReclamacion({ form }: Props) {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-lg font-bold text-foreground">{t("title")}</h2>
+      <h2 className="text-lg font-bold text-dark">{t("title")}</h2>
 
       {/* Tipo selector */}
       <div className="space-y-2">
@@ -33,14 +33,14 @@ export function DetalleReclamacion({ form }: Props) {
               className={cn(
                 "rounded-xl border-2 p-4 text-left transition-all",
                 tipoSelected === tipo
-                  ? "border-[oklch(0.48_0.14_148)] bg-[oklch(0.48_0.14_148)]/8"
-                  : "border-border hover:border-[oklch(0.48_0.14_148)]/40"
+                  ? "border-primary bg-primary/8"
+                  : "border-border hover:border-primary/40"
               )}
             >
-              <p className="font-semibold text-foreground">
+              <p className="font-semibold text-dark">
                 {t(tipo === "RECLAMO" ? "reclamo" : "queja")}
               </p>
-              <p className="mt-1 text-xs text-muted-foreground">
+              <p className="mt-1 text-xs text-gray-400">
                 {t(tipo === "RECLAMO" ? "reclamoDesc" : "quejaDesc")}
               </p>
             </button>

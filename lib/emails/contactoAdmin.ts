@@ -1,5 +1,22 @@
 import type { ContactSchema } from "@/lib/validations/contactSchema";
 
+const PARTICIPANT_LABELS: Record<string, string> = {
+  importer: "Importadora",
+  distributor: "Distribuidor",
+  institution: "Institución pública",
+  other: "Otro",
+};
+
+const PRODUCT_LABELS: Record<string, string> = {
+  "frijol-canario": "Frijol Canario",
+  "pallar-baby": "Pallar Baby",
+  "lenteja-verde": "Lenteja Verde",
+  "frijol-castilla": "Frijol Castilla",
+  garbanzo: "Garbanzo",
+  "maiz-gigante-cusco": "Maíz Gigante del Cusco",
+  other: "Otro",
+};
+
 export function contactoAdminHtml(data: ContactSchema): string {
   return `<!DOCTYPE html>
 <html lang="es">
@@ -36,12 +53,20 @@ export function contactoAdminHtml(data: ContactSchema): string {
               <!-- Data table -->
               <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;">
                 <tr style="background:#f9fafb;">
-                  <td style="padding:14px 20px;font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;width:35%;">Nombre</td>
-                  <td style="padding:14px 20px;font-size:14px;color:#111827;font-weight:600;">${data.nombre}</td>
+                  <td style="padding:14px 20px;font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;width:35%;">Participante</td>
+                  <td style="padding:14px 20px;font-size:14px;color:#111827;font-weight:600;">${PARTICIPANT_LABELS[data.participante] ?? data.participante}</td>
                 </tr>
                 <tr>
+                  <td style="padding:14px 20px;font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;border-top:1px solid #e5e7eb;">Nombre</td>
+                  <td style="padding:14px 20px;font-size:14px;color:#111827;font-weight:600;border-top:1px solid #e5e7eb;">${data.nombre}</td>
+                </tr>
+                <tr style="background:#f9fafb;">
                   <td style="padding:14px 20px;font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;border-top:1px solid #e5e7eb;">Empresa</td>
                   <td style="padding:14px 20px;font-size:14px;color:#111827;border-top:1px solid #e5e7eb;">${data.empresa}</td>
+                </tr>
+                <tr>
+                  <td style="padding:14px 20px;font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;border-top:1px solid #e5e7eb;">País</td>
+                  <td style="padding:14px 20px;font-size:14px;color:#111827;border-top:1px solid #e5e7eb;">${data.pais}</td>
                 </tr>
                 <tr style="background:#f9fafb;">
                   <td style="padding:14px 20px;font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;border-top:1px solid #e5e7eb;">Email</td>
@@ -52,6 +77,14 @@ export function contactoAdminHtml(data: ContactSchema): string {
                     ? `<tr>
                   <td style="padding:14px 20px;font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;border-top:1px solid #e5e7eb;">Teléfono</td>
                   <td style="padding:14px 20px;font-size:14px;color:#111827;border-top:1px solid #e5e7eb;">${data.telefono}</td>
+                </tr>`
+                    : ""
+                }
+                ${
+                  data.producto
+                    ? `<tr style="background:#f9fafb;">
+                  <td style="padding:14px 20px;font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;border-top:1px solid #e5e7eb;">Producto de interés</td>
+                  <td style="padding:14px 20px;font-size:14px;color:#111827;border-top:1px solid #e5e7eb;">${PRODUCT_LABELS[data.producto] ?? data.producto}</td>
                 </tr>`
                     : ""
                 }

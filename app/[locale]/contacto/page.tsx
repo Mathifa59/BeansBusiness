@@ -1,26 +1,34 @@
+import { Suspense } from "react";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
+import { SectionWrapper } from "@/components/ui/section-wrapper";
+import { AnimatedSection } from "@/components/ui/animated-section";
+import { fadeUp } from "@/lib/animations";
 import { ContactForm } from "@/components/sections/contacto/ContactForm";
 import { ContactInfo } from "@/components/sections/contacto/ContactInfo";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("contacto.hero");
+  const t = await getTranslations("contact.hero");
   return { title: `${t("title")} | Business Beans Perú` };
 }
 
-function ContactoHero() {
-  const t = useTranslations("contacto.hero");
+function ContactHero() {
+  const t = useTranslations("contact.hero");
+
   return (
-    <section className="relative overflow-hidden pb-0 pt-32">
-      <div className="gradient-hero absolute inset-0" />
-      <div className="blur-blob absolute left-1/2 bottom-0 h-72 w-72 -translate-x-1/2 rounded-full bg-[oklch(0.72_0.14_55)]" />
-      <div className="relative z-10 mx-auto max-w-4xl px-6 pb-20 text-center text-white lg:px-8">
-        <span className="text-sm font-semibold uppercase tracking-widest text-[oklch(0.88_0.10_55)]">
-          {t("label")}
-        </span>
-        <h1 className="mt-4 text-5xl font-black tracking-tight lg:text-6xl">{t("title")}</h1>
-        <p className="mx-auto mt-6 max-w-2xl text-lg text-white/75">{t("description")}</p>
+    <section className="gradient-hero relative overflow-hidden pb-16 pt-32">
+      <div className="absolute inset-0 bg-dark/30" />
+
+      <div className="relative z-10 mx-auto max-w-3xl px-6 text-center text-white lg:px-8">
+        <AnimatedSection variants={fadeUp}>
+          <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
+            {t("title")}
+          </h1>
+          <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-white/75">
+            {t("subtitle")}
+          </p>
+        </AnimatedSection>
       </div>
     </section>
   );
@@ -29,19 +37,21 @@ function ContactoHero() {
 export default function ContactoPage() {
   return (
     <>
-      <ContactoHero />
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
-            <div className="lg:col-span-2">
-              <ContactForm />
+      <ContactHero />
+      <SectionWrapper bg="off-white">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-5 lg:gap-12">
+          <AnimatedSection variants={fadeUp} className="lg:col-span-3">
+            <div className="rounded-2xl bg-white p-8 shadow-sm sm:p-10">
+              <Suspense>
+                <ContactForm />
+              </Suspense>
             </div>
-            <div>
-              <ContactInfo />
-            </div>
-          </div>
+          </AnimatedSection>
+          <AnimatedSection variants={fadeUp} className="lg:col-span-2">
+            <ContactInfo />
+          </AnimatedSection>
         </div>
-      </section>
+      </SectionWrapper>
     </>
   );
 }

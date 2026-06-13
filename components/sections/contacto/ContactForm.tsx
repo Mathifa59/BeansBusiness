@@ -1,35 +1,87 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { Controller } from "react-hook-form";
+import { CheckCircle2, AlertCircle, ArrowRight } from "lucide-react";
 import { useContactForm } from "@/hooks/useContactForm";
+import {
+  PARTICIPANT_OPTIONS,
+  PRODUCT_OPTIONS,
+} from "@/lib/validations/contactSchema";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { CheckCircle2, AlertCircle } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export function ContactForm() {
-  const t = useTranslations("contacto.form");
-  const { form, status, onSubmit } = useContactForm();
-  const { register, formState: { errors } } = form;
+  const t = useTranslations("contact.form");
+  const searchParams = useSearchParams();
+  const initialProduct = searchParams.get("producto") ?? undefined;
+  const { form, status, onSubmit } = useContactForm(initialProduct);
+  const {
+    register,
+    control,
+    formState: { errors },
+  } = form;
 
   if (status === "success") {
     return (
-      <div className="flex flex-col items-center gap-4 rounded-2xl bg-[oklch(0.48_0.14_148)]/10 p-10 text-center">
-        <CheckCircle2 className="h-12 w-12 text-[oklch(0.48_0.14_148)]" />
-        <p className="text-lg font-semibold text-foreground">{t("success")}</p>
+      <div className="flex flex-col items-center gap-4 rounded-2xl bg-primary/10 p-10 text-center">
+        <CheckCircle2 className="h-12 w-12 text-primary" />
+        <p className="text-lg font-semibold text-dark">{t("success")}</p>
       </div>
     );
   }
 
   return (
     <form onSubmit={onSubmit} className="space-y-6">
+      <div className="space-y-2">
+        <Label>{t("participantLabel")}</Label>
+        <Controller
+          name="participante"
+          control={control}
+          render={({ field }) => (
+            <Select
+              value={field.value}
+              onValueChange={(value) => field.onChange(value)}
+            >
+              <SelectTrigger className="h-11 w-full rounded-lg">
+                <SelectValue>
+                  {(value: string | null) =>
+                    value
+                      ? t(
+                          `participantOptions.${value}` as Parameters<typeof t>[0]
+                        )
+                      : "—"
+                  }
+                </SelectValue>
+              </SelectTrigger>
+              <SelectContent>
+                {PARTICIPANT_OPTIONS.map((opt) => (
+                  <SelectItem key={opt} value={opt}>
+                    {t(`participantOptions.${opt}` as Parameters<typeof t>[0])}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        />
+      </div>
+
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="nombre">{t("nombre")}</Label>
+          <Label htmlFor="nombre">{t("nameLabel")}</Label>
           <Input
             id="nombre"
-            placeholder={t("nombrePlaceholder")}
+            placeholder={t("namePlaceholder")}
             {...register("nombre")}
             className={errors.nombre ? "border-destructive" : ""}
           />
@@ -39,10 +91,10 @@ export function ContactForm() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="empresa">{t("empresa")}</Label>
+          <Label htmlFor="empresa">{t("companyLabel")}</Label>
           <Input
             id="empresa"
-            placeholder={t("empresaPlaceholder")}
+            placeholder={t("companyPlaceholder")}
             {...register("empresa")}
             className={errors.empresa ? "border-destructive" : ""}
           />
@@ -54,7 +106,20 @@ export function ContactForm() {
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="email">{t("email")}</Label>
+          <Label htmlFor="pais">{t("countryLabel")}</Label>
+          <Input
+            id="pais"
+            placeholder={t("countryPlaceholder")}
+            {...register("pais")}
+            className={errors.pais ? "border-destructive" : ""}
+          />
+          {errors.pais && (
+            <p className="text-xs text-destructive">{errors.pais.message}</p>
+          )}
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="email">{t("emailLabel")}</Label>
           <Input
             id="email"
             type="email"
@@ -66,23 +131,58 @@ export function ContactForm() {
             <p className="text-xs text-destructive">{errors.email.message}</p>
           )}
         </div>
+      </div>
 
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="telefono">{t("telefono")}</Label>
+          <Label htmlFor="telefono">{t("phoneLabel")}</Label>
           <Input
             id="telefono"
             type="tel"
-            placeholder={t("telefonoPlaceholder")}
+            placeholder={t("phonePlaceholder")}
             {...register("telefono")}
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label>{t("productLabel")}</Label>
+          <Controller
+            name="producto"
+            control={control}
+            render={({ field }) => (
+              <Select
+                value={field.value ?? null}
+                onValueChange={(value) => field.onChange(value ?? undefined)}
+              >
+                <SelectTrigger className="h-11 w-full rounded-lg">
+                  <SelectValue>
+                    {(value: string | null) =>
+                      value
+                        ? t(
+                            `productOptions.${value}` as Parameters<typeof t>[0]
+                          )
+                        : "—"
+                    }
+                  </SelectValue>
+                </SelectTrigger>
+                <SelectContent>
+                  {PRODUCT_OPTIONS.map((opt) => (
+                    <SelectItem key={opt} value={opt}>
+                      {t(`productOptions.${opt}` as Parameters<typeof t>[0])}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
           />
         </div>
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="mensaje">{t("mensaje")}</Label>
+        <Label htmlFor="mensaje">{t("messageLabel")}</Label>
         <Textarea
           id="mensaje"
-          placeholder={t("mensajePlaceholder")}
+          placeholder={t("messagePlaceholder")}
           rows={5}
           {...register("mensaje")}
           className={errors.mensaje ? "border-destructive" : ""}
@@ -103,9 +203,12 @@ export function ContactForm() {
         type="submit"
         size="lg"
         disabled={status === "loading"}
-        className="w-full rounded-full bg-[oklch(0.48_0.14_148)] font-semibold text-white hover:bg-[oklch(0.36_0.12_148)]"
+        className="group w-full rounded-full bg-primary py-5 text-base font-semibold text-white hover:bg-primary-dark"
       >
         {status === "loading" ? t("submitting") : t("submit")}
+        {status !== "loading" && (
+          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+        )}
       </Button>
     </form>
   );

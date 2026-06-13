@@ -4,11 +4,19 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Logo } from "./Logo";
 import { LocaleSwitcher } from "./LocaleSwitcher";
-import { NAV_LINKS } from "@/lib/constants/navigation";
 import { buttonVariants } from "@/components/ui/button";
+
+const LINKS = [
+  { key: "home", href: "" },
+  { key: "nosotros", href: "/nosotros" },
+  { key: "productos", href: "/productos" },
+  { key: "presencia", href: "/presencia" },
+];
 
 export function Navbar() {
   const t = useTranslations("nav");
@@ -19,125 +27,153 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
   const localizedHref = (href: string) => `/${locale}${href}`;
 
-  const isActive = (href: string) => pathname === `/${locale}${href}`;
+  const isActive = (href: string) => {
+    const target = `/${locale}${href}`;
+    return href === "" ? pathname === target : pathname.startsWith(target);
+  };
+
+  const lightText = !scrolled;
 
   return (
     <header
       className={cn(
-        "fixed top-0 z-50 w-full transition-all duration-500",
+        "fixed top-0 z-50 w-full transition-all duration-200",
         scrolled
-          ? "bg-[oklch(0.48_0.14_148)]/95 shadow-lg backdrop-blur-md"
+          ? "bg-white/95 shadow-sm backdrop-blur-md"
           : "bg-transparent"
       )}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-        {/* Logo */}
-        <Link
+        <Logo
+          variant={lightText ? "white" : "color"}
           href={`/${locale}`}
-          className="text-2xl font-black tracking-tight text-white drop-shadow-sm"
-        >
-          BEANS
-        </Link>
+        />
 
         {/* Desktop nav */}
         <div className="hidden items-center gap-8 lg:flex">
-          {NAV_LINKS.map((link) => (
+          {LINKS.map((link) => (
             <Link
               key={link.key}
               href={localizedHref(link.href)}
               className={cn(
-                "relative text-sm font-medium transition-colors",
-                isActive(link.href)
-                  ? "text-white"
-                  : "text-white/70 hover:text-white"
+                "group relative py-1 text-sm font-medium transition-colors",
+                lightText
+                  ? "text-white/90 hover:text-white"
+                  : "text-dark/70 hover:text-dark"
               )}
             >
               {t(link.key as Parameters<typeof t>[0])}
-              {isActive(link.href) && (
-                <span className="absolute -bottom-1 left-0 h-0.5 w-full rounded-full bg-[oklch(0.72_0.14_55)]" />
-              )}
+              <span
+                className={cn(
+                  "absolute -bottom-0.5 left-0 h-0.5 w-full origin-left scale-x-0 rounded-full bg-primary transition-transform duration-300 group-hover:scale-x-100",
+                  isActive(link.href) && "scale-x-100"
+                )}
+              />
             </Link>
           ))}
         </div>
 
         {/* Desktop right */}
         <div className="hidden items-center gap-4 lg:flex">
-          <LocaleSwitcher />
+          <LocaleSwitcher variant={lightText ? "light" : "dark"} />
           <Link
-            href={localizedHref("/libro-de-reclamaciones")}
+            href={localizedHref("/contacto")}
             className={buttonVariants({
               size: "sm",
-              className: cn(
-                "rounded-full font-semibold text-white hover:shadow-md",
-                isActive("/libro-de-reclamaciones")
-                  ? "bg-[oklch(0.60_0.18_45)] ring-2 ring-white/30"
-                  : "bg-[oklch(0.72_0.14_55)] hover:bg-[oklch(0.65_0.16_45)]"
-              ),
+              className:
+                "rounded-full bg-primary px-5 font-semibold text-white hover:bg-primary-dark hover:shadow-md",
             })}
           >
-            {t("reclamaciones")}
+            {t("contacto")}
           </Link>
         </div>
 
         {/* Mobile toggle */}
         <button
-          className="text-white lg:hidden"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label={isOpen ? t("menuClose") : t("menuOpen")}
+          className={cn(
+            "lg:hidden",
+            lightText ? "text-white" : "text-dark"
+          )}
+          onClick={() => setIsOpen(true)}
+          aria-label={t("menuOpen")}
         >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          <Menu size={24} />
         </button>
       </nav>
 
-      {/* Mobile menu */}
-      <div
-        className={cn(
-          "overflow-hidden transition-all duration-300 ease-in-out lg:hidden",
-          isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
-        )}
-      >
-        <div className="space-y-1 bg-[oklch(0.36_0.12_148)] px-6 pb-6 pt-2">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.key}
-              href={localizedHref(link.href)}
+      {/* Mobile drawer */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-40 bg-dark/50 lg:hidden"
               onClick={() => setIsOpen(false)}
-              className={cn(
-                "flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors",
-                isActive(link.href)
-                  ? "bg-white/15 text-white"
-                  : "text-white/75 hover:bg-white/10 hover:text-white"
-              )}
+            />
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+              className="fixed inset-y-0 right-0 z-50 flex w-full max-w-sm flex-col bg-white p-6 shadow-2xl lg:hidden"
             >
-              {isActive(link.href) && (
-                <span className="h-1.5 w-1.5 rounded-full bg-[oklch(0.72_0.14_55)]" />
-              )}
-              {t(link.key as Parameters<typeof t>[0])}
-            </Link>
-          ))}
-          <Link
-            href={localizedHref("/libro-de-reclamaciones")}
-            onClick={() => setIsOpen(false)}
-            className={cn(
-              "mt-2 block rounded-full px-4 py-3 text-center text-sm font-semibold text-white transition-colors",
-              isActive("/libro-de-reclamaciones")
-                ? "bg-[oklch(0.60_0.18_45)] ring-2 ring-white/30"
-                : "bg-[oklch(0.72_0.14_55)] hover:bg-[oklch(0.65_0.16_45)]"
-            )}
-          >
-            {t("reclamaciones")}
-          </Link>
-          <div className="flex justify-center pt-2">
-            <LocaleSwitcher />
-          </div>
-        </div>
-      </div>
+              <div className="flex items-center justify-between">
+                <Logo variant="color" href={`/${locale}`} />
+                <button
+                  className="text-dark"
+                  onClick={() => setIsOpen(false)}
+                  aria-label={t("menuClose")}
+                >
+                  <X size={24} />
+                </button>
+              </div>
+
+              <div className="mt-10 flex flex-col gap-2">
+                {LINKS.map((link) => (
+                  <Link
+                    key={link.key}
+                    href={localizedHref(link.href)}
+                    onClick={() => setIsOpen(false)}
+                    className={cn(
+                      "rounded-lg px-4 py-3 text-base font-semibold transition-colors",
+                      isActive(link.href)
+                        ? "bg-primary/10 text-primary"
+                        : "text-dark/80 hover:bg-gray-100 hover:text-dark"
+                    )}
+                  >
+                    {t(link.key as Parameters<typeof t>[0])}
+                  </Link>
+                ))}
+                <Link
+                  href={localizedHref("/contacto")}
+                  onClick={() => setIsOpen(false)}
+                  className="mt-2 rounded-full bg-primary px-4 py-3 text-center text-base font-semibold text-white transition-colors hover:bg-primary-dark"
+                >
+                  {t("contacto")}
+                </Link>
+              </div>
+
+              <div className="mt-auto flex justify-center pt-6">
+                <LocaleSwitcher variant="dark" />
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

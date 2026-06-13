@@ -25,7 +25,7 @@ export function DatosConsumidor({ form }: Props) {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-lg font-bold text-foreground">{t("title")}</h2>
+      <h2 className="text-lg font-bold text-dark">{t("title")}</h2>
 
       <div className="space-y-2">
         <Label htmlFor="nombreCompleto">{t("nombreCompleto")}</Label>
@@ -122,7 +122,7 @@ export function DatosConsumidor({ form }: Props) {
       </div>
 
       {esMenor && (
-        <div className="grid grid-cols-1 gap-4 rounded-xl border border-[oklch(0.72_0.14_55)]/30 bg-[oklch(0.88_0.10_55)]/10 p-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 rounded-xl border border-accent/30 bg-accent/10 p-4 sm:grid-cols-2">
           <div className="space-y-2">
             <Label htmlFor="nombreApoderado">{t("nombreApoderado")}</Label>
             <Input

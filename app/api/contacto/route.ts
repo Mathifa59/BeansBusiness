@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     await resend.emails.send({
       from: process.env.CONTACTO_FROM ?? "Contacto <onboarding@resend.dev>",
       to: process.env.CONTACTO_ADMIN ?? "",
-      subject: `Nuevo contacto de ${data.nombre} — ${data.empresa}`,
+      subject: `Nueva consulta comercial — ${data.nombre} de ${data.empresa} (${data.pais})`,
       html: contactoAdminHtml(data),
       replyTo: data.email,
     });

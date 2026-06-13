@@ -23,22 +23,22 @@ export function ReclamacionForm() {
   return (
     <form onSubmit={onSubmit} className="space-y-10">
       {/* Proveedor — read only */}
-      <div className="rounded-xl bg-muted/50 p-6">
-        <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+      <div className="rounded-xl bg-off-white p-6">
+        <h2 className="mb-4 text-xs font-semibold uppercase tracking-widest text-gray-400">
           {tP("title")}
         </h2>
         <dl className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-3">
           <div>
-            <dt className="text-xs text-muted-foreground">{tP("razonSocial")}</dt>
-            <dd className="mt-0.5 font-semibold text-foreground">{COMPANY_INFO.razonSocial}</dd>
+            <dt className="text-xs text-gray-400">{tP("razonSocial")}</dt>
+            <dd className="mt-0.5 font-semibold text-dark">{COMPANY_INFO.razonSocial}</dd>
           </div>
           <div>
-            <dt className="text-xs text-muted-foreground">{tP("ruc")}</dt>
-            <dd className="mt-0.5 font-semibold text-foreground">{COMPANY_INFO.ruc}</dd>
+            <dt className="text-xs text-gray-400">{tP("ruc")}</dt>
+            <dd className="mt-0.5 font-semibold text-dark">{COMPANY_INFO.ruc}</dd>
           </div>
           <div>
-            <dt className="text-xs text-muted-foreground">{tP("direccion")}</dt>
-            <dd className="mt-0.5 font-semibold text-foreground">{COMPANY_INFO.direccion}</dd>
+            <dt className="text-xs text-gray-400">{tP("direccion")}</dt>
+            <dd className="mt-0.5 font-semibold text-dark">{COMPANY_INFO.direccion}</dd>
           </div>
         </dl>
       </div>
@@ -63,7 +63,7 @@ export function ReclamacionForm() {
         type="submit"
         size="lg"
         disabled={status === "loading"}
-        className="w-full rounded-full bg-[oklch(0.48_0.14_148)] font-semibold text-white hover:bg-[oklch(0.36_0.12_148)]"
+        className="w-full rounded-full bg-primary py-5 text-base font-semibold text-white hover:bg-primary-dark"
       >
         {status === "loading" ? t("submitting") : t("submit")}
       </Button>

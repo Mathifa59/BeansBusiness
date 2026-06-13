@@ -3,8 +3,9 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown, MessageCircle } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
+import { SectionTag } from "@/components/ui/section-tag";
 
 export function HeroSection() {
   const t = useTranslations("home.hero");
@@ -12,59 +13,42 @@ export function HeroSection() {
 
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
-      {/* Video background */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 h-full w-full object-cover"
-      >
-        <source src="/hero-cultivo.mp4" type="video/mp4" />
-      </video>
-
-      {/* Dark gradient overlay — mantiene legibilidad del texto */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.20_0.08_148)]/70 via-[oklch(0.20_0.08_148)]/50 to-[oklch(0.15_0.06_148)]/80" />
-
-      {/* Tint verde sutil sobre el video */}
-      <div className="absolute inset-0 bg-[oklch(0.32_0.10_148)]/30" />
-
-      {/* Blob naranja decorativo */}
-      <div className="blur-blob absolute -right-32 top-1/4 h-96 w-96 rounded-full bg-[oklch(0.72_0.14_55)]" />
+      <div className="gradient-hero absolute inset-0" />
+      <div className="absolute inset-0 bg-dark/40" />
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 py-32 text-center lg:px-8">
-        <motion.span
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 rounded-full border border-[oklch(0.72_0.14_55)]/40 bg-[oklch(0.72_0.14_55)]/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[oklch(0.88_0.10_55)]"
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-[oklch(0.88_0.10_55)]" />
-          {t("tagline")}
-        </motion.span>
+          <SectionTag variant="light" className="justify-center">
+            {t("eyebrow")}
+          </SectionTag>
+        </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="mt-6 text-5xl font-black leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl"
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-6 whitespace-pre-line text-5xl font-bold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl"
         >
-          {t("headline")}
+          {t("title")}
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/80"
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="mx-auto mt-6 max-w-2xl whitespace-pre-line text-xl leading-relaxed text-white/80"
         >
-          {t("subheadline")}
+          {t("subtitle")}
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
           className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
           <Link
@@ -72,10 +56,10 @@ export function HeroSection() {
             className={buttonVariants({
               size: "lg",
               className:
-                "group rounded-full bg-[oklch(0.72_0.14_55)] px-8 font-semibold text-white shadow-lg hover:bg-[oklch(0.65_0.16_45)] hover:shadow-xl",
+                "group rounded-full bg-accent px-8 font-semibold text-dark shadow-lg hover:scale-105 hover:bg-accent/90 hover:shadow-xl",
             })}
           >
-            {t("cta")}
+            {t("ctaPrimary")}
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
           <Link
@@ -84,26 +68,26 @@ export function HeroSection() {
               variant: "outline",
               size: "lg",
               className:
-                "rounded-full border-white/30 bg-white/10 px-8 font-semibold text-white backdrop-blur-sm hover:bg-white/20 hover:text-white",
+                "rounded-full border-2 border-white bg-transparent px-8 font-semibold text-white hover:bg-white hover:text-dark",
             })}
           >
+            <MessageCircle className="mr-2 h-4 w-4" />
             {t("ctaSecondary")}
           </Link>
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 0.5 }}
+        transition={{ delay: 1.2, duration: 0.5 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
         >
-          <ChevronDown className="h-6 w-6 text-white/50" />
+          <ChevronDown className="h-6 w-6 text-white/60" />
         </motion.div>
       </motion.div>
     </section>

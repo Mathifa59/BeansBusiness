@@ -1,194 +1,360 @@
 {
   "nav": {
+    "home": "Inicio",
     "nosotros": "Nosotros",
     "productos": "Productos",
-    "mercados": "Mercados",
-    "contacto": "Contacto",
-    "reclamaciones": "Libro de Reclamaciones",
+    "presencia": "Presencia",
+    "contacto": "Contáctanos",
     "menuOpen": "Abrir menú",
     "menuClose": "Cerrar menú"
   },
+  "common": {
+    "whatsappTooltip": "¿Hablamos?",
+    "learnMore": "Conocer más",
+    "contactUs": "Contáctanos"
+  },
   "home": {
     "hero": {
-      "tagline": "Agroexportadora Peruana",
-      "headline": "Frejoles de calidad premium para el mundo",
-      "subheadline": "Exportamos las mejores variedades de frejoles peruanos a los mercados internacionales más exigentes, con estándares de calidad certificados.",
-      "cta": "Ver nuestros productos",
+      "eyebrow": "AGROEXPORTADORA PERUANA",
+      "title": "Del campo peruano\nal mundo",
+      "subtitle": "Legumbres y productos agrícolas de exportación\ncon calidad certificada FDA · SENASA · HACCP",
+      "ctaPrimary": "Ver productos",
       "ctaSecondary": "Contáctanos"
     },
+    "stats": {
+      "items": {
+        "tons": { "value": "500+", "label": "Toneladas exportadas" },
+        "countries": { "value": "15+", "label": "Países de destino" },
+        "certifications": { "value": "3", "label": "Certificaciones internacionales" },
+        "experience": { "value": "10+", "label": "Años de experiencia" }
+      }
+    },
     "about": {
-      "label": "Quiénes somos",
-      "title": "Tradición exportadora con visión global",
-      "description": "Business Beans Perú SRL es una empresa agroexportadora especializada en la producción y exportación de frejoles de alta calidad. Trabajamos de la mano con agricultores peruanos para llevar lo mejor del campo peruano a los mercados internacionales.",
+      "eyebrow": "QUIÉNES SOMOS",
+      "title": "Conectamos la riqueza agrícola del Perú con el mundo",
+      "description": "Business Beans Perú nace con la misión de llevar lo mejor del campo peruano a mercados nacionales e internacionales. Somos especialistas en la selección, procesamiento y exportación de legumbres de alta calidad, trabajando bajo los más estrictos estándares de inocuidad alimentaria.",
+      "features": [
+        "Procesos certificados FDA, SENASA y HACCP",
+        "Selección tecnificada con maquinaria de última generación",
+        "Trazabilidad completa desde campo hasta destino"
+      ],
       "cta": "Conocer más"
     },
     "products": {
-      "label": "Nuestros productos",
-      "title": "Variedades premium de frejol peruano",
-      "description": "Ofrecemos las variedades más demandadas del mercado internacional, cultivadas en las mejores zonas agrícolas del Perú.",
+      "eyebrow": "NUESTROS PRODUCTOS",
+      "title": "Legumbres peruanas de exportación",
+      "subtitle": "Seleccionados bajo los más altos estándares de calidad para mercados exigentes",
       "cta": "Ver todos los productos"
     },
-    "markets": {
-      "label": "Mercados de exportación",
-      "title": "Presencia en los principales mercados globales",
-      "description": "Exportamos a América, Europa y Asia, cumpliendo con los más estrictos estándares de calidad e inocuidad alimentaria.",
-      "cta": "Ver mercados"
-    },
     "certifications": {
-      "label": "Certificaciones",
-      "title": "Calidad certificada internacionalmente",
-      "description": "Nuestros procesos y productos cuentan con certificaciones internacionales que garantizan calidad, seguridad alimentaria y buenas prácticas agrícolas."
-    },
-    "contactCta": {
-      "title": "¿Interesado en importar nuestros productos?",
-      "description": "Contáctenos para conocer nuestras condiciones comerciales, disponibilidad de stock y capacidad de exportación.",
-      "cta": "Solicitar información"
-    }
-  },
-  "nosotros": {
-    "hero": {
-      "label": "Nuestra empresa",
-      "title": "Business Beans Perú SRL",
-      "description": "Somos una empresa agroexportadora peruana comprometida con la calidad y la sostenibilidad."
-    },
-    "history": {
-      "label": "Nuestra historia",
-      "title": "Raíces en la tierra, visión en el mundo",
-      "p1": "Business Beans Perú SRL nació de la pasión por el agro peruano y la convicción de que los frejoles peruanos tienen el potencial de conquistar los mercados internacionales más exigentes.",
-      "p2": "Desde nuestros inicios, hemos trabajado de la mano con productores locales, implementando buenas prácticas agrícolas y estándares de calidad que nos permiten ofrecer un producto de excelencia.",
-      "p3": "Hoy somos una empresa de referencia en la exportación de frejoles, con presencia en múltiples mercados internacionales y una cadena de suministro trazable de punta a punta."
-    },
-    "mission": {
-      "label": "Misión",
-      "title": "Nuestra misión",
-      "description": "Exportar frejoles peruanos de alta calidad al mundo, generando valor para nuestros agricultores, clientes y la sociedad, con una gestión responsable y sostenible."
-    },
-    "vision": {
-      "label": "Visión",
-      "title": "Nuestra visión",
-      "description": "Ser la empresa agroexportadora de frejoles más reconocida de Latinoamérica, referente en calidad, innovación y comercio justo para el año 2030."
-    },
-    "values": {
-      "label": "Valores",
-      "title": "Lo que nos guía",
-      "quality": {
-        "title": "Calidad",
-        "description": "Procesos certificados y control exhaustivo en cada etapa de la cadena productiva."
-      },
-      "sustainability": {
-        "title": "Sostenibilidad",
-        "description": "Comprometidos con el medio ambiente y el bienestar de las comunidades agrícolas."
-      },
-      "trust": {
-        "title": "Confianza",
-        "description": "Relaciones comerciales transparentes, basadas en el cumplimiento y la honestidad."
-      },
-      "innovation": {
-        "title": "Innovación",
-        "description": "Mejora continua de procesos para adaptarnos a las exigencias del mercado global."
+      "eyebrow": "ESTÁNDARES DE CALIDAD",
+      "title": "Certificados para exportar al mundo",
+      "items": {
+        "fda": {
+          "name": "FDA",
+          "description": "Food and Drug Administration — Habilitación para exportar a Estados Unidos"
+        },
+        "senasa": {
+          "name": "SENASA",
+          "description": "Servicio Nacional de Sanidad Agraria — Certificación fitosanitaria peruana"
+        },
+        "haccp": {
+          "name": "HACCP",
+          "description": "Análisis de Peligros y Puntos de Control — Inocuidad alimentaria garantizada"
+        }
       }
     },
-    "team": {
-      "label": "Nuestro equipo",
-      "title": "Las personas detrás de Business Beans",
-      "description": "Un equipo multidisciplinario con experiencia en agronegocios, comercio exterior y calidad alimentaria."
+    "finalCta": {
+      "title": "¿Listo para importar calidad peruana?",
+      "subtitle": "Contáctanos hoy y recibe información detallada sobre nuestros productos, certificaciones y condiciones de exportación.",
+      "ctaPrimary": "Solicitar cotización",
+      "ctaSecondary": "WhatsApp"
     }
   },
-  "productos": {
+  "about": {
     "hero": {
-      "label": "Nuestros productos",
-      "title": "Frejoles peruanos de exportación",
-      "description": "Variedades seleccionadas, procesadas y certificadas para los mercados internacionales más exigentes."
+      "breadcrumb": "Inicio / Nosotros",
+      "eyebrow": "NUESTRA HISTORIA",
+      "title": "Llevamos lo mejor del\ncampo peruano al mundo",
+      "subtitle": "Somos una empresa peruana comprometida con la calidad, la sostenibilidad y el desarrollo del sector agroexportador nacional."
+    },
+    "missionVision": {
+      "vision": {
+        "title": "Visión",
+        "description": "Consolidarnos como una empresa líder en el comercio y exportación de legumbres y productos agrícolas peruanos, con presencia en los principales mercados internacionales, destacando por la calidad de nuestros productos, la innovación en nuestros procesos y el compromiso con la sostenibilidad."
+      },
+      "mission": {
+        "title": "Misión",
+        "description": "Conectar la riqueza agrícola del Perú con los mercados nacionales e internacionales, ofreciendo legumbres y productos agroindustriales de alta calidad que cumplan con estándares de confianza, eficiencia y sostenibilidad, fortaleciendo relaciones comerciales sólidas y generando valor para clientes, productores y aliados estratégicos."
+      }
+    },
+    "values": {
+      "eyebrow": "LO QUE NOS DEFINE",
+      "title": "Nuestros valores",
+      "items": {
+        "quality": {
+          "name": "Calidad",
+          "description": "Seleccionamos solo los mejores granos bajo estrictos protocolos de control de calidad en cada etapa del proceso."
+        },
+        "trust": {
+          "name": "Confianza",
+          "description": "Construimos relaciones comerciales duraderas basadas en transparencia, cumplimiento y honestidad."
+        },
+        "sustainability": {
+          "name": "Sostenibilidad",
+          "description": "Trabajamos con productores responsables y promovemos prácticas agrícolas que cuidan el medioambiente."
+        },
+        "innovation": {
+          "name": "Innovación",
+          "description": "Incorporamos tecnología de selección avanzada para garantizar uniformidad, limpieza y trazabilidad del producto."
+        },
+        "efficiency": {
+          "name": "Eficiencia",
+          "description": "Optimizamos cada proceso desde la selección hasta el embarque para cumplir plazos y estándares internacionales."
+        },
+        "commitment": {
+          "name": "Compromiso",
+          "description": "Nos comprometemos con el éxito de nuestros clientes y con el desarrollo del agro peruano."
+        }
+      }
+    },
+    "process": {
+      "eyebrow": "CÓMO TRABAJAMOS",
+      "title": "Del campo al contenedor",
+      "steps": {
+        "selection": {
+          "name": "Selección",
+          "description": "Identificamos y evaluamos los mejores lotes agrícolas del país, trabajando directamente con productores certificados."
+        },
+        "processing": {
+          "name": "Procesamiento",
+          "description": "Procesamos el grano con maquinaria selectora de última generación, eliminando imperfecciones y garantizando calibres uniformes."
+        },
+        "certification": {
+          "name": "Certificación",
+          "description": "Verificamos el cumplimiento de todos los estándares fitosanitarios y de inocuidad: FDA, SENASA, HACCP."
+        },
+        "export": {
+          "name": "Exportación",
+          "description": "Gestionamos la logística internacional completa: documentación, trazabilidad y embarque a los mercados de destino."
+        }
+      }
+    },
+    "commitment": {
+      "quote": "Creemos que la calidad no es un destino, sino el punto de partida de cada embarque que sale del Perú al mundo.",
+      "signature": "— Business Beans Perú"
+    }
+  },
+  "products": {
+    "hero": {
+      "eyebrow": "CATÁLOGO DE EXPORTACIÓN",
+      "title": "Legumbres peruanas\npara el mundo",
+      "subtitle": "Oferta exportable con certificación internacional, disponibilidad estacional garantizada y partidas arancelarias precisas."
+    },
+    "filters": {
+      "certificationLabel": "Certificación",
+      "certificationAll": "Todos",
+      "availabilityLabel": "Disponibilidad",
+      "availabilityAll": "Todo el año",
+      "availabilitySeasonal": "Estacional"
     },
     "specs": {
-      "humidity": "Humedad",
-      "purity": "Pureza",
-      "packaging": "Presentación",
-      "origin": "Origen",
-      "certification": "Certificación"
+      "tariffCode": "Partida arancelaria",
+      "seasonality": "Estacionalidad",
+      "destinations": "Destinos principales",
+      "certifications": "Certificaciones"
     },
-    "canario": {
-      "name": "Frejol Canario",
-      "description": "Una de las variedades más apreciadas del mercado peruano e internacional. Grano de color amarillo intenso, textura cremosa y sabor suave. Ideal para mercados de América Latina y Europa."
+    "viewDetails": "Ver detalle",
+    "requestQuote": "Solicitar cotización",
+    "items": {
+      "frijol-canario": {
+        "name": "Frijol Canario",
+        "shortDescription": "Grano grande, color amarillo intenso. Ideal para mercados latinoamericanos y europeos.",
+        "description": "El Frijol Canario es uno de los granos bandera de la exportación peruana. De color amarillo intenso y textura suave, destaca por su alto valor proteico y su versatilidad culinaria. Seleccionado y clasificado según calibre para cumplir con los estándares de los importadores internacionales más exigentes.",
+        "tariffCode": "0713.33.90.00",
+        "seasonality": "Disponible todo el año (cosecha principal: marzo–julio)",
+        "destinations": ["Estados Unidos", "España", "Chile", "Bolivia"],
+        "certifications": ["FDA", "SENASA"]
+      },
+      "pallar-baby": {
+        "name": "Pallar Baby",
+        "shortDescription": "Legumbre suave y cremosa. Alta demanda en Asia y Europa.",
+        "description": "El Pallar Baby es una de las legumbres más valoradas en mercados asiáticos y europeos. De textura cremosa y sabor delicado, es ideal para gastronomía de alto nivel y procesamiento industrial. Perú es uno de los principales productores mundiales de esta variedad.",
+        "tariffCode": "0713.22.00.00",
+        "seasonality": "Cosecha: junio–octubre",
+        "destinations": ["Japón", "España", "Italia", "Estados Unidos"],
+        "certifications": ["HACCP", "SENASA"]
+      },
+      "lenteja-verde": {
+        "name": "Lenteja Verde",
+        "shortDescription": "Alto contenido proteico. Excelente tasa de hidratación para procesamiento industrial.",
+        "description": "La Lenteja Verde peruana se caracteriza por su alto contenido proteico, excelente tasa de hidratación y uniformidad de calibre. Ampliamente utilizada en la industria alimentaria para procesamiento y envasado.",
+        "tariffCode": "0713.40.00.00",
+        "seasonality": "Disponible todo el año",
+        "destinations": ["Colombia", "México", "España", "Argentina"],
+        "certifications": ["FDA", "HACCP"]
+      },
+      "frijol-castilla": {
+        "name": "Frijol Castilla",
+        "shortDescription": "Tradicional de la costa peruana. Perfil nutricional superior para mercado orgánico.",
+        "description": "Tradicional de la costa peruana, el Frijol Castilla es reconocido por su perfil nutricional superior y su versatilidad en la cocina. Disponemos de variedad convencional y orgánica certificada.",
+        "tariffCode": "0713.33.20.00",
+        "seasonality": "Cosecha: enero–mayo",
+        "destinations": ["Estados Unidos", "Venezuela", "Colombia", "España"],
+        "certifications": ["SENASA", "Orgánico"]
+      },
+      "garbanzo": {
+        "name": "Garbanzo",
+        "shortDescription": "Calibres uniformes para exigencias de importadores de Medio Oriente y Europa.",
+        "description": "El Garbanzo peruano se comercializa en calibres 8–9 mm y 9–10 mm, cumpliendo con las exigencias de los mercados mediterráneos y de Medio Oriente. Proceso de limpieza riguroso garantiza mínimo de impurezas.",
+        "tariffCode": "0713.20.00.00",
+        "seasonality": "Cosecha: mayo–septiembre",
+        "destinations": ["España", "Italia", "Turquía", "México"],
+        "certifications": ["FDA", "HACCP"]
+      },
+      "maiz-gigante-cusco": {
+        "name": "Maíz Gigante del Cusco",
+        "shortDescription": "Producto bandera peruano. Demanda creciente en mercados premium y foodservice.",
+        "description": "El Maíz Gigante del Cusco es un producto único en el mundo, originario de los valles andinos del Perú. Con granos de tamaño excepcional y sabor característico, tiene alta demanda en mercados gourmet y snack premium internacionales.",
+        "tariffCode": "1005.90.20.00",
+        "seasonality": "Cosecha: julio–octubre",
+        "destinations": ["Japón", "Estados Unidos", "España", "Australia"],
+        "certifications": ["SENASA", "Premium"]
+      }
     },
-    "castilla": {
-      "name": "Frejol Castilla (Caupí)",
-      "description": "Variedad de alta demanda en mercados de América Central y el Caribe. Grano de color crema con pequeño ojo negro, rico en proteínas y de excelente rendimiento culinario."
-    },
-    "panamito": {
-      "name": "Frejol Panamito",
-      "description": "Variedad de grano pequeño y color crema claro. Muy valorada en los mercados asiáticos por su textura firme y sabor delicado. Alta demanda en Japón y otros mercados del Pacífico."
-    },
-    "loctao": {
-      "name": "Frejol de Palo / Loctao",
-      "description": "Legumbre verde muy valorada en la gastronomía asiática. Exportamos tanto en grano seco como en forma procesada. Alta demanda en mercados del Sudeste Asiático."
-    },
-    "specsTitle": "Especificaciones técnicas",
-    "requestInfo": "Solicitar información comercial",
-    "origin": "Perú"
-  },
-  "mercados": {
-    "hero": {
-      "label": "Mercados de exportación",
-      "title": "Llevamos el frejol peruano al mundo",
-      "description": "Exportamos a los mercados más dinámicos de América, Europa y Asia, cumpliendo con los más altos estándares internacionales."
-    },
-    "regions": {
-      "southAmerica": "América del Sur",
-      "northAmerica": "América del Norte",
-      "europe": "Europa",
-      "asia": "Asia"
-    },
-    "colombia": "Colombia",
-    "ecuador": "Ecuador",
-    "usa": "Estados Unidos",
-    "spain": "España",
-    "italy": "Italia",
-    "japan": "Japón",
-    "requirements": {
-      "title": "Cumplimos con los requisitos de cada mercado",
-      "description": "Cada destino tiene sus propias normativas de importación, requisitos fitosanitarios y estándares de calidad. Nuestro equipo especializado garantiza el cumplimiento de todas las regulaciones vigentes en cada mercado destino.",
-      "phytosanitary": "Certificados fitosanitarios",
-      "traceability": "Trazabilidad completa",
-      "labeling": "Etiquetado según normativa local",
-      "insurance": "Seguro de carga internacional"
-    },
-    "cta": {
-      "title": "¿Su mercado no está en la lista?",
-      "description": "Evaluamos constantemente nuevos mercados. Contáctenos para explorar posibilidades comerciales.",
-      "button": "Consultar disponibilidad"
+    "catalog": {
+      "title": "¿Buscas especificaciones técnicas detalladas?",
+      "subtitle": "Descarga nuestro catálogo completo de exportación en PDF con fichas técnicas, certificaciones y condiciones comerciales.",
+      "cta": "Descargar catálogo"
     }
   },
-  "contacto": {
+  "presence": {
     "hero": {
-      "label": "Contáctenos",
+      "eyebrow": "PRESENCIA INTERNACIONAL",
+      "title": "Nuestros productos\nllegan a 15+ países",
+      "subtitle": "Desde Lima, conectamos la producción peruana con importadores y distribuidores en todo el mundo."
+    },
+    "regions": {
+      "eyebrow": "REGIONES DE EXPORTACIÓN",
+      "title": "Una red comercial presente en cuatro continentes",
+      "items": {
+        "northAmerica": {
+          "name": "Norteamérica",
+          "countries": ["Estados Unidos"],
+          "shipments": "180+ envíos"
+        },
+        "europe": {
+          "name": "Europa",
+          "countries": ["España", "Italia", "Francia", "Alemania"],
+          "shipments": "240+ envíos"
+        },
+        "latam": {
+          "name": "Latinoamérica",
+          "countries": ["Colombia", "México", "Chile", "Argentina", "Bolivia", "Venezuela"],
+          "shipments": "310+ envíos"
+        },
+        "asia": {
+          "name": "Asia",
+          "countries": ["Japón", "Corea del Sur"],
+          "shipments": "95+ envíos"
+        },
+        "middleEast": {
+          "name": "Medio Oriente",
+          "countries": ["Turquía", "Emiratos Árabes Unidos"],
+          "shipments": "60+ envíos"
+        }
+      }
+    },
+    "institutional": {
+      "eyebrow": "RESPALDO INSTITUCIONAL",
+      "title": "Alineados con la promoción exportadora del Perú",
+      "description": "Business Beans Perú trabaja en línea con los objetivos de promoción de exportaciones impulsados por PROMPERÚ y MINCETUR, contribuyendo a incrementar la visibilidad internacional de la oferta peruana y fortalecer la competitividad del sector agroexportador."
+    },
+    "testimonials": {
+      "eyebrow": "NUESTROS SOCIOS COMERCIALES",
+      "title": "La confianza de nuestros clientes, nuestra mayor referencia",
+      "items": [
+        {
+          "text": "Business Beans nos ha proveído con Frijol Canario de excelente calidad durante tres temporadas consecutivas. La consistencia en calibre y limpieza del producto es notable.",
+          "name": "Importadora del Sur",
+          "country": "España",
+          "flag": "🇪🇸"
+        },
+        {
+          "text": "La documentación de exportación siempre llega completa y a tiempo. El proceso logístico con Business Beans es eficiente y sin contratiempos.",
+          "name": "Pacific Trade Co.",
+          "country": "Japón",
+          "flag": "🇯🇵"
+        },
+        {
+          "text": "El Maíz Gigante del Cusco que importamos de Business Beans es el producto de mayor rotación en nuestra línea gourmet. Calidad peruana incomparable.",
+          "name": "Gourmet Imports USA",
+          "country": "Estados Unidos",
+          "flag": "🇺🇸"
+        }
+      ]
+    }
+  },
+  "contact": {
+    "hero": {
       "title": "Hablemos de negocios",
-      "description": "Complete el formulario y nuestro equipo comercial se comunicará con usted en menos de 24 horas hábiles."
+      "subtitle": "Completa el formulario y nuestro equipo comercial te responderá en menos de 24 horas."
     },
     "form": {
-      "nombre": "Nombre completo",
-      "nombrePlaceholder": "Su nombre completo",
-      "empresa": "Empresa",
-      "empresaPlaceholder": "Nombre de su empresa",
-      "email": "Correo electrónico",
+      "participantLabel": "Participante",
+      "participantOptions": {
+        "importer": "Importadora",
+        "distributor": "Distribuidor",
+        "institution": "Institución pública",
+        "other": "Otro"
+      },
+      "nameLabel": "Nombres",
+      "namePlaceholder": "Tu nombre completo",
+      "companyLabel": "Empresa",
+      "companyPlaceholder": "Nombre de tu empresa",
+      "countryLabel": "País",
+      "countryPlaceholder": "País de origen",
+      "emailLabel": "Correo electrónico",
       "emailPlaceholder": "correo@empresa.com",
-      "telefono": "Teléfono (opcional)",
-      "telefonoPlaceholder": "+1 555 000 0000",
-      "mensaje": "Mensaje",
-      "mensajePlaceholder": "Cuéntenos sobre su requerimiento...",
-      "submit": "Enviar mensaje",
+      "phoneLabel": "Teléfono / WhatsApp",
+      "phonePlaceholder": "+1 555 000 0000",
+      "productLabel": "Producto de interés",
+      "productOptions": {
+        "frijol-canario": "Frijol Canario",
+        "pallar-baby": "Pallar Baby",
+        "lenteja-verde": "Lenteja Verde",
+        "frijol-castilla": "Frijol Castilla",
+        "garbanzo": "Garbanzo",
+        "maiz-gigante-cusco": "Maíz Gigante del Cusco",
+        "other": "Otro"
+      },
+      "messageLabel": "Mensaje",
+      "messagePlaceholder": "Cuéntanos sobre tu requerimiento: volumen estimado, frecuencia, mercado de destino...",
+      "submit": "Enviar solicitud",
       "submitting": "Enviando...",
-      "success": "¡Mensaje enviado! Nos comunicaremos pronto.",
-      "error": "Error al enviar. Intente nuevamente."
+      "success": "¡Solicitud enviada! Nuestro equipo comercial te contactará pronto.",
+      "error": "Error al enviar. Intenta nuevamente."
     },
     "info": {
       "title": "Información de contacto",
-      "address": "Dirección",
-      "phone": "Teléfono",
-      "email": "Correo electrónico",
-      "hours": "Horario de atención",
-      "hoursValue": "Lunes a Viernes, 9:00 — 18:00 (PET)"
+      "location": "Lima, Perú",
+      "phone": "+51 920 833 371",
+      "whatsapp": "WhatsApp: +51 920 833 371",
+      "facebook": "Facebook: businessbeansperu",
+      "instagram": "Instagram: businessbeansperu",
+      "whatsappCta": "Escribir por WhatsApp"
     }
+  },
+  "footer": {
+    "description": "Empresa agroexportadora peruana especializada en la selección, procesamiento y exportación de legumbres de alta calidad a los mercados internacionales más exigentes.",
+    "company": {
+      "title": "Empresa"
+    },
+    "productsTitle": "Productos",
+    "certificationsTitle": "Certificaciones",
+    "socialTitle": "Redes Sociales",
+    "terms": "Términos y Condiciones",
+    "complaints": "Libro de Reclamaciones"
   },
   "reclamaciones": {
     "hero": {
@@ -280,39 +446,6 @@
         "title": "7. Contacto",
         "content": "Para cualquier consulta sobre estos Términos y Condiciones, puede contactarnos en: info@businessbeans.com"
       }
-    }
-  },
-  "footer": {
-    "description": "Empresa agroexportadora peruana especializada en la exportación de frejoles de alta calidad a los mercados internacionales.",
-    "links": {
-      "title": "Navegación",
-      "nosotros": "Nosotros",
-      "productos": "Productos",
-      "mercados": "Mercados",
-      "contacto": "Contacto"
-    },
-    "legal": {
-      "title": "Legal",
-      "reclamaciones": "Libro de Reclamaciones",
-      "terminos": "Términos y Condiciones"
-    },
-    "contact": {
-      "title": "Contacto"
-    },
-    "copyright": "Business Beans Perú SRL. Todos los derechos reservados."
-  },
-  "certifications": {
-    "globalGap": {
-      "name": "GLOBAL G.A.P.",
-      "description": "Certificación de Buenas Prácticas Agrícolas que garantiza la sostenibilidad y seguridad de nuestros procesos productivos."
-    },
-    "haccp": {
-      "name": "HACCP",
-      "description": "Sistema de Análisis de Peligros y Puntos de Control Crítico que asegura la inocuidad alimentaria en toda la cadena."
-    },
-    "iso": {
-      "name": "ISO 22000",
-      "description": "Sistema de Gestión de Seguridad Alimentaria que integra los principios del HACCP con los sistemas de gestión de calidad."
     }
   }
 }

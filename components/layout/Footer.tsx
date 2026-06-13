@@ -1,112 +1,126 @@
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
-import { FOOTER_LINKS } from "@/lib/constants/navigation";
-import { COMPANY_INFO } from "@/lib/constants/company";
-import { Separator } from "@/components/ui/separator";
+import { Logo } from "./Logo";
+import { InstagramIcon, FacebookIcon } from "./SocialIcons";
+import { COMPANY_INFO, PRODUCTS, CERTIFICATIONS } from "@/lib/constants/company";
 
 export function Footer() {
   const t = useTranslations("footer");
   const tNav = useTranslations("nav");
+  const tProducts = useTranslations("products.items");
+  const tCerts = useTranslations("home.certifications.items");
   const locale = useLocale();
 
   const localizedHref = (href: string) => `/${locale}${href}`;
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[oklch(0.20_0.06_148)] text-white">
+    <footer className="bg-dark text-white">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link
-              href={`/${locale}`}
-              className="text-2xl font-black tracking-tight text-white"
-            >
-              BEANS
-            </Link>
+            <Logo variant="white" href={`/${locale}`} />
             <p className="mt-4 text-sm leading-relaxed text-white/60">
               {t("description")}
             </p>
           </div>
 
-          {/* Nav links */}
+          {/* Empresa */}
           <div>
             <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white/40">
-              {t("links.title")}
+              {t("company.title")}
             </h3>
             <ul className="space-y-3">
-              {["nosotros", "productos", "mercados", "contacto"].map((key) => (
+              {["nosotros", "productos", "presencia", "contacto"].map((key) => (
                 <li key={key}>
                   <Link
                     href={localizedHref(`/${key}`)}
                     className="text-sm text-white/70 transition-colors hover:text-white"
                   >
-                    {tNav(key)}
+                    {tNav(key as Parameters<typeof tNav>[0])}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* Productos */}
           <div>
             <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white/40">
-              {t("legal.title")}
+              {t("productsTitle")}
             </h3>
             <ul className="space-y-3">
-              <li>
-                <Link
-                  href={localizedHref("/libro-de-reclamaciones")}
-                  className="text-sm text-white/70 transition-colors hover:text-[oklch(0.72_0.14_55)]"
-                >
-                  {t("legal.reclamaciones")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={localizedHref("/terminos-y-condiciones")}
-                  className="text-sm text-white/70 transition-colors hover:text-white"
-                >
-                  {t("legal.terminos")}
-                </Link>
-              </li>
+              {PRODUCTS.map((product) => (
+                <li key={product.id}>
+                  <Link
+                    href={localizedHref("/productos")}
+                    className="text-sm text-white/70 transition-colors hover:text-white"
+                  >
+                    {tProducts(`${product.id}.name` as Parameters<typeof tProducts>[0])}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Certificaciones + Redes */}
           <div>
             <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white/40">
-              {t("contact.title")}
+              {t("certificationsTitle")}
             </h3>
-            <ul className="space-y-3 text-sm text-white/70">
-              <li>{COMPANY_INFO.direccion}</li>
-              <li>
-                <a
-                  href={`tel:${COMPANY_INFO.telefono}`}
-                  className="transition-colors hover:text-white"
-                >
-                  {COMPANY_INFO.telefono}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`mailto:${COMPANY_INFO.email}`}
-                  className="transition-colors hover:text-white"
-                >
-                  {COMPANY_INFO.email}
-                </a>
-              </li>
+            <ul className="space-y-3">
+              {CERTIFICATIONS.map((cert) => (
+                <li key={cert.id} className="text-sm text-white/70">
+                  {tCerts(`${cert.id}.name` as Parameters<typeof tCerts>[0])}
+                </li>
+              ))}
             </ul>
+
+            <h3 className="mt-8 mb-4 text-sm font-semibold uppercase tracking-wider text-white/40">
+              {t("socialTitle")}
+            </h3>
+            <div className="flex items-center gap-3">
+              <a
+                href="https://instagram.com/businessbeansperu"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/70 transition-colors hover:bg-primary hover:text-white"
+              >
+                <InstagramIcon className="h-4 w-4" />
+              </a>
+              <a
+                href="https://facebook.com/businessbeansperu"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/70 transition-colors hover:bg-primary hover:text-white"
+              >
+                <FacebookIcon className="h-4 w-4" />
+              </a>
+            </div>
           </div>
         </div>
 
-        <Separator className="my-10 bg-white/10" />
-
-        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
           <p className="text-xs text-white/40">
-            © {currentYear} {t("copyright")}
+            © {currentYear} {COMPANY_INFO.razonSocial}
           </p>
-          <p className="text-xs text-white/30">RUC: {COMPANY_INFO.ruc}</p>
+          <div className="flex items-center gap-6 text-xs text-white/40">
+            <Link
+              href={localizedHref("/terminos-y-condiciones")}
+              className="transition-colors hover:text-white"
+            >
+              {t("terms")}
+            </Link>
+            <Link
+              href={localizedHref("/libro-de-reclamaciones")}
+              className="transition-colors hover:text-white"
+            >
+              {t("complaints")}
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

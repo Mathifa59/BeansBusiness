@@ -1,41 +1,54 @@
 import { useTranslations } from "next-intl";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
-import { COMPANY_INFO } from "@/lib/constants/company";
+import { MapPin, Phone, MessageCircle } from "lucide-react";
+import { InstagramIcon, FacebookIcon } from "@/components/layout/SocialIcons";
 
 export function ContactInfo() {
-  const t = useTranslations("contacto.info");
+  const t = useTranslations("contact.info");
 
   const items = [
-    { icon: MapPin, label: t("address"), value: COMPANY_INFO.direccion },
-    { icon: Phone, label: t("phone"), value: COMPANY_INFO.telefono },
-    { icon: Mail, label: t("email"), value: COMPANY_INFO.email },
-    { icon: Clock, label: t("hours"), value: t("hoursValue") },
+    { icon: MapPin, label: t("location") },
+    { icon: Phone, label: t("phone") },
+    { icon: MessageCircle, label: t("whatsapp") },
+  ];
+
+  const socials = [
+    { icon: FacebookIcon, label: t("facebook") },
+    { icon: InstagramIcon, label: t("instagram") },
   ];
 
   return (
-    <div className="rounded-2xl bg-[oklch(0.20_0.06_148)] p-8 text-white">
+    <div className="rounded-2xl bg-dark p-8 text-white lg:sticky lg:top-28">
       <h2 className="text-xl font-bold">{t("title")}</h2>
 
       <ul className="mt-8 space-y-6">
-        {items.map(({ icon: Icon, label, value }) => (
-          <li key={label} className="flex items-start gap-4">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[oklch(0.48_0.14_148)]/30">
-              <Icon className="h-5 w-5 text-[oklch(0.72_0.12_148)]" />
+        {items.map(({ icon: Icon, label }) => (
+          <li key={label} className="flex items-center gap-4">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/20">
+              <Icon className="h-5 w-5 text-primary-light" />
             </div>
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-white/40">
-                {label}
-              </p>
-              <p className="mt-1 text-sm text-white/85">{value}</p>
-            </div>
+            <p className="text-sm text-white/85">{label}</p>
           </li>
         ))}
       </ul>
 
-      {/* Map placeholder */}
-      <div className="mt-8 flex h-48 items-center justify-center rounded-xl border-2 border-dashed border-white/20 bg-white/5">
-        <span className="text-sm text-white/30">Mapa — próximamente</span>
+      <div className="mt-6 flex items-center gap-4 border-t border-white/10 pt-6">
+        {socials.map(({ icon: Icon, label }) => (
+          <div key={label} className="flex items-center gap-2 text-sm text-white/70">
+            <Icon className="h-4 w-4 text-primary-light" />
+            <span>{label}</span>
+          </div>
+        ))}
       </div>
+
+      <a
+        href="https://wa.me/51920833371"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-8 flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
+      >
+        <MessageCircle className="h-4 w-4" />
+        {t("whatsappCta")}
+      </a>
     </div>
   );
 }

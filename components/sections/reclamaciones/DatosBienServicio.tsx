@@ -24,7 +24,7 @@ export function DatosBienServicio({ form }: Props) {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-lg font-bold text-foreground">{t("title")}</h2>
+      <h2 className="text-lg font-bold text-dark">{t("title")}</h2>
 
       <div className="space-y-2">
         <Label>{t("tipo")}</Label>

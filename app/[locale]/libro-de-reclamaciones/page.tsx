@@ -8,7 +8,7 @@ import { ReclamacionForm } from "@/components/sections/reclamaciones/Reclamacion
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("reclamaciones.hero");
-  return { title: `${t("title")} | Business Beans Perú` };
+  return { title: t("title") };
 }
 
 function ReclamacionesHero() {

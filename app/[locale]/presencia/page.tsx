@@ -6,8 +6,8 @@ import { InstitutionalSection } from "@/components/sections/presencia/Institutio
 import { TestimonialsSection } from "@/components/sections/presencia/TestimonialsSection";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("presence.hero");
-  return { title: `${t("eyebrow")} | Business Beans Perú` };
+  const t = await getTranslations("nav");
+  return { title: t("presencia") };
 }
 
 export default function PresenciaPage() {

@@ -5,8 +5,8 @@ import { ProductsFilterGrid } from "@/components/sections/productos/ProductsFilt
 import { CatalogDownload } from "@/components/sections/productos/CatalogDownload";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("products.hero");
-  return { title: `${t("eyebrow")} | Business Beans Perú` };
+  const t = await getTranslations("nav");
+  return { title: t("productos") };
 }
 
 export default function ProductosPage() {

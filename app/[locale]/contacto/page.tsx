@@ -9,8 +9,8 @@ import { ContactForm } from "@/components/sections/contacto/ContactForm";
 import { ContactInfo } from "@/components/sections/contacto/ContactInfo";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("contact.hero");
-  return { title: `${t("title")} | Business Beans Perú` };
+  const t = await getTranslations("nav");
+  return { title: t("contacto") };
 }
 
 function ContactHero() {

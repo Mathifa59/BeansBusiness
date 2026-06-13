@@ -7,8 +7,8 @@ import { ProcessSection } from "@/components/sections/nosotros/ProcessSection";
 import { CommitmentSection } from "@/components/sections/nosotros/CommitmentSection";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("about.hero");
-  return { title: `${t("eyebrow")} | Business Beans Perú` };
+  const t = await getTranslations("nav");
+  return { title: t("nosotros") };
 }
 
 export default function NosotrosPage() {

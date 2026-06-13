@@ -7,7 +7,7 @@ import { fadeUp, staggerContainer } from "@/lib/animations";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("terminos");
-  return { title: `${t("title")} | Business Beans Perú` };
+  return { title: t("title") };
 }
 
 function TerminosHero() {

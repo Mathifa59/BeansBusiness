@@ -31,11 +31,11 @@ export function ProcessSection() {
       <div className="relative mt-20">
         <div className="absolute left-6 top-6 hidden h-0.5 w-full bg-primary/20 lg:block">
           <motion.div
-            className="absolute top-1/2 -translate-y-1/2 text-primary"
-            style={{ marginLeft: "-12px" }}
+            className="absolute bottom-full text-primary"
+            style={{ marginLeft: "-12px", marginBottom: "-2px" }}
             initial={{ left: "0%" }}
             animate={{ left: "100%" }}
-            transition={{ duration: 9, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
           >
             <Tractor className="h-6 w-6" />
           </motion.div>
@@ -67,7 +67,7 @@ export function ProcessSection() {
                 </p>
               </div>
 
-              <div className="absolute -top-1 left-16 hidden h-7 w-7 items-center justify-center rounded-full bg-off-white text-primary lg:flex">
+              <div className="absolute top-10 left-16 hidden h-7 w-7 items-center justify-center rounded-full bg-off-white text-primary lg:flex">
                 <Icon className="h-4 w-4" />
               </div>
             </AnimatedSection>

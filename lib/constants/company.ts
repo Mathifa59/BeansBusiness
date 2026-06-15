@@ -5,7 +5,7 @@ export const COMPANY_INFO = {
   ruc: "20XXXXXXXXX",
   direccion: "Av. Ejemplo 123, Lima, Perú",
   email: "info@businessbeans.com",
-  telefono: "+51 920 833 371",
+  telefono: "+51 981 916 198",
   website: "www.businessbeans.com",
 } as const;
 

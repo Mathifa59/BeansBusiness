@@ -41,7 +41,7 @@ export function ContactInfo() {
       </div>
 
       <a
-        href="https://wa.me/51920833371"
+        href="https://wa.me/51981916198"
         target="_blank"
         rel="noopener noreferrer"
         className="mt-8 flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"

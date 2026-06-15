@@ -16,6 +16,7 @@ const LINKS = [
   { key: "nosotros", href: "/nosotros" },
   { key: "productos", href: "/productos" },
   { key: "presencia", href: "/presencia" },
+  { key: "contacto", href: "/contacto" },
 ];
 
 export function Navbar() {

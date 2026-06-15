@@ -1,10 +1,16 @@
 "use client";
 
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { SectionTag } from "@/components/ui/section-tag";
 import { SectionWrapper } from "@/components/ui/section-wrapper";
 import { fadeUp } from "@/lib/animations";
+
+const LOGOS = [
+  { name: "PROMPERÚ", src: "/promperu.png" },
+  { name: "MINCETUR", src: "/mincetur.png" },
+];
 
 export function InstitutionalSection() {
   const t = useTranslations("presence.institutional");
@@ -27,12 +33,14 @@ export function InstitutionalSection() {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="grid grid-cols-2 gap-6"
         >
-          {["PROMPERÚ", "MINCETUR"].map((name) => (
+          {LOGOS.map(({ name, src }) => (
             <div
               key={name}
-              className="flex h-28 items-center justify-center rounded-2xl border border-white/15 bg-white/5 text-lg font-bold text-white/60"
+              className="flex h-28 items-center justify-center rounded-2xl bg-primary/10 p-6 ring-1 ring-primary/25"
             >
-              {name}
+              <div className="relative h-full w-full">
+                <Image src={src} alt={name} fill className="object-contain" />
+              </div>
             </div>
           ))}
         </AnimatedSection>

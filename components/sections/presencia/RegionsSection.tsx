@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { AnimatedSection } from "@/components/ui/animated-section";
+import { ContinentShape } from "@/components/ui/continent-shape";
 import { SectionTag } from "@/components/ui/section-tag";
 import { SectionWrapper } from "@/components/ui/section-wrapper";
 import { scaleIn } from "@/lib/animations";
@@ -38,8 +39,13 @@ export function RegionsSection() {
               key={id}
               variants={scaleIn}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="flex flex-col rounded-2xl bg-white p-8 ring-1 ring-gray-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-primary/30"
+              className="relative flex flex-col overflow-hidden rounded-2xl bg-white p-8 ring-1 ring-gray-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-primary/30"
             >
+              <ContinentShape
+                region={id}
+                className="absolute -right-8 -bottom-8 -z-10 h-40 w-40 text-primary/10"
+              />
+
               <div className="flex items-center justify-between">
                 <span className="text-4xl">{flag}</span>
                 <span className="rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary-dark">

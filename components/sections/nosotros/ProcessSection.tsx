@@ -1,7 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Search, Settings, Award, Ship } from "lucide-react";
+import { motion } from "framer-motion";
+import { Search, Settings, Award, Ship, Tractor } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { SectionTag } from "@/components/ui/section-tag";
 import { SectionWrapper } from "@/components/ui/section-wrapper";
@@ -28,7 +29,17 @@ export function ProcessSection() {
       </AnimatedSection>
 
       <div className="relative mt-20">
-        <div className="absolute left-6 top-6 hidden h-0.5 w-full bg-primary/20 lg:block" />
+        <div className="absolute left-6 top-6 hidden h-0.5 w-full bg-primary/20 lg:block">
+          <motion.div
+            className="absolute top-1/2 -translate-y-1/2 text-primary"
+            style={{ marginLeft: "-12px" }}
+            initial={{ left: "0%" }}
+            animate={{ left: "100%" }}
+            transition={{ duration: 9, repeat: Infinity, ease: "linear" }}
+          >
+            <Tractor className="h-6 w-6" />
+          </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-4 lg:gap-8">
           {STEPS.map(({ id, icon: Icon }, i) => (

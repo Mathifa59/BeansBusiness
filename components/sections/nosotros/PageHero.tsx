@@ -16,8 +16,7 @@ export function PageHero() {
 
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center text-white lg:px-8">
         <AnimatedSection variants={fadeUp}>
-          <p className="text-sm font-medium text-white/50">{t("breadcrumb")}</p>
-          <SectionTag variant="light" className="mt-5 justify-center">
+          <SectionTag variant="light" className="justify-center">
             {t("eyebrow")}
           </SectionTag>
           <h1 className="mt-4 whitespace-pre-line text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">

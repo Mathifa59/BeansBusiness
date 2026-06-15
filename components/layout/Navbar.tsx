@@ -47,6 +47,7 @@ export function Navbar() {
   const lightText = !scrolled;
 
   return (
+    <>
     <header
       className={cn(
         "fixed top-0 z-50 w-full transition-all duration-200",
@@ -112,9 +113,10 @@ export function Navbar() {
           <Menu size={24} />
         </button>
       </nav>
+    </header>
 
-      {/* Mobile drawer */}
-      <AnimatePresence>
+    {/* Mobile drawer */}
+    <AnimatePresence>
         {isOpen && (
           <>
             <motion.div
@@ -174,7 +176,7 @@ export function Navbar() {
             </motion.div>
           </>
         )}
-      </AnimatePresence>
-    </header>
+    </AnimatePresence>
+    </>
   );
 }

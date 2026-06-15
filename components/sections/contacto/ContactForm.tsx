@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { Controller } from "react-hook-form";
 import { CheckCircle2, AlertCircle, ArrowRight } from "lucide-react";
 import { useContactForm } from "@/hooks/useContactForm";
+import { cn } from "@/lib/utils";
 import {
   PARTICIPANT_OPTIONS,
   PRODUCT_OPTIONS,
@@ -147,33 +148,41 @@ export function ContactForm() {
         <div className="space-y-2">
           <Label>{t("productLabel")}</Label>
           <Controller
-            name="producto"
+            name="productos"
             control={control}
-            render={({ field }) => (
-              <Select
-                value={field.value ?? null}
-                onValueChange={(value) => field.onChange(value ?? undefined)}
-              >
-                <SelectTrigger className="h-11 w-full rounded-lg">
-                  <SelectValue>
-                    {(value: string | null) =>
-                      value
-                        ? t(
-                            `productOptions.${value}` as Parameters<typeof t>[0]
-                          )
-                        : "—"
-                    }
-                  </SelectValue>
-                </SelectTrigger>
-                <SelectContent>
-                  {PRODUCT_OPTIONS.map((opt) => (
-                    <SelectItem key={opt} value={opt}>
-                      {t(`productOptions.${opt}` as Parameters<typeof t>[0])}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            )}
+            render={({ field }) => {
+              const selected = field.value ?? [];
+              const toggle = (opt: (typeof PRODUCT_OPTIONS)[number]) => {
+                field.onChange(
+                  selected.includes(opt)
+                    ? selected.filter((v) => v !== opt)
+                    : [...selected, opt]
+                );
+              };
+              return (
+                <div className="flex flex-wrap gap-2">
+                  {PRODUCT_OPTIONS.map((opt) => {
+                    const active = selected.includes(opt);
+                    return (
+                      <button
+                        key={opt}
+                        type="button"
+                        onClick={() => toggle(opt)}
+                        aria-pressed={active}
+                        className={cn(
+                          "rounded-full border px-3 py-1.5 text-sm font-medium transition-colors",
+                          active
+                            ? "border-primary bg-primary text-white"
+                            : "border-input text-dark/70 hover:border-primary hover:text-primary"
+                        )}
+                      >
+                        {t(`productOptions.${opt}` as Parameters<typeof t>[0])}
+                      </button>
+                    );
+                  })}
+                </div>
+              );
+            }}
           />
         </div>
       </div>

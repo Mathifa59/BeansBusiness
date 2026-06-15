@@ -5,7 +5,7 @@ export interface ContactFormData {
   pais: string;
   email: string;
   telefono?: string;
-  producto?: string;
+  productos?: string[];
   mensaje: string;
 }
 

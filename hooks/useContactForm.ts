@@ -15,11 +15,11 @@ type Status = "idle" | "loading" | "success" | "error";
 export function useContactForm(initialProduct?: string) {
   const [status, setStatus] = useState<Status>("idle");
 
-  const producto = PRODUCT_OPTIONS.includes(
+  const productos = PRODUCT_OPTIONS.includes(
     initialProduct as (typeof PRODUCT_OPTIONS)[number]
   )
-    ? (initialProduct as (typeof PRODUCT_OPTIONS)[number])
-    : undefined;
+    ? [initialProduct as (typeof PRODUCT_OPTIONS)[number]]
+    : [];
 
   const form = useForm<ContactSchema>({
     resolver: zodResolver(contactSchema),
@@ -30,7 +30,7 @@ export function useContactForm(initialProduct?: string) {
       pais: "",
       email: "",
       telefono: "",
-      producto,
+      productos,
       mensaje: "",
     },
   });

@@ -81,10 +81,10 @@ export function contactoAdminHtml(data: ContactSchema): string {
                     : ""
                 }
                 ${
-                  data.producto
+                  data.productos && data.productos.length > 0
                     ? `<tr style="background:#f9fafb;">
-                  <td style="padding:14px 20px;font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;border-top:1px solid #e5e7eb;">Producto de interés</td>
-                  <td style="padding:14px 20px;font-size:14px;color:#111827;border-top:1px solid #e5e7eb;">${PRODUCT_LABELS[data.producto] ?? data.producto}</td>
+                  <td style="padding:14px 20px;font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;border-top:1px solid #e5e7eb;">Productos de interés</td>
+                  <td style="padding:14px 20px;font-size:14px;color:#111827;border-top:1px solid #e5e7eb;">${data.productos.map((p) => PRODUCT_LABELS[p] ?? p).join(", ")}</td>
                 </tr>`
                     : ""
                 }

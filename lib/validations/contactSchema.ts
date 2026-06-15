@@ -24,7 +24,7 @@ export const contactSchema = z.object({
   pais: z.string().min(2, "Mínimo 2 caracteres").max(100),
   email: z.string().email("Email inválido"),
   telefono: z.string().optional(),
-  producto: z.enum(PRODUCT_OPTIONS).optional(),
+  productos: z.array(z.enum(PRODUCT_OPTIONS)).optional(),
   mensaje: z.string().min(20, "Mínimo 20 caracteres").max(2000),
 });
 

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { SectionTag } from "@/components/ui/section-tag";
 import { AnimatedSection } from "@/components/ui/animated-section";
@@ -10,7 +11,8 @@ export function PageHero() {
 
   return (
     <section className="gradient-hero relative overflow-hidden pb-20 pt-40">
-      <div className="absolute inset-0 bg-dark/30" />
+      <Image src="/cosecha-frejol.jpg" alt="" fill priority className="object-cover" />
+      <div className="absolute inset-0 bg-gradient-to-br from-dark/80 via-primary-dark/70 to-primary/60" />
 
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center text-white lg:px-8">
         <AnimatedSection variants={fadeUp}>

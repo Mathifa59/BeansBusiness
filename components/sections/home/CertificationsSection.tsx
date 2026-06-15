@@ -19,7 +19,11 @@ export function CertificationsSection() {
   const tC = useTranslations("home.certifications.items");
 
   return (
-    <SectionWrapper bg="green">
+    <SectionWrapper
+      bg="green"
+      bgImage="/cosecha-frejol.jpg"
+      bgOverlayClassName="bg-gradient-to-br from-primary-dark/90 via-primary/85 to-primary/75"
+    >
       <AnimatedSection className="text-center">
         <SectionTag variant="light" className="justify-center">
           {t("eyebrow")}

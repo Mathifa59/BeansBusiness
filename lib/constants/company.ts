@@ -12,6 +12,7 @@ export const COMPANY_INFO = {
 export const PRODUCTS: Product[] = [
   {
     id: "frijol-canario",
+    imageSrc: "/productos/CABALLERO.jpg",
     nameKey: "products.items.frijol-canario.name",
     shortDescriptionKey: "products.items.frijol-canario.shortDescription",
     descriptionKey: "products.items.frijol-canario.description",
@@ -23,6 +24,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "pallar-baby",
+    imageSrc: "/productos/PALLAR-AMERICANO-P-GRANDE.jpg",
     nameKey: "products.items.pallar-baby.name",
     shortDescriptionKey: "products.items.pallar-baby.shortDescription",
     descriptionKey: "products.items.pallar-baby.description",
@@ -34,6 +36,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "lenteja-verde",
+    imageSrc: "/productos/LOCTAO.jpg",
     nameKey: "products.items.lenteja-verde.name",
     shortDescriptionKey: "products.items.lenteja-verde.shortDescription",
     descriptionKey: "products.items.lenteja-verde.description",
@@ -45,6 +48,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "frijol-castilla",
+    imageSrc: "/productos/CASTILLA.jpg",
     nameKey: "products.items.frijol-castilla.name",
     shortDescriptionKey: "products.items.frijol-castilla.shortDescription",
     descriptionKey: "products.items.frijol-castilla.description",
@@ -56,6 +60,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "garbanzo",
+    imageSrc: "/productos/GARBANZOS.jpg",
     nameKey: "products.items.garbanzo.name",
     shortDescriptionKey: "products.items.garbanzo.shortDescription",
     descriptionKey: "products.items.garbanzo.description",
@@ -67,6 +72,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "maiz-gigante-cusco",
+    imageSrc: "/productos/MAIZ-GIGANTE-DE-CUZCO.jpg",
     nameKey: "products.items.maiz-gigante-cusco.name",
     shortDescriptionKey: "products.items.maiz-gigante-cusco.shortDescription",
     descriptionKey: "products.items.maiz-gigante-cusco.description",

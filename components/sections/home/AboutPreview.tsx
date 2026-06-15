@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { ArrowRight, Check } from "lucide-react";
@@ -18,10 +19,15 @@ export function AboutPreview() {
     <SectionWrapper bg="white">
       <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
         <AnimatedSection variants={slideInLeft} className="relative">
-          <div className="flex aspect-[4/3] w-full items-center justify-center rounded-2xl bg-gradient-to-br from-primary/15 to-primary-light/15">
-            <span className="text-sm text-primary/50">
-              {locale === "es" ? "Imagen — próximamente" : "Image — coming soon"}
-            </span>
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-lg">
+            <Image
+              src="/cosecha-garbanzo.jpg"
+              alt=""
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/30 via-transparent to-transparent" />
           </div>
           <div className="absolute -bottom-4 -left-4 h-20 w-20 rounded-tr-2xl bg-primary" />
         </AnimatedSection>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { ArrowRight } from "lucide-react";
@@ -40,10 +41,14 @@ export function ProductsPreview() {
               transition={{ duration: 0.5, delay: i * 0.08 }}
               className="group flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-gray-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-primary/30"
             >
-              <div className="flex aspect-[4/3] w-full items-center justify-center bg-gradient-to-br from-primary/10 to-accent/10">
-                <span className="text-sm text-gray-400">
-                  {locale === "es" ? "Imagen — próximamente" : "Image — coming soon"}
-                </span>
+              <div className="relative aspect-[4/3] w-full overflow-hidden">
+                <Image
+                  src={product.imageSrc}
+                  alt={tP(`${product.id}.name` as Parameters<typeof tP>[0])}
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
               </div>
 
               <div className="flex flex-1 flex-col p-6">

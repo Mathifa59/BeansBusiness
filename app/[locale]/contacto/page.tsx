@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
@@ -18,7 +19,8 @@ function ContactHero() {
 
   return (
     <section className="gradient-hero relative overflow-hidden pb-16 pt-32">
-      <div className="absolute inset-0 bg-dark/30" />
+      <Image src="/Campos.jpg" alt="" fill priority className="object-cover" />
+      <div className="absolute inset-0 bg-gradient-to-br from-dark/80 via-primary-dark/70 to-primary/60" />
 
       <div className="relative z-10 mx-auto max-w-3xl px-6 text-center text-white lg:px-8">
         <AnimatedSection variants={fadeUp}>

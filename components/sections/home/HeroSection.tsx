@@ -14,7 +14,16 @@ export function HeroSection() {
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
       <div className="gradient-hero absolute inset-0" />
-      <div className="absolute inset-0 bg-dark/40" />
+      <video
+        className="absolute inset-0 h-full w-full object-cover"
+        src="/hero-cultivo.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        poster="/Campos.jpg"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/50 to-primary-dark/50" />
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 py-32 text-center lg:px-8">
         <motion.div

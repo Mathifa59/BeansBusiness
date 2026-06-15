@@ -1,5 +1,6 @@
 export interface Product {
   id: string;
+  imageSrc: string;
   nameKey: string;
   shortDescriptionKey: string;
   descriptionKey: string;

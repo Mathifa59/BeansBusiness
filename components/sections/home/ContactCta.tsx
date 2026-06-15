@@ -14,7 +14,11 @@ export function ContactCta() {
   const locale = useLocale();
 
   return (
-    <SectionWrapper bg="dark">
+    <SectionWrapper
+      bg="dark"
+      bgImage="/cosecha-garbanzo.jpg"
+      bgOverlayClassName="bg-gradient-to-br from-dark/95 via-dark/85 to-primary-dark/80"
+    >
       <AnimatedSection className="text-center">
         <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
           {t("title")}

@@ -1,4 +1,5 @@
 import * as React from "react";
+import Image from "next/image";
 
 import { cn } from "@/lib/utils";
 
@@ -12,21 +13,49 @@ const BG_CLASSES = {
 interface SectionWrapperProps extends React.ComponentProps<"section"> {
   bg?: keyof typeof BG_CLASSES;
   innerClassName?: string;
+  bgImage?: string;
+  bgOverlayClassName?: string;
 }
 
 export function SectionWrapper({
   bg = "white",
   className,
   innerClassName,
+  bgImage,
+  bgOverlayClassName,
   children,
   ...props
 }: SectionWrapperProps) {
   return (
     <section
-      className={cn("py-20 md:py-28", BG_CLASSES[bg], className)}
+      className={cn(
+        "relative py-20 md:py-28",
+        BG_CLASSES[bg],
+        bgImage && "overflow-hidden",
+        className
+      )}
       {...props}
     >
-      <div className={cn("mx-auto max-w-7xl px-6", innerClassName)}>
+      {bgImage && (
+        <>
+          <Image
+            src={bgImage}
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div
+            className={cn(
+              "absolute inset-0",
+              bgOverlayClassName ?? "bg-primary/85"
+            )}
+          />
+        </>
+      )}
+      <div
+        className={cn("relative z-10 mx-auto max-w-7xl px-6", innerClassName)}
+      >
         {children}
       </div>
     </section>

@@ -21,10 +21,16 @@ export function ValuesSection() {
   const tItems = useTranslations("about.values.items");
 
   return (
-    <SectionWrapper bg="off-white">
+    <SectionWrapper
+      bg="green"
+      bgImage="/cosecha-frejol.jpg"
+      bgOverlayClassName="bg-gradient-to-br from-dark/85 via-primary-dark/80 to-primary/70"
+    >
       <AnimatedSection className="text-center">
-        <SectionTag className="justify-center">{t("eyebrow")}</SectionTag>
-        <h2 className="mt-3 text-4xl font-bold tracking-tight text-dark lg:text-5xl">
+        <SectionTag className="justify-center border-white text-white">
+          {t("eyebrow")}
+        </SectionTag>
+        <h2 className="mt-3 text-4xl font-bold tracking-tight text-white lg:text-5xl">
           {t("title")}
         </h2>
       </AnimatedSection>
@@ -35,9 +41,9 @@ export function ValuesSection() {
             key={id}
             variants={scaleIn}
             transition={{ duration: 0.5, delay: i * 0.08 }}
-            className="group rounded-2xl bg-white p-8 ring-1 ring-gray-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-primary/30"
+            className="group rounded-2xl bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
           >
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary-dark group-hover:text-white">
               <Icon className="h-6 w-6" />
             </div>
             <h3 className="mt-5 text-lg font-bold text-dark">

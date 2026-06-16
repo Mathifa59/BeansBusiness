@@ -1,19 +1,20 @@
 "use client";
 
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { AnimatedSection } from "@/components/ui/animated-section";
-import { ContinentShape } from "@/components/ui/continent-shape";
 import { SectionTag } from "@/components/ui/section-tag";
 import { SectionWrapper } from "@/components/ui/section-wrapper";
 import { scaleIn } from "@/lib/animations";
 
 const REGIONS = [
-  { id: "northAmerica", flag: "🇺🇸" },
-  { id: "europe", flag: "🇪🇸" },
-  { id: "latam", flag: "🌎" },
-  { id: "asia", flag: "🇯🇵" },
-  { id: "middleEast", flag: "🇹🇷" },
+  { id: "northAmerica", flag: "🇺🇸", image: "/Norteamerica.png",   style: {} },
+  { id: "europe",       flag: "🇪🇸", image: "/Europa.png",         style: {} },
+  { id: "latam",        flag: "🌎",  image: "/Sudamerica.png",     style: {} },
+  { id: "asia",         flag: "🇯🇵", image: "/Asia.png",           style: {} },
+  { id: "middleEast",   flag: "🇹🇷", image: "/Medio oriente.png",  style: { filter: "brightness(1.8)" } },
 ] as const;
+
 
 export function RegionsSection() {
   const t = useTranslations("presence.regions");
@@ -29,7 +30,7 @@ export function RegionsSection() {
       </AnimatedSection>
 
       <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {REGIONS.map(({ id, flag }, i) => {
+        {REGIONS.map(({ id, flag, image, style }, i) => {
           const countries = tItems.raw(
             `${id}.countries` as Parameters<typeof tItems.raw>[0]
           ) as string[];
@@ -39,25 +40,34 @@ export function RegionsSection() {
               key={id}
               variants={scaleIn}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="relative flex flex-col overflow-hidden rounded-2xl bg-white p-8 ring-1 ring-gray-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-primary/30"
+              className="relative flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-gray-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-primary/30"
             >
-              <ContinentShape
-                region={id}
-                className="absolute -right-8 -bottom-8 -z-10 h-40 w-40 text-primary/10"
-              />
+              {/* Continent image as full card background */}
+              {image && (
+                <Image
+                  src={image}
+                  alt=""
+                  fill
+                  className="object-contain p-6 opacity-[0.12]"
+                  style={style}
+                />
+              )}
 
-              <div className="flex items-center justify-between">
-                <span className="text-4xl">{flag}</span>
-                <span className="rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary-dark">
-                  {tItems(`${id}.shipments` as Parameters<typeof tItems>[0])}
-                </span>
+              {/* Card content */}
+              <div className="relative flex flex-col p-8">
+                <div className="flex items-center justify-between">
+                  <span className="text-3xl">{flag}</span>
+                  <span className="rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary-dark">
+                    {tItems(`${id}.shipments` as Parameters<typeof tItems>[0])}
+                  </span>
+                </div>
+                <h3 className="mt-5 text-xl font-bold text-dark">
+                  {tItems(`${id}.name` as Parameters<typeof tItems>[0])}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-gray-700">
+                  {countries.join(" · ")}
+                </p>
               </div>
-              <h3 className="mt-5 text-xl font-bold text-dark">
-                {tItems(`${id}.name` as Parameters<typeof tItems>[0])}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-gray-700">
-                {countries.join(" · ")}
-              </p>
             </AnimatedSection>
           );
         })}

@@ -16,7 +16,7 @@ export function HeroSection() {
       <div className="gradient-hero absolute inset-0" />
       <video
         className="absolute inset-0 h-full w-full object-cover"
-        src="/hero-cultivo.mp4"
+        src="/hero-beans.mp4"
         autoPlay
         loop
         muted

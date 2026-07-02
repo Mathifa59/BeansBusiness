@@ -4,8 +4,9 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
-import { Filter, MapPin, ShieldCheck, ArrowRight, Eye } from "lucide-react";
+import { Filter, MapPin, ShieldCheck, ArrowRight, Eye, Package } from "lucide-react";
 import { PRODUCTS } from "@/lib/constants/company";
+import type { ProductCategory } from "@/types/product";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import {
@@ -24,6 +25,16 @@ const CERT_FILTERS = ["all", "FDA", "SENASA", "HACCP"] as const;
 type CertFilter = (typeof CERT_FILTERS)[number];
 
 type AvailabilityFilter = "all" | "all-year" | "seasonal";
+type CategoryFilter = "all" | ProductCategory;
+
+const CATEGORY_FILTERS: CategoryFilter[] = ["all", "legumbres", "granos-andinos", "otros"];
+
+const CATEGORY_FILTER_KEY: Record<CategoryFilter, string> = {
+  all: "categoryAll",
+  legumbres: "categoryLegumbres",
+  "granos-andinos": "categoryGranosAndinos",
+  otros: "categoryOtros",
+};
 
 export function ProductsFilterGrid() {
   const tFilters = useTranslations("products.filters");
@@ -34,14 +45,14 @@ export function ProductsFilterGrid() {
 
   const [certFilter, setCertFilter] = useState<CertFilter>("all");
   const [availFilter, setAvailFilter] = useState<AvailabilityFilter>("all");
+  const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>("all");
   const [showFilters, setShowFilters] = useState(false);
   const [activeProductId, setActiveProductId] = useState<string | null>(null);
 
   const filtered = useMemo(() => {
     return PRODUCTS.filter((product) => {
-      if (availFilter !== "all" && product.availability !== availFilter) {
-        return false;
-      }
+      if (categoryFilter !== "all" && product.category !== categoryFilter) return false;
+      if (availFilter !== "all" && product.availability !== availFilter) return false;
       if (certFilter !== "all") {
         const certs = tItems.raw(
           `${product.id}.certifications` as Parameters<typeof tItems.raw>[0]
@@ -50,7 +61,7 @@ export function ProductsFilterGrid() {
       }
       return true;
     });
-  }, [certFilter, availFilter, tItems]);
+  }, [certFilter, availFilter, categoryFilter, tItems]);
 
   const activeProduct = PRODUCTS.find((p) => p.id === activeProductId);
 
@@ -80,6 +91,31 @@ export function ProductsFilterGrid() {
                 !showFilters && "hidden"
               )}
             >
+              {/* Category filter */}
+              <div>
+                <h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400">
+                  {tFilters("categoryLabel")}
+                </h3>
+                <div className="mt-3 flex flex-col gap-2">
+                  {CATEGORY_FILTERS.map((cat) => (
+                    <button
+                      key={cat}
+                      type="button"
+                      onClick={() => setCategoryFilter(cat)}
+                      className={cn(
+                        "rounded-full px-4 py-2 text-left text-sm font-medium transition-colors",
+                        categoryFilter === cat
+                          ? "bg-primary text-white"
+                          : "bg-white text-gray-700 ring-1 ring-gray-100 hover:bg-primary/10 hover:text-primary"
+                      )}
+                    >
+                      {tFilters(CATEGORY_FILTER_KEY[cat] as Parameters<typeof tFilters>[0])}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Certification filter */}
               <div>
                 <h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400">
                   {tFilters("certificationLabel")}
@@ -103,6 +139,7 @@ export function ProductsFilterGrid() {
                 </div>
               </div>
 
+              {/* Availability filter */}
               <div>
                 <h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400">
                   {tFilters("availabilityLabel")}
@@ -135,7 +172,7 @@ export function ProductsFilterGrid() {
           </div>
 
           {/* Products grid */}
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-3">
             {filtered.map((product, i) => {
               const certs = tItems.raw(
                 `${product.id}.certifications` as Parameters<typeof tItems.raw>[0]
@@ -148,17 +185,23 @@ export function ProductsFilterGrid() {
                 <AnimatedSection
                   key={product.id}
                   variants={scaleIn}
-                  transition={{ duration: 0.5, delay: (i % 4) * 0.08 }}
+                  transition={{ duration: 0.5, delay: (i % 6) * 0.06 }}
                   className="flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-gray-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-primary/30"
                 >
-                  <div className="relative aspect-[4/3] w-full overflow-hidden">
-                    <Image
-                      src={product.imageSrc}
-                      alt={tItems(`${product.id}.name` as Parameters<typeof tItems>[0])}
-                      fill
-                      sizes="(min-width: 1024px) 50vw, 100vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-off-white">
+                    {product.imageSrc ? (
+                      <Image
+                        src={product.imageSrc}
+                        alt={tItems(`${product.id}.name` as Parameters<typeof tItems>[0])}
+                        fill
+                        sizes="(min-width: 1280px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="flex h-full items-center justify-center">
+                        <Package className="h-12 w-12 text-gray-200" />
+                      </div>
+                    )}
                   </div>
 
                   <div className="flex flex-1 flex-col p-6">
@@ -266,6 +309,26 @@ export function ProductsFilterGrid() {
                   <p className="mt-1 text-sm font-semibold text-dark">
                     {tItems(
                       `${activeProduct.id}.seasonality` as Parameters<typeof tItems>[0]
+                    )}
+                  </p>
+                </div>
+                <div className="rounded-xl bg-off-white p-4">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-gray-400">
+                    {tSpecs("calibre")}
+                  </p>
+                  <p className="mt-1 text-sm font-semibold text-dark">
+                    {tItems(
+                      `${activeProduct.id}.calibre` as Parameters<typeof tItems>[0]
+                    )}
+                  </p>
+                </div>
+                <div className="rounded-xl bg-off-white p-4">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-gray-400">
+                    {tSpecs("packaging")}
+                  </p>
+                  <p className="mt-1 text-sm font-semibold text-dark">
+                    {tItems(
+                      `${activeProduct.id}.packaging` as Parameters<typeof tItems>[0]
                     )}
                   </p>
                 </div>

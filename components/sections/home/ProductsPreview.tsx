@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { ArrowRight } from "lucide-react";
-import { PRODUCTS } from "@/lib/constants/company";
+import { PRODUCTS_FEATURED } from "@/lib/constants/company";
 import { Badge } from "@/components/ui/badge";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { SectionTag } from "@/components/ui/section-tag";
@@ -29,7 +29,7 @@ export function ProductsPreview() {
       </AnimatedSection>
 
       <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {PRODUCTS.map((product, i) => {
+        {PRODUCTS_FEATURED.map((product, i) => {
           const tags = tP.raw(
             `${product.id}.certifications`
           ) as string[];
@@ -41,14 +41,16 @@ export function ProductsPreview() {
               transition={{ duration: 0.5, delay: i * 0.08 }}
               className="group flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-gray-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-primary/30"
             >
-              <div className="relative aspect-[4/3] w-full overflow-hidden">
-                <Image
-                  src={product.imageSrc}
-                  alt={tP(`${product.id}.name` as Parameters<typeof tP>[0])}
-                  fill
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-off-white">
+                {product.imageSrc && (
+                  <Image
+                    src={product.imageSrc}
+                    alt={tP(`${product.id}.name` as Parameters<typeof tP>[0])}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                )}
               </div>
 
               <div className="flex flex-1 flex-col p-6">

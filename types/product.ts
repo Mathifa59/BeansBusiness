@@ -1,6 +1,10 @@
+export type ProductCategory = "legumbres" | "granos-andinos" | "otros";
+
 export interface Product {
   id: string;
-  imageSrc: string;
+  imageSrc?: string;
+  category: ProductCategory;
+  featured?: boolean;
   nameKey: string;
   shortDescriptionKey: string;
   descriptionKey: string;
@@ -9,6 +13,8 @@ export interface Product {
   seasonalityKey: string;
   destinationsKey: string;
   certificationsKey: string;
+  calibreKey: string;
+  packagingKey: string;
 }
 
 export interface Certification {

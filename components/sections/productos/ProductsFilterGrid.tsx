@@ -24,7 +24,6 @@ import { cn } from "@/lib/utils";
 const CERT_FILTERS = ["all", "FDA", "SENASA", "HACCP"] as const;
 type CertFilter = (typeof CERT_FILTERS)[number];
 
-type AvailabilityFilter = "all" | "all-year" | "seasonal";
 type CategoryFilter = "all" | ProductCategory;
 
 const CATEGORY_FILTERS: CategoryFilter[] = ["all", "legumbres", "granos-andinos", "otros"];
@@ -44,7 +43,6 @@ export function ProductsFilterGrid() {
   const locale = useLocale();
 
   const [certFilter, setCertFilter] = useState<CertFilter>("all");
-  const [availFilter, setAvailFilter] = useState<AvailabilityFilter>("all");
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>("all");
   const [showFilters, setShowFilters] = useState(false);
   const [activeProductId, setActiveProductId] = useState<string | null>(null);
@@ -52,7 +50,6 @@ export function ProductsFilterGrid() {
   const filtered = useMemo(() => {
     return PRODUCTS.filter((product) => {
       if (categoryFilter !== "all" && product.category !== categoryFilter) return false;
-      if (availFilter !== "all" && product.availability !== availFilter) return false;
       if (certFilter !== "all") {
         const certs = tItems.raw(
           `${product.id}.certifications` as Parameters<typeof tItems.raw>[0]
@@ -61,7 +58,7 @@ export function ProductsFilterGrid() {
       }
       return true;
     });
-  }, [certFilter, availFilter, categoryFilter, tItems]);
+  }, [certFilter, categoryFilter, tItems]);
 
   const activeProduct = PRODUCTS.find((p) => p.id === activeProductId);
 
@@ -139,35 +136,6 @@ export function ProductsFilterGrid() {
                 </div>
               </div>
 
-              {/* Availability filter */}
-              <div>
-                <h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400">
-                  {tFilters("availabilityLabel")}
-                </h3>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {(["all-year", "seasonal"] as const).map((avail) => (
-                    <button
-                      key={avail}
-                      type="button"
-                      onClick={() =>
-                        setAvailFilter((current) =>
-                          current === avail ? "all" : avail
-                        )
-                      }
-                      className={cn(
-                        "rounded-full px-4 py-2 text-sm font-medium transition-colors",
-                        availFilter === avail
-                          ? "bg-primary text-white"
-                          : "bg-white text-gray-700 ring-1 ring-gray-100 hover:bg-primary/10 hover:text-primary"
-                      )}
-                    >
-                      {avail === "all-year"
-                        ? tFilters("availabilityAll")
-                        : tFilters("availabilitySeasonal")}
-                    </button>
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
 

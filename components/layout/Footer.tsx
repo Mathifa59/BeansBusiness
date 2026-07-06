@@ -114,12 +114,14 @@ export function Footer() {
             >
               {t("terms")}
             </Link>
-            <Link
-              href={localizedHref("/libro-de-reclamaciones")}
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSe4WPXnSJcxVehgIS9fgcGe8zawMcvjW862Tnv6tmAPLmhwkw/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
               className="transition-colors hover:text-white"
             >
-              {t("complaints")}
-            </Link>
+              {t("suggestions")}
+            </a>
           </div>
         </div>
       </div>

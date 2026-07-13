@@ -3,7 +3,7 @@ import type { Product, Certification } from "@/types/product";
 export const COMPANY_INFO = {
   razonSocial: "Business Beans Perú SRL",
   ruc: "20XXXXXXXXX",
-  direccion: "Av. Ejemplo 123, Lima, Perú",
+  direccion: "Av. Ejemplo 123, Lambayeque, Perú",
   email: "info@businessbeans.com",
   telefono: "+51 981 916 198",
   website: "www.businessbeans.com",

@@ -109,7 +109,7 @@ export function WorldMap({
     >
       <ComposableMap
         projection="geoEqualEarth"
-        projectionConfig={{ scale: 165, center: createCoordinates(-10, 10) }}
+        projectionConfig={{ scale: 205, center: createCoordinates(-10, 10) }}
         width={980}
         height={520}
         className="w-full"

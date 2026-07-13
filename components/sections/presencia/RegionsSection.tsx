@@ -1,7 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { MapPin } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { SectionTag } from "@/components/ui/section-tag";
 import { SectionWrapper } from "@/components/ui/section-wrapper";
@@ -32,6 +35,7 @@ const REGION_IDS: ExportRegionId[] = [
 export function RegionsSection() {
   const t = useTranslations("presence.regions");
   const tItems = useTranslations("presence.regions.items");
+  const [selected, setSelected] = useState<ExportRegionId | null>(null);
 
   const regions = REGION_IDS.reduce((acc, id) => {
     acc[id] = {
@@ -43,6 +47,8 @@ export function RegionsSection() {
     };
     return acc;
   }, {} as Record<ExportRegionId, RegionInfo>);
+
+  const active = selected ? regions[selected] : null;
 
   return (
     <SectionWrapper bg="off-white">
@@ -56,15 +62,50 @@ export function RegionsSection() {
       <AnimatedSection
         variants={fadeUp}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className="mx-auto mt-16 max-w-5xl"
+        className="mx-auto mt-16 max-w-6xl"
       >
-        <WorldMap
-          regions={regions}
-          ariaLabel={t("mapAriaLabel")}
-          originLabel={t("origin")}
-          className="rounded-2xl bg-white p-4 ring-1 ring-gray-100 sm:p-8"
-        />
-        <p className="mt-4 text-center text-xs text-gray-400">{t("mapHint")}</p>
+        <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[1fr_280px]">
+          <div>
+            <WorldMap
+              regions={regions}
+              ariaLabel={t("mapAriaLabel")}
+              originLabel={t("origin")}
+              selected={selected}
+              onSelect={setSelected}
+              className="rounded-2xl bg-white p-4 ring-1 ring-gray-100 sm:p-8"
+            />
+            <p className="mt-4 text-center text-xs text-gray-400">{t("mapHint")}</p>
+          </div>
+
+          {/* Detail card */}
+          <div className="rounded-2xl bg-white p-6 ring-1 ring-gray-100 lg:sticky lg:top-28">
+            <motion.div
+              key={selected ?? "empty"}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              {active ? (
+                <>
+                  <h3 className="text-lg font-bold text-dark">{active.name}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-gray-700">
+                    {active.countries.join(" · ")}
+                  </p>
+                  <span className="mt-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary-dark">
+                    {active.shipments}
+                  </span>
+                </>
+              ) : (
+                <div className="flex flex-col items-center py-6 text-center">
+                  <MapPin className="h-8 w-8 text-gray-300" />
+                  <p className="mt-3 text-sm leading-relaxed text-gray-400">
+                    {t("mapHint")}
+                  </p>
+                </div>
+              )}
+            </motion.div>
+          </div>
+        </div>
       </AnimatedSection>
     </SectionWrapper>
   );

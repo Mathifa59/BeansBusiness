@@ -62,21 +62,32 @@ interface WorldMapProps {
   regions: Record<ExportRegionId, RegionInfo>;
   ariaLabel: string;
   originLabel: string;
+  /** Persisted selection (drives an external detail card) — only changes on click. */
+  selected: ExportRegionId | null;
+  onSelect: (region: ExportRegionId) => void;
   className?: string;
 }
 
 const TOOLTIP_MARGIN = 100; // keeps the ~200px-wide tooltip from overflowing the container edges
 
-export function WorldMap({ regions, ariaLabel, originLabel, className }: WorldMapProps) {
+export function WorldMap({
+  regions,
+  ariaLabel,
+  originLabel,
+  selected,
+  onSelect,
+  className,
+}: WorldMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [hovered, setHovered] = useState<ExportRegionId | null>(null);
+  // Ephemeral — drives the floating tooltip + immediate hover feedback.
+  const [hoveredLocal, setHoveredLocal] = useState<ExportRegionId | null>(null);
   const [tooltipPos, setTooltipPos] = useState<{ x: number; y: number } | null>(null);
 
-  const select = (
+  const showTooltip = (
     regionId: ExportRegionId,
     event: { clientX: number; clientY: number }
   ) => {
-    setHovered((current) => (current === regionId ? null : regionId));
+    setHoveredLocal(regionId);
     const rect = containerRef.current?.getBoundingClientRect();
     if (!rect) return;
     const x = Math.min(
@@ -87,11 +98,14 @@ export function WorldMap({ regions, ariaLabel, originLabel, className }: WorldMa
     setTooltipPos({ x, y });
   };
 
+  const isActive = (region: ExportRegionId) =>
+    hoveredLocal === region || selected === region;
+
   return (
     <div
       ref={containerRef}
       className={cn("relative", className)}
-      onClick={() => setHovered(null)}
+      onClick={() => setHoveredLocal(null)}
     >
       <ComposableMap
         projection="geoEqualEarth"
@@ -115,12 +129,12 @@ export function WorldMap({ regions, ariaLabel, originLabel, className }: WorldMa
               const id = String(geo.id);
               const isOrigin = id === ORIGIN_ID;
               const destination = DESTINATIONS[id];
-              const isHovered = !!destination && hovered === destination.region;
+              const active = !!destination && isActive(destination.region);
 
               const fill = isOrigin
                 ? "#f8b10a"
                 : destination
-                  ? isHovered
+                  ? active
                     ? "#489332"
                     : "#64b548"
                   : "#dde5d5";
@@ -140,15 +154,16 @@ export function WorldMap({ regions, ariaLabel, originLabel, className }: WorldMa
                   }}
                   onMouseEnter={(e) => {
                     if (!destination) return;
-                    select(destination.region, e);
+                    showTooltip(destination.region, e);
                   }}
                   onMouseLeave={() => {
-                    if (destination) setHovered(null);
+                    if (destination) setHoveredLocal(null);
                   }}
                   onClick={(e) => {
                     if (!destination) return;
                     e.stopPropagation();
-                    select(destination.region, e);
+                    showTooltip(destination.region, e);
+                    onSelect(destination.region);
                   }}
                 />
               );
@@ -158,7 +173,7 @@ export function WorldMap({ regions, ariaLabel, originLabel, className }: WorldMa
 
         {/* Routes from Lambayeque to every destination */}
         {Object.entries(DESTINATIONS).map(([id, { region, coords }]) => {
-          const active = hovered === region;
+          const active = isActive(region);
           return (
             <Line
               key={`route-${id}`}
@@ -177,17 +192,18 @@ export function WorldMap({ regions, ariaLabel, originLabel, className }: WorldMa
 
         {/* Destination markers (bigger invisible hit-area for touch) */}
         {Object.entries(DESTINATIONS).map(([id, { region, coords }]) => {
-          const active = hovered === region;
+          const active = isActive(region);
           return (
             <Marker
               key={`marker-${id}`}
               coordinates={coords}
               className="cursor-pointer"
-              onMouseEnter={(e) => select(region, e)}
-              onMouseLeave={() => setHovered(null)}
+              onMouseEnter={(e) => showTooltip(region, e)}
+              onMouseLeave={() => setHoveredLocal(null)}
               onClick={(e) => {
                 e.stopPropagation();
-                select(region, e);
+                showTooltip(region, e);
+                onSelect(region);
               }}
             >
               <circle r={9} fill="transparent" />
@@ -228,8 +244,8 @@ export function WorldMap({ regions, ariaLabel, originLabel, className }: WorldMa
         </Marker>
       </ComposableMap>
 
-      {/* ── Tooltip ── */}
-      {hovered && tooltipPos && regions[hovered] && (
+      {/* ── Floating tooltip (hover on desktop, tap on mobile) ── */}
+      {hoveredLocal && tooltipPos && regions[hoveredLocal] && (
         <div
           className="pointer-events-none absolute z-20 w-44 rounded-xl bg-dark px-4 py-3 shadow-2xl sm:w-52"
           style={{
@@ -238,12 +254,12 @@ export function WorldMap({ regions, ariaLabel, originLabel, className }: WorldMa
             transform: "translate(-50%, calc(-100% - 14px))",
           }}
         >
-          <p className="text-sm font-bold text-white">{regions[hovered].name}</p>
+          <p className="text-sm font-bold text-white">{regions[hoveredLocal].name}</p>
           <p className="mt-1 text-xs leading-relaxed text-white/60">
-            {regions[hovered].countries.join(" · ")}
+            {regions[hoveredLocal].countries.join(" · ")}
           </p>
           <p className="mt-2 text-[11px] font-bold tracking-wider text-primary-light">
-            {regions[hovered].shipments}
+            {regions[hoveredLocal].shipments}
           </p>
           <div className="absolute -bottom-[6px] left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 bg-dark" />
         </div>

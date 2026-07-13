@@ -1,7 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState, type ComponentProps } from "react";
+import {
+  ComposableMap,
+  Geographies,
+  Geography,
+  Marker,
+  Line,
+  Sphere,
+  Graticule,
+  createCoordinates,
+  type Coordinates,
+} from "@vnedyalk0v/react19-simple-maps";
 import { cn } from "@/lib/utils";
+import worldTopology from "@/lib/data/world-110m.json";
 
 export type ExportRegionId =
   | "northAmerica"
@@ -10,57 +22,34 @@ export type ExportRegionId =
   | "asia"
   | "middleEast";
 
-// ViewBox: 0 0 1000 500 (Mercator-like projection)
-// x = (lon + 180) * 1000/360,  y = (90 - lat) * 500/180
-const PATHS: Record<ExportRegionId | "africa" | "oceania", string> = {
-  // ── Inactive continents (context only) ──────────────────────────────────
-  africa:
-    "M 436,198 L 490,194 L 542,200 L 572,218 L 578,252 L 566,290 " +
-    "L 549,332 L 535,370 L 525,408 L 520,444 L 514,468 L 498,480 " +
-    "L 482,472 L 467,450 L 454,416 L 438,374 L 422,325 " +
-    "L 418,282 L 418,240 L 426,210 Z",
-  oceania:
-    "M 752,362 L 820,352 L 874,358 L 919,372 L 945,392 L 955,420 " +
-    "L 943,448 L 920,464 L 890,470 L 855,466 L 824,455 " +
-    "L 798,434 L 776,410 L 760,385 L 750,370 Z",
+// Lambayeque, Perú (Chiclayo) — point of origin for every export route
+const ORIGIN_ID = "604"; // ISO 3166-1 numeric code for Peru
+const ORIGIN: Coordinates = createCoordinates(-79.84, -6.77);
 
-  // ── Active export regions ────────────────────────────────────────────────
-  northAmerica:
-    "M 58,70 L 195,26 L 348,28 L 387,64 L 387,100 L 374,160 " +
-    "L 374,200 L 362,228 L 330,255 L 294,278 L 270,292 L 248,318 " +
-    "L 224,292 L 192,268 L 159,244 L 128,215 " +
-    "L 110,180 L 99,145 L 85,112 Z",
-  latam:
-    "M 248,318 L 278,286 L 328,280 L 366,288 L 387,318 L 387,352 " +
-    "L 374,390 L 358,424 L 342,456 L 326,480 L 312,496 " +
-    "L 294,494 L 276,480 L 260,458 L 248,432 L 246,402 L 248,364 Z",
-  europe:
-    "M 428,102 L 448,78 L 474,62 L 504,56 L 533,59 L 557,70 " +
-    "L 574,88 L 580,110 L 570,132 L 552,144 L 534,149 L 517,153 " +
-    "L 503,163 L 491,155 L 472,151 L 454,149 L 435,137 L 426,118 Z",
-  // Asia (large landmass; middleEast rendered on top to intercept hover)
-  asia:
-    "M 580,54 L 698,28 L 818,22 L 938,30 L 1000,56 " +
-    "L 1000,356 C 960,375 916,393 874,397 C 832,401 792,391 760,375 " +
-    "C 728,359 704,334 680,309 C 656,283 632,255 610,229 " +
-    "C 588,203 568,175 549,149 C 536,131 530,109 536,89 " +
-    "L 552,72 L 568,60 L 580,54 Z",
-  middleEast:
-    "M 562,149 L 586,145 L 614,153 L 638,167 L 656,188 " +
-    "L 660,211 L 653,235 L 636,255 L 612,268 L 586,270 " +
-    "L 563,258 L 546,240 L 536,217 L 535,194 L 543,172 L 556,157 Z",
-};
-
-// Lambayeque, Perú (lon -79.84, lat -6.77) → x ≈ 278, y ≈ 269
-const ORIGIN: [number, number] = [278, 269];
-
-// Visual centroids for tooltip placement and connection lines
-const CENTROIDS: Record<ExportRegionId, [number, number]> = {
-  northAmerica: [218, 168],
-  latam:        [314, 390],
-  europe:       [507, 110],
-  middleEast:   [596, 210],
-  asia:         [840, 210],
+// ISO 3166-1 numeric codes (as stored in the topojson) → which region each
+// destination country belongs to, plus its capital/hub coordinates for markers & routes.
+const DESTINATIONS: Record<
+  string,
+  { region: ExportRegionId; coords: Coordinates }
+> = {
+  "840": { region: "northAmerica", coords: createCoordinates(-77.04, 38.91) }, // USA – Washington D.C.
+  "124": { region: "northAmerica", coords: createCoordinates(-75.7, 45.42) }, // Canada – Ottawa
+  "724": { region: "europe", coords: createCoordinates(-3.7, 40.42) }, // Spain – Madrid
+  "276": { region: "europe", coords: createCoordinates(13.4, 52.52) }, // Germany – Berlin
+  "380": { region: "europe", coords: createCoordinates(12.5, 41.9) }, // Italy – Rome
+  "528": { region: "europe", coords: createCoordinates(4.9, 52.37) }, // Netherlands – Amsterdam
+  "620": { region: "europe", coords: createCoordinates(-9.14, 38.72) }, // Portugal – Lisbon
+  "616": { region: "europe", coords: createCoordinates(21.02, 52.23) }, // Poland – Warsaw
+  "170": { region: "latam", coords: createCoordinates(-74.08, 4.71) }, // Colombia – Bogotá
+  "032": { region: "latam", coords: createCoordinates(-58.38, -34.6) }, // Argentina – Buenos Aires
+  "858": { region: "latam", coords: createCoordinates(-56.16, -34.9) }, // Uruguay – Montevideo
+  "388": { region: "latam", coords: createCoordinates(-76.79, 17.97) }, // Jamaica – Kingston
+  "780": { region: "latam", coords: createCoordinates(-61.52, 10.65) }, // Trinidad & Tobago – Port of Spain
+  "392": { region: "asia", coords: createCoordinates(139.69, 35.68) }, // Japan – Tokyo
+  "410": { region: "asia", coords: createCoordinates(126.98, 37.57) }, // South Korea – Seoul
+  "422": { region: "middleEast", coords: createCoordinates(35.5, 33.89) }, // Lebanon – Beirut
+  "376": { region: "middleEast", coords: createCoordinates(34.78, 32.08) }, // Israel – Tel Aviv
+  "792": { region: "middleEast", coords: createCoordinates(32.86, 39.93) }, // Turkey – Ankara
 };
 
 export interface RegionInfo {
@@ -69,15 +58,6 @@ export interface RegionInfo {
   shipments: string;
 }
 
-// Render order: asia before middleEast so middleEast sits on top (intercepts mouse)
-const RENDER_ORDER: ExportRegionId[] = [
-  "northAmerica",
-  "latam",
-  "europe",
-  "asia",
-  "middleEast",
-];
-
 interface WorldMapProps {
   regions: Record<ExportRegionId, RegionInfo>;
   ariaLabel: string;
@@ -85,154 +65,176 @@ interface WorldMapProps {
   className?: string;
 }
 
+const TOOLTIP_MARGIN = 100; // keeps the ~200px-wide tooltip from overflowing the container edges
+
 export function WorldMap({ regions, ariaLabel, originLabel, className }: WorldMapProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState<ExportRegionId | null>(null);
+  const [tooltipPos, setTooltipPos] = useState<{ x: number; y: number } | null>(null);
 
-  const toggle = (regionId: ExportRegionId) => {
+  const select = (
+    regionId: ExportRegionId,
+    event: { clientX: number; clientY: number }
+  ) => {
     setHovered((current) => (current === regionId ? null : regionId));
+    const rect = containerRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    const x = Math.min(
+      Math.max(event.clientX - rect.left, TOOLTIP_MARGIN),
+      rect.width - TOOLTIP_MARGIN
+    );
+    const y = event.clientY - rect.top;
+    setTooltipPos({ x, y });
   };
-
-  // Tooltip x clamped so it doesn't fall off either edge (tighter margin for narrow/mobile containers)
-  const tipPct = hovered
-    ? {
-        x: Math.min(Math.max((CENTROIDS[hovered][0] / 1000) * 100, 20), 80),
-        y: (CENTROIDS[hovered][1] / 500) * 100,
-      }
-    : null;
 
   return (
     <div
+      ref={containerRef}
       className={cn("relative", className)}
       onClick={() => setHovered(null)}
     >
-      {/* ── SVG Map ── */}
-      <svg
-        viewBox="0 0 1000 500"
+      <ComposableMap
+        projection="geoEqualEarth"
+        projectionConfig={{ scale: 165, center: createCoordinates(-10, 10) }}
+        width={980}
+        height={520}
         className="w-full"
         role="img"
         aria-label={ariaLabel}
       >
-        {/* Ocean */}
-        <defs>
-          <linearGradient id="ocean-grad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#cee8f5" />
-            <stop offset="100%" stopColor="#ddf0fb" />
-          </linearGradient>
-          {/* Glow filter for hovered regions */}
-          <filter id="region-glow" x="-25%" y="-25%" width="150%" height="150%">
-            <feGaussianBlur stdDeviation="5" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
+        <Sphere id="rsm-sphere" fill="#eef5fb" stroke="#d6e6f2" strokeWidth={0.5} />
+        <Graticule stroke="#d6e6f2" strokeWidth={0.4} />
 
-        <rect width="1000" height="500" rx="14" fill="url(#ocean-grad)" />
+        <Geographies
+          geography={
+            worldTopology as unknown as ComponentProps<typeof Geographies>["geography"]
+          }
+        >
+          {({ geographies }) =>
+            geographies.map((geo) => {
+              const id = String(geo.id);
+              const isOrigin = id === ORIGIN_ID;
+              const destination = DESTINATIONS[id];
+              const isHovered = !!destination && hovered === destination.region;
 
-        {/* Subtle latitude lines */}
-        {[167, 333].map((y) => (
-          <line
-            key={y}
-            x1={0} y1={y} x2={1000} y2={y}
-            stroke="white" strokeWidth="0.8" opacity="0.45"
-          />
-        ))}
-        {/* Equator */}
-        <line
-          x1={0} y1={250} x2={1000} y2={250}
-          stroke="white" strokeWidth="1.2"
-          strokeDasharray="8 5" opacity="0.5"
-        />
+              const fill = isOrigin
+                ? "#f8b10a"
+                : destination
+                  ? isHovered
+                    ? "#489332"
+                    : "#64b548"
+                  : "#dde5d5";
 
-        {/* ── Inactive continents ── */}
-        {(["africa", "oceania"] as const).map((id) => (
-          <path
-            key={id}
-            d={PATHS[id]}
-            fill="#bcd4bc"
-            stroke="white"
-            strokeWidth="1.5"
-            strokeLinejoin="round"
-          />
-        ))}
+              return (
+                <Geography
+                  key={geo.id ?? geo.properties?.name}
+                  geography={geo}
+                  fill={fill}
+                  stroke="#ffffff"
+                  strokeWidth={0.5}
+                  className={destination ? "cursor-pointer" : undefined}
+                  style={{
+                    default: { outline: "none", transition: "fill 0.2s ease" },
+                    hover: { outline: "none" },
+                    pressed: { outline: "none" },
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!destination) return;
+                    select(destination.region, e);
+                  }}
+                  onMouseLeave={() => {
+                    if (destination) setHovered(null);
+                  }}
+                  onClick={(e) => {
+                    if (!destination) return;
+                    e.stopPropagation();
+                    select(destination.region, e);
+                  }}
+                />
+              );
+            })
+          }
+        </Geographies>
 
-        {/* ── Connection lines from origin (skip latam – same continent) ── */}
-        {RENDER_ORDER.filter((r) => r !== "latam").map((regionId) => {
-          const [x2, y2] = CENTROIDS[regionId];
-          const active = hovered === regionId;
+        {/* Routes from Lambayeque to every destination */}
+        {Object.entries(DESTINATIONS).map(([id, { region, coords }]) => {
+          const active = hovered === region;
           return (
-            <line
-              key={`ln-${regionId}`}
-              x1={ORIGIN[0]} y1={ORIGIN[1]}
-              x2={x2} y2={y2}
+            <Line
+              key={`route-${id}`}
+              from={ORIGIN}
+              to={coords}
               stroke="#64b548"
-              strokeWidth={active ? 1.6 : 0.8}
-              strokeDasharray="5 4"
-              opacity={active ? 0.65 : 0.25}
+              strokeWidth={active ? 1.6 : 0.75}
+              strokeDasharray="4 3"
+              strokeLinecap="round"
+              fill="none"
+              opacity={active ? 0.85 : 0.35}
               style={{ transition: "opacity 0.25s ease, stroke-width 0.25s ease" }}
             />
           );
         })}
 
-        {/* ── Active export region paths ── */}
-        {RENDER_ORDER.map((regionId) => {
-          const isHov = hovered === regionId;
+        {/* Destination markers (bigger invisible hit-area for touch) */}
+        {Object.entries(DESTINATIONS).map(([id, { region, coords }]) => {
+          const active = hovered === region;
           return (
-            <path
-              key={regionId}
-              d={PATHS[regionId]}
-              fill="#64b548"
-              fillOpacity={isHov ? 0.88 : 0.52}
-              stroke="white"
-              strokeWidth="1.5"
-              strokeLinejoin="round"
+            <Marker
+              key={`marker-${id}`}
+              coordinates={coords}
               className="cursor-pointer"
-              filter={isHov ? "url(#region-glow)" : undefined}
-              style={{ transition: "fill-opacity 0.2s ease" }}
-              onMouseEnter={() => setHovered(regionId)}
+              onMouseEnter={(e) => select(region, e)}
               onMouseLeave={() => setHovered(null)}
               onClick={(e) => {
                 e.stopPropagation();
-                toggle(regionId);
+                select(region, e);
               }}
-            />
+            >
+              <circle r={9} fill="transparent" />
+              <circle
+                r={active ? 4 : 2.6}
+                fill="#ffffff"
+                stroke="#489332"
+                strokeWidth={1.4}
+                style={{ transition: "r 0.2s ease" }}
+              />
+            </Marker>
           );
         })}
 
-        {/* ── Lambayeque, Perú origin dot ── */}
-        {/* Pulse ring */}
-        <circle
-          cx={ORIGIN[0]} cy={ORIGIN[1]} r="10"
-          fill="#64b548" fillOpacity="0.18"
-          style={{
-            transformOrigin: `${ORIGIN[0]}px ${ORIGIN[1]}px`,
-            animation: "originRing 2.4s ease-in-out infinite",
-          }}
-        />
-        {/* Solid dot */}
-        <circle
-          cx={ORIGIN[0]} cy={ORIGIN[1]} r="4.5"
-          fill="#64b548" stroke="white" strokeWidth="2"
-        />
-        {/* Label */}
-        <text
-          x={ORIGIN[0] + 10} y={ORIGIN[1] - 8}
-          fontSize="10" fontWeight="700"
-          fontFamily="system-ui, -apple-system, sans-serif"
-          fill="#1a2e0f" letterSpacing="0.04em"
-        >
-          {originLabel}
-        </text>
-      </svg>
+        {/* Origin marker — Lambayeque, Perú */}
+        <Marker coordinates={ORIGIN}>
+          <circle
+            r={9}
+            fill="#f8b10a"
+            fillOpacity={0.2}
+            style={{
+              transformOrigin: "center",
+              animation: "originRing 2.4s ease-in-out infinite",
+            }}
+          />
+          <circle r={4.5} fill="#f8b10a" stroke="#ffffff" strokeWidth={1.6} />
+          <text
+            x={9}
+            y={-6}
+            fontSize="9"
+            fontWeight={700}
+            fontFamily="system-ui, -apple-system, sans-serif"
+            fill="#1a2e0f"
+            letterSpacing="0.03em"
+          >
+            {originLabel}
+          </text>
+        </Marker>
+      </ComposableMap>
 
       {/* ── Tooltip ── */}
-      {hovered && tipPct && regions[hovered] && (
+      {hovered && tooltipPos && regions[hovered] && (
         <div
           className="pointer-events-none absolute z-20 w-44 rounded-xl bg-dark px-4 py-3 shadow-2xl sm:w-52"
           style={{
-            left: `${tipPct.x}%`,
-            top: `${tipPct.y}%`,
+            left: tooltipPos.x,
+            top: tooltipPos.y,
             transform: "translate(-50%, calc(-100% - 14px))",
           }}
         >
@@ -243,15 +245,14 @@ export function WorldMap({ regions, ariaLabel, originLabel, className }: WorldMa
           <p className="mt-2 text-[11px] font-bold tracking-wider text-primary-light">
             {regions[hovered].shipments}
           </p>
-          {/* Arrow */}
           <div className="absolute -bottom-[6px] left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 bg-dark" />
         </div>
       )}
 
       <style>{`
         @keyframes originRing {
-          0%, 100% { transform: scale(1); opacity: 0.18; }
-          60%       { transform: scale(2.2); opacity: 0; }
+          0%, 100% { transform: scale(1); opacity: 0.2; }
+          60%       { transform: scale(2.4); opacity: 0; }
         }
       `}</style>
     </div>

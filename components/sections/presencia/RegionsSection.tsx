@@ -1,11 +1,25 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { SectionTag } from "@/components/ui/section-tag";
 import { SectionWrapper } from "@/components/ui/section-wrapper";
-import { WorldMap, type ExportRegionId, type RegionInfo } from "@/components/ui/world-map";
+import type { ExportRegionId, RegionInfo } from "@/components/ui/world-map";
 import { fadeUp } from "@/lib/animations";
+
+// The map computes its projection with floating-point math that differs by a
+// hair between server (Node) and client (browser) V8 builds, causing a
+// harmless-but-noisy hydration warning — render it client-only instead.
+const WorldMap = dynamic(
+  () => import("@/components/ui/world-map").then((mod) => mod.WorldMap),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="aspect-[980/520] w-full animate-pulse rounded-2xl bg-gray-100" />
+    ),
+  }
+);
 
 const REGION_IDS: ExportRegionId[] = [
   "northAmerica",

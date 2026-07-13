@@ -51,8 +51,8 @@ const PATHS: Record<ExportRegionId | "africa" | "oceania", string> = {
     "L 563,258 L 546,240 L 536,217 L 535,194 L 543,172 L 556,157 Z",
 };
 
-// Lima, Perú (lon -77, lat -12) → x ≈ 286, y ≈ 283
-const LIMA: [number, number] = [286, 283];
+// Lambayeque, Perú (lon -79.84, lat -6.77) → x ≈ 278, y ≈ 269
+const ORIGIN: [number, number] = [278, 269];
 
 // Visual centroids for tooltip placement and connection lines
 const CENTROIDS: Record<ExportRegionId, [number, number]> = {
@@ -80,28 +80,37 @@ const RENDER_ORDER: ExportRegionId[] = [
 
 interface WorldMapProps {
   regions: Record<ExportRegionId, RegionInfo>;
+  ariaLabel: string;
+  originLabel: string;
   className?: string;
 }
 
-export function WorldMap({ regions, className }: WorldMapProps) {
+export function WorldMap({ regions, ariaLabel, originLabel, className }: WorldMapProps) {
   const [hovered, setHovered] = useState<ExportRegionId | null>(null);
 
-  // Tooltip x clamped so it doesn't fall off either edge
+  const toggle = (regionId: ExportRegionId) => {
+    setHovered((current) => (current === regionId ? null : regionId));
+  };
+
+  // Tooltip x clamped so it doesn't fall off either edge (tighter margin for narrow/mobile containers)
   const tipPct = hovered
     ? {
-        x: Math.min(Math.max((CENTROIDS[hovered][0] / 1000) * 100, 12), 82),
+        x: Math.min(Math.max((CENTROIDS[hovered][0] / 1000) * 100, 20), 80),
         y: (CENTROIDS[hovered][1] / 500) * 100,
       }
     : null;
 
   return (
-    <div className={cn("relative", className)}>
+    <div
+      className={cn("relative", className)}
+      onClick={() => setHovered(null)}
+    >
       {/* ── SVG Map ── */}
       <svg
         viewBox="0 0 1000 500"
         className="w-full"
         role="img"
-        aria-label="Mapa de regiones de exportación de Business Beans"
+        aria-label={ariaLabel}
       >
         {/* Ocean */}
         <defs>
@@ -148,14 +157,14 @@ export function WorldMap({ regions, className }: WorldMapProps) {
           />
         ))}
 
-        {/* ── Connection lines from Lima (skip latam – same continent) ── */}
+        {/* ── Connection lines from origin (skip latam – same continent) ── */}
         {RENDER_ORDER.filter((r) => r !== "latam").map((regionId) => {
           const [x2, y2] = CENTROIDS[regionId];
           const active = hovered === regionId;
           return (
             <line
               key={`ln-${regionId}`}
-              x1={LIMA[0]} y1={LIMA[1]}
+              x1={ORIGIN[0]} y1={ORIGIN[1]}
               x2={x2} y2={y2}
               stroke="#64b548"
               strokeWidth={active ? 1.6 : 0.8}
@@ -183,40 +192,44 @@ export function WorldMap({ regions, className }: WorldMapProps) {
               style={{ transition: "fill-opacity 0.2s ease" }}
               onMouseEnter={() => setHovered(regionId)}
               onMouseLeave={() => setHovered(null)}
+              onClick={(e) => {
+                e.stopPropagation();
+                toggle(regionId);
+              }}
             />
           );
         })}
 
-        {/* ── Lima, Perú origin dot ── */}
+        {/* ── Lambayeque, Perú origin dot ── */}
         {/* Pulse ring */}
         <circle
-          cx={LIMA[0]} cy={LIMA[1]} r="10"
+          cx={ORIGIN[0]} cy={ORIGIN[1]} r="10"
           fill="#64b548" fillOpacity="0.18"
           style={{
-            transformOrigin: `${LIMA[0]}px ${LIMA[1]}px`,
-            animation: "limaRing 2.4s ease-in-out infinite",
+            transformOrigin: `${ORIGIN[0]}px ${ORIGIN[1]}px`,
+            animation: "originRing 2.4s ease-in-out infinite",
           }}
         />
         {/* Solid dot */}
         <circle
-          cx={LIMA[0]} cy={LIMA[1]} r="4.5"
+          cx={ORIGIN[0]} cy={ORIGIN[1]} r="4.5"
           fill="#64b548" stroke="white" strokeWidth="2"
         />
         {/* Label */}
         <text
-          x={LIMA[0] + 10} y={LIMA[1] - 8}
+          x={ORIGIN[0] + 10} y={ORIGIN[1] - 8}
           fontSize="10" fontWeight="700"
           fontFamily="system-ui, -apple-system, sans-serif"
           fill="#1a2e0f" letterSpacing="0.04em"
         >
-          Lima, Perú
+          {originLabel}
         </text>
       </svg>
 
       {/* ── Tooltip ── */}
       {hovered && tipPct && regions[hovered] && (
         <div
-          className="pointer-events-none absolute z-20 w-52 rounded-xl bg-dark px-4 py-3 shadow-2xl"
+          className="pointer-events-none absolute z-20 w-44 rounded-xl bg-dark px-4 py-3 shadow-2xl sm:w-52"
           style={{
             left: `${tipPct.x}%`,
             top: `${tipPct.y}%`,
@@ -236,7 +249,7 @@ export function WorldMap({ regions, className }: WorldMapProps) {
       )}
 
       <style>{`
-        @keyframes limaRing {
+        @keyframes originRing {
           0%, 100% { transform: scale(1); opacity: 0.18; }
           60%       { transform: scale(2.2); opacity: 0; }
         }

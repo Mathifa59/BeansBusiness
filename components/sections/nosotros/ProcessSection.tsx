@@ -39,6 +39,7 @@ export function ProcessSection() {
       </AnimatedSection>
 
       <div className="relative mt-20">
+        {/* Horizontal timeline — single row, desktop only (xl+) */}
         <div className="absolute left-6 top-6 hidden h-0.5 w-full bg-primary/20 xl:block">
           <motion.div
             className="absolute bottom-full text-primary"
@@ -51,7 +52,20 @@ export function ProcessSection() {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 xl:grid-cols-6 xl:gap-6">
+        {/* Vertical timeline — stacked column, mobile & tablet (below xl) */}
+        <div className="absolute left-6 top-6 bottom-6 w-0.5 bg-primary/20 xl:hidden">
+          <motion.div
+            className="absolute left-1/2 -translate-x-1/2 text-primary"
+            style={{ marginTop: "-12px" }}
+            initial={{ top: "0%" }}
+            animate={{ top: "100%" }}
+            transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+          >
+            <Tractor className="h-6 w-6 rotate-90" />
+          </motion.div>
+        </div>
+
+        <div className="grid grid-cols-1 gap-12 xl:grid-cols-6 xl:gap-6">
           {STEPS.map(({ id, icon: Icon }, i) => (
             <AnimatedSection
               key={id}

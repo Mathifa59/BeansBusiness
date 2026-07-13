@@ -457,7 +457,10 @@
     },
     "regions": {
       "eyebrow": "EXPORT REGIONS",
-      "title": "A trade network present across four continents",
+      "title": "From Peru to the world's most demanding markets",
+      "mapAriaLabel": "Business Beans export regions map, with Lambayeque as the point of origin",
+      "mapHint": "Tap or hover over a region to see countries and shipments",
+      "origin": "Lambayeque, Peru",
       "items": {
         "northAmerica": {
           "name": "North America",

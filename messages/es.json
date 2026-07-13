@@ -457,7 +457,10 @@
     },
     "regions": {
       "eyebrow": "REGIONES DE EXPORTACIÓN",
-      "title": "Una red comercial presente en cuatro continentes",
+      "title": "Desde Perú hacia los mercados más exigentes del mundo",
+      "mapAriaLabel": "Mapa de regiones de exportación de Business Beans, con Lambayeque como punto de origen",
+      "mapHint": "Toca o pasa el cursor sobre una región para ver los países y envíos",
+      "origin": "Lambayeque, Perú",
       "items": {
         "northAmerica": {
           "name": "Norteamérica",

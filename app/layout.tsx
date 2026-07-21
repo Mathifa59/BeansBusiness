@@ -27,11 +27,6 @@ export const metadata: Metadata = {
     "frijol canario exportación",
     "pallar baby perú",
   ],
-  icons: {
-    icon: "/logos/sinfondO.png",
-    shortcut: "/logos/sinfondO.png",
-    apple: "/logos/sinfondO.png",
-  },
   openGraph: {
     siteName: "Business Beans Perú",
     locale: "es_PE",

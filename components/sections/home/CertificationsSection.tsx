@@ -44,7 +44,9 @@ export function CertificationsSection() {
 
   const perPage = usePerPage();
   const count = CERTIFICATIONS.length;
-  const canLoop = count > perPage;
+  // permite navegar/loop siempre que haya más de una tarjeta, de modo que
+  // en desktop aparezcan las flechas aunque las 3 quepan a la vez
+  const canLoop = count > 1;
 
   // clones a ambos lados para el desplazamiento infinito
   const clonesBefore = canLoop ? CERTIFICATIONS.slice(-perPage) : [];

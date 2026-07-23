@@ -117,14 +117,26 @@ export function WorldMapSection() {
                     animate={{ pathLength: 1, opacity: 1 }}
                     transition={{ duration: 0.7, ease: "easeInOut" }}
                   />
-                  <motion.circle
-                    r={3}
-                    fill="#f8b10a"
+                  {/* Barco que recorre la ruta (se mantiene derecho) */}
+                  <motion.g
+                    key={`ship-${active}`}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
+                    transition={{ delay: 0.6, duration: 0.4 }}
                   >
-                    <animateMotion dur="1.6s" repeatCount="indefinite" path={arc.d} />
-                  </motion.circle>
+                    <g>
+                      <animateMotion
+                        dur="3.2s"
+                        repeatCount="indefinite"
+                        path={arc.d}
+                      />
+                      <circle r={6} fill="#fff" opacity={0.95} />
+                      {/* casco */}
+                      <path d="M -5 0.5 L 5 0.5 L 3.4 3.6 L -3.4 3.6 Z" fill="#1a2e0f" />
+                      {/* vela */}
+                      <path d="M -0.6 0 L -0.6 -4.2 L 3.2 0 Z" fill="#f8b10a" />
+                    </g>
+                  </motion.g>
                 </g>
               )}
 

@@ -22,10 +22,14 @@ export function TestimonialsSection() {
   const [index, setIndex] = useState(0);
 
   return (
-    <SectionWrapper bg="white">
+    <SectionWrapper
+      bg="green"
+      bgImage="/cosecha-frejol.jpg"
+      bgOverlayClassName="bg-gradient-to-br from-dark/90 via-primary-dark/85 to-primary/80"
+    >
       <AnimatedSection className="text-center">
-        <SectionTag className="justify-center">{t("eyebrow")}</SectionTag>
-        <h2 className="mt-3 text-4xl font-bold tracking-tight text-dark lg:text-5xl">
+        <SectionTag variant="light" className="justify-center">{t("eyebrow")}</SectionTag>
+        <h2 className="mt-3 text-4xl font-bold tracking-tight text-white lg:text-5xl">
           {t("title")}
         </h2>
       </AnimatedSection>
@@ -37,16 +41,16 @@ export function TestimonialsSection() {
             key={item.name}
             variants={scaleIn}
             transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="flex flex-col rounded-2xl bg-off-white p-8 ring-1 ring-gray-100"
+            className="flex flex-col rounded-2xl bg-white/10 p-8 ring-1 ring-white/20 backdrop-blur-sm"
           >
-            <p className="flex-1 text-sm leading-relaxed text-gray-700">
+            <p className="flex-1 text-sm leading-relaxed text-white/80">
               &ldquo;{item.text}&rdquo;
             </p>
             <div className="mt-6 flex items-center gap-3">
               <span className="text-2xl">{item.flag}</span>
               <div>
-                <p className="font-semibold text-dark">{item.name}</p>
-                <p className="text-xs text-gray-400">{item.country}</p>
+                <p className="font-semibold text-white">{item.name}</p>
+                <p className="text-xs text-white/50">{item.country}</p>
               </div>
             </div>
           </AnimatedSection>
@@ -72,15 +76,15 @@ export function TestimonialsSection() {
         >
           {items.map((item) => (
             <div key={item.name} className="w-full shrink-0 px-1">
-              <div className="rounded-2xl bg-off-white p-8 ring-1 ring-gray-100">
-                <p className="text-sm leading-relaxed text-gray-700">
+              <div className="rounded-2xl bg-white/10 p-8 ring-1 ring-white/20 backdrop-blur-sm">
+                <p className="text-sm leading-relaxed text-white/80">
                   &ldquo;{item.text}&rdquo;
                 </p>
                 <div className="mt-6 flex items-center gap-3">
                   <span className="text-2xl">{item.flag}</span>
                   <div>
-                    <p className="font-semibold text-dark">{item.name}</p>
-                    <p className="text-xs text-gray-400">{item.country}</p>
+                    <p className="font-semibold text-white">{item.name}</p>
+                    <p className="text-xs text-white/50">{item.country}</p>
                   </div>
                 </div>
               </div>

@@ -17,9 +17,9 @@ export function Footer() {
   return (
     <footer className="bg-dark text-white">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-[1fr_auto_2fr_auto]">
           {/* Brand */}
-          <div className="lg:col-span-1">
+          <div>
             <Logo variant="white" href={`/${locale}`} />
             <p className="mt-4 text-sm leading-relaxed text-white/60">
               {t("description")}
@@ -50,12 +50,12 @@ export function Footer() {
             <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white/40">
               {t("productsTitle")}
             </h3>
-            <ul className="space-y-3">
+            <ul className="grid grid-cols-2 gap-x-8 gap-y-2 sm:grid-cols-3">
               {PRODUCTS.map((product) => (
                 <li key={product.id}>
                   <Link
                     href={localizedHref("/productos")}
-                    className="text-sm text-white/70 transition-colors hover:text-white"
+                    className="text-xs text-white/60 transition-colors hover:text-white"
                   >
                     {tProducts(`${product.id}.name` as Parameters<typeof tProducts>[0])}
                   </Link>
@@ -114,12 +114,14 @@ export function Footer() {
             >
               {t("terms")}
             </Link>
-            <Link
-              href={localizedHref("/libro-de-reclamaciones")}
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSe4WPXnSJcxVehgIS9fgcGe8zawMcvjW862Tnv6tmAPLmhwkw/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
               className="transition-colors hover:text-white"
             >
-              {t("complaints")}
-            </Link>
+              {t("suggestions")}
+            </a>
           </div>
         </div>
       </div>

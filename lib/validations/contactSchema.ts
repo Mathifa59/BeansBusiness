@@ -8,12 +8,32 @@ export const PARTICIPANT_OPTIONS = [
 ] as const;
 
 export const PRODUCT_OPTIONS = [
+  "frejol-adzuki",
+  "frejol-bayo",
+  "frejol-caballero",
+  "frejol-calima",
   "frijol-canario",
-  "pallar-baby",
-  "lenteja-verde",
   "frijol-castilla",
+  "frejol-palo-seco",
+  "habas-secas",
+  "frejol-loctao",
+  "frejol-negro",
+  "frejol-panamito",
+  "pallar-baby",
+  "pallar-grande",
+  "frejol-rojo-claro",
+  "frejol-rojo-oscuro",
   "garbanzo",
+  "frejol-zarandaja",
+  "canihua",
+  "chocho-tarwi",
+  "kiwicha",
+  "maca-harina",
   "maiz-gigante-cusco",
+  "quinua-blanca",
+  "quinua-roja",
+  "quinua-negra",
+  "ajonjoli",
   "other",
 ] as const;
 
@@ -24,7 +44,7 @@ export const contactSchema = z.object({
   pais: z.string().min(2, "Mínimo 2 caracteres").max(100),
   email: z.string().email("Email inválido"),
   telefono: z.string().optional(),
-  producto: z.enum(PRODUCT_OPTIONS).optional(),
+  productos: z.array(z.enum(PRODUCT_OPTIONS)).optional(),
   mensaje: z.string().min(20, "Mínimo 20 caracteres").max(2000),
 });
 

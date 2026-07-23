@@ -3,8 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { PageHero } from "@/components/sections/presencia/PageHero";
 import { WorldMapSection } from "@/components/sections/presencia/WorldMapSection";
 import { RegionsSection } from "@/components/sections/presencia/RegionsSection";
-import { InstitutionalSection } from "@/components/sections/presencia/InstitutionalSection";
-import { TestimonialsSection } from "@/components/sections/presencia/TestimonialsSection";
+import { ContactCta } from "@/components/sections/home/ContactCta";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("nav");
@@ -17,8 +16,7 @@ export default function PresenciaPage() {
       <PageHero />
       <WorldMapSection />
       <RegionsSection />
-      <InstitutionalSection />
-      <TestimonialsSection />
+      <ContactCta />
     </>
   );
 }

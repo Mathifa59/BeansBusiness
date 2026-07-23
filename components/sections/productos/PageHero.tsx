@@ -10,7 +10,7 @@ export function PageHero() {
   const t = useTranslations("products.hero");
 
   return (
-    <section className="gradient-hero relative overflow-hidden pb-20 pt-40">
+    <section className="gradient-hero relative overflow-hidden pb-12 pt-28">
       <Image src="/cosecha-garbanzo.jpg" alt="" fill priority className="object-cover" />
       <div className="absolute inset-0 bg-gradient-to-br from-dark/80 via-primary-dark/70 to-primary/60" />
 

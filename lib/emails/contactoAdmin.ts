@@ -8,12 +8,32 @@ const PARTICIPANT_LABELS: Record<string, string> = {
 };
 
 const PRODUCT_LABELS: Record<string, string> = {
-  "frijol-canario": "Frijol Canario",
-  "pallar-baby": "Pallar Baby",
-  "lenteja-verde": "Lenteja Verde",
-  "frijol-castilla": "Frijol Castilla",
+  "frejol-adzuki": "Frejol Adzuki",
+  "frejol-bayo": "Frejol Bayo",
+  "frejol-caballero": "Frejol Caballero",
+  "frejol-calima": "Frejol Calima",
+  "frijol-canario": "Frejol Canario",
+  "frijol-castilla": "Frejol Castilla",
+  "frejol-palo-seco": "Frejol de Palo Seco",
+  "habas-secas": "Habas Secas",
+  "frejol-loctao": "Frejol Loctao",
+  "frejol-negro": "Frejol Negro",
+  "frejol-panamito": "Frejol Panamito",
+  "pallar-baby": "Pallar Bebé",
+  "pallar-grande": "Pallar Grande",
+  "frejol-rojo-claro": "Frejol Rojo Claro",
+  "frejol-rojo-oscuro": "Frejol Rojo Oscuro",
   garbanzo: "Garbanzo",
+  "frejol-zarandaja": "Frejol Zarandaja",
+  canihua: "Cañihua",
+  "chocho-tarwi": "Chocho / Tarwi",
+  kiwicha: "Kiwicha",
+  "maca-harina": "Maca en Harina",
   "maiz-gigante-cusco": "Maíz Gigante del Cusco",
+  "quinua-blanca": "Quinua Blanca",
+  "quinua-roja": "Quinua Roja",
+  "quinua-negra": "Quinua Negra",
+  ajonjoli: "Ajonjolí",
   other: "Otro",
 };
 
@@ -81,10 +101,10 @@ export function contactoAdminHtml(data: ContactSchema): string {
                     : ""
                 }
                 ${
-                  data.producto
+                  data.productos && data.productos.length > 0
                     ? `<tr style="background:#f9fafb;">
-                  <td style="padding:14px 20px;font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;border-top:1px solid #e5e7eb;">Producto de interés</td>
-                  <td style="padding:14px 20px;font-size:14px;color:#111827;border-top:1px solid #e5e7eb;">${PRODUCT_LABELS[data.producto] ?? data.producto}</td>
+                  <td style="padding:14px 20px;font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;border-top:1px solid #e5e7eb;">Productos de interés</td>
+                  <td style="padding:14px 20px;font-size:14px;color:#111827;border-top:1px solid #e5e7eb;">${data.productos.map((p) => PRODUCT_LABELS[p] ?? p).join(", ")}</td>
                 </tr>`
                     : ""
                 }

@@ -16,6 +16,7 @@ const LINKS = [
   { key: "nosotros", href: "/nosotros" },
   { key: "productos", href: "/productos" },
   { key: "presencia", href: "/presencia" },
+  { key: "contacto", href: "/contacto" },
 ];
 
 export function Navbar() {
@@ -46,6 +47,7 @@ export function Navbar() {
   const lightText = !scrolled;
 
   return (
+    <>
     <header
       className={cn(
         "fixed top-0 z-50 w-full transition-all duration-200",
@@ -111,9 +113,10 @@ export function Navbar() {
           <Menu size={24} />
         </button>
       </nav>
+    </header>
 
-      {/* Mobile drawer */}
-      <AnimatePresence>
+    {/* Mobile drawer */}
+    <AnimatePresence>
         {isOpen && (
           <>
             <motion.div
@@ -173,7 +176,7 @@ export function Navbar() {
             </motion.div>
           </>
         )}
-      </AnimatePresence>
-    </header>
+    </AnimatePresence>
+    </>
   );
 }

@@ -5,10 +5,12 @@ import { useTranslations } from "next-intl";
 import { Controller } from "react-hook-form";
 import { CheckCircle2, AlertCircle, ArrowRight } from "lucide-react";
 import { useContactForm } from "@/hooks/useContactForm";
+import { cn } from "@/lib/utils";
 import {
   PARTICIPANT_OPTIONS,
   PRODUCT_OPTIONS,
 } from "@/lib/validations/contactSchema";
+import { PRODUCTS } from "@/lib/constants/company";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -21,8 +23,27 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+const PRODUCT_GROUPS = [
+  {
+    key: "categoryLegumbres",
+    ids: PRODUCTS.filter((p) => p.category === "legumbres").map((p) => p.id),
+  },
+  {
+    key: "categoryGranosAndinos",
+    ids: PRODUCTS.filter((p) => p.category === "granos-andinos").map((p) => p.id),
+  },
+  {
+    key: "categoryOtros",
+    ids: [
+      ...PRODUCTS.filter((p) => p.category === "otros").map((p) => p.id),
+      "other" as const,
+    ],
+  },
+] as const;
+
 export function ContactForm() {
   const t = useTranslations("contact.form");
+  const tFilters = useTranslations("products.filters");
   const searchParams = useSearchParams();
   const initialProduct = searchParams.get("producto") ?? undefined;
   const { form, status, onSubmit } = useContactForm(initialProduct);
@@ -133,49 +154,66 @@ export function ContactForm() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-        <div className="space-y-2">
-          <Label htmlFor="telefono">{t("phoneLabel")}</Label>
-          <Input
-            id="telefono"
-            type="tel"
-            placeholder={t("phonePlaceholder")}
-            {...register("telefono")}
-          />
-        </div>
+      <div className="space-y-2">
+        <Label htmlFor="telefono">{t("phoneLabel")}</Label>
+        <Input
+          id="telefono"
+          type="tel"
+          placeholder={t("phonePlaceholder")}
+          {...register("telefono")}
+          className="sm:max-w-xs"
+        />
+      </div>
 
-        <div className="space-y-2">
-          <Label>{t("productLabel")}</Label>
-          <Controller
-            name="producto"
-            control={control}
-            render={({ field }) => (
-              <Select
-                value={field.value ?? null}
-                onValueChange={(value) => field.onChange(value ?? undefined)}
-              >
-                <SelectTrigger className="h-11 w-full rounded-lg">
-                  <SelectValue>
-                    {(value: string | null) =>
-                      value
-                        ? t(
-                            `productOptions.${value}` as Parameters<typeof t>[0]
-                          )
-                        : "—"
-                    }
-                  </SelectValue>
-                </SelectTrigger>
-                <SelectContent>
-                  {PRODUCT_OPTIONS.map((opt) => (
-                    <SelectItem key={opt} value={opt}>
-                      {t(`productOptions.${opt}` as Parameters<typeof t>[0])}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            )}
-          />
-        </div>
+      <div className="space-y-3">
+        <Label>{t("productLabel")}</Label>
+        <Controller
+          name="productos"
+          control={control}
+          render={({ field }) => {
+            const selected = field.value ?? [];
+            const toggle = (opt: (typeof PRODUCT_OPTIONS)[number]) => {
+              field.onChange(
+                selected.includes(opt)
+                  ? selected.filter((v) => v !== opt)
+                  : [...selected, opt]
+              );
+            };
+            return (
+              <div className="space-y-4 rounded-xl border border-input bg-off-white/50 p-4">
+                {PRODUCT_GROUPS.map((group) => (
+                  <div key={group.key}>
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-gray-400">
+                      {tFilters(group.key as Parameters<typeof tFilters>[0])}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {group.ids.map((opt) => {
+                        const id = opt as (typeof PRODUCT_OPTIONS)[number];
+                        const active = selected.includes(id);
+                        return (
+                          <button
+                            key={id}
+                            type="button"
+                            onClick={() => toggle(id)}
+                            aria-pressed={active}
+                            className={cn(
+                              "rounded-full border px-3 py-1 text-xs font-medium transition-colors",
+                              active
+                                ? "border-primary bg-primary text-white"
+                                : "border-input bg-white text-dark/70 hover:border-primary hover:text-primary"
+                            )}
+                          >
+                            {t(`productOptions.${id}` as Parameters<typeof t>[0])}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            );
+          }}
+        />
       </div>
 
       <div className="space-y-2">

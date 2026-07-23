@@ -122,21 +122,29 @@
       "eyebrow": "CÓMO TRABAJAMOS",
       "title": "Del campo al contenedor",
       "steps": {
-        "selection": {
-          "name": "Selección",
-          "description": "Identificamos y evaluamos los mejores lotes agrícolas del país, trabajando directamente con productores certificados."
+        "reception": {
+          "name": "Recepción",
+          "description": "Vendemos producto que nosotros mismos procesamos: cada lote se registra e identifica desde su recepción en planta, con historial completo en todo el proceso."
         },
-        "processing": {
-          "name": "Procesamiento",
-          "description": "Procesamos el grano con maquinaria selectora de última generación, eliminando imperfecciones y garantizando calibres uniformes."
+        "process": {
+          "name": "Proceso",
+          "description": "Selección, calibrado y limpieza con estándares uniformes y registros en cada etapa, temporada tras temporada."
         },
-        "certification": {
-          "name": "Certificación",
-          "description": "Verificamos el cumplimiento de todos los estándares fitosanitarios y de inocuidad: FDA, SENASA, HACCP."
+        "quality": {
+          "name": "Control de calidad",
+          "description": "Antes del despacho, cada lote es verificado mediante controles físicos y documentales para asegurar el cumplimiento de las especificaciones técnicas y los requisitos del cliente."
+        },
+        "inspection": {
+          "name": "Inspección y carga",
+          "description": "Coordinamos inspecciones fitosanitarias y supervisamos cada operación hasta el llenado y sellado del contenedor."
+        },
+        "documentation": {
+          "name": "Documentación",
+          "description": "Emitimos la documentación de exportación y mantenemos el seguimiento logístico de cada embarque, garantizando la identificación y trazabilidad del lote hasta su destino."
         },
         "export": {
           "name": "Exportación",
-          "description": "Gestionamos la logística internacional completa: documentación, trazabilidad y embarque a los mercados de destino."
+          "description": "La trazabilidad de nuestros lotes respalda el ingreso recurrente de nuestros productos a los mercados más exigentes, incluyendo Corea del Sur, Japón y la Unión Europea."
         }
       }
     },
@@ -233,6 +241,22 @@
       "eyebrow": "PRESENCIA INTERNACIONAL",
       "title": "Nuestros productos\nllegan a 15+ países",
       "subtitle": "Desde Lima, conectamos la producción peruana con importadores y distribuidores en todo el mundo."
+    },
+    "map": {
+      "eyebrow": "ALCANCE GLOBAL",
+      "title": "Desde Perú hacia los mercados\nmás exigentes del mundo",
+      "origin": "Lambayeque, Perú",
+      "hint": "Toca un país para ver la ruta de exportación desde Lambayeque.",
+      "legendLabel": "Países de destino",
+      "countries": {
+        "us": "Estados Unidos",
+        "co": "Colombia",
+        "es": "España",
+        "it": "Italia",
+        "nl": "Países Bajos",
+        "kr": "Corea del Sur",
+        "jp": "Japón"
+      }
     },
     "regions": {
       "eyebrow": "REGIONES DE EXPORTACIÓN",

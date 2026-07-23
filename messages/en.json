@@ -122,21 +122,29 @@
       "eyebrow": "HOW WE WORK",
       "title": "From field to container",
       "steps": {
-        "selection": {
-          "name": "Selection",
-          "description": "We identify and evaluate the best agricultural lots in the country, working directly with certified producers."
+        "reception": {
+          "name": "Reception",
+          "description": "We sell what we ourselves process: every lot is registered and identified from its arrival at the plant, with a complete history throughout the process."
         },
-        "processing": {
+        "process": {
           "name": "Processing",
-          "description": "We process the grain with state-of-the-art sorting machinery, removing imperfections and ensuring uniform calibers."
+          "description": "Selection, grading and cleaning under uniform standards, with records at every stage, season after season."
         },
-        "certification": {
-          "name": "Certification",
-          "description": "We verify compliance with all phytosanitary and food safety standards: FDA, SENASA, HACCP."
+        "quality": {
+          "name": "Quality control",
+          "description": "Before dispatch, every lot is verified through physical and documentary controls to ensure compliance with technical specifications and client requirements."
+        },
+        "inspection": {
+          "name": "Inspection & loading",
+          "description": "We coordinate phytosanitary inspections and supervise every operation until the container is filled and sealed."
+        },
+        "documentation": {
+          "name": "Documentation",
+          "description": "We issue export documentation and track the logistics of every shipment, ensuring lot identification and traceability all the way to destination."
         },
         "export": {
           "name": "Export",
-          "description": "We manage complete international logistics: documentation, traceability, and shipment to destination markets."
+          "description": "The traceability of our lots supports the recurring entry of our products into the most demanding markets, including South Korea, Japan and the European Union."
         }
       }
     },
@@ -233,6 +241,22 @@
       "eyebrow": "INTERNATIONAL PRESENCE",
       "title": "Our products reach\n15+ countries",
       "subtitle": "From Lima, we connect Peruvian production with importers and distributors worldwide."
+    },
+    "map": {
+      "eyebrow": "GLOBAL REACH",
+      "title": "From Peru to the world's\nmost demanding markets",
+      "origin": "Lambayeque, Peru",
+      "hint": "Tap a country to see its export route from Lambayeque.",
+      "legendLabel": "Destination countries",
+      "countries": {
+        "us": "United States",
+        "co": "Colombia",
+        "es": "Spain",
+        "it": "Italy",
+        "nl": "Netherlands",
+        "kr": "South Korea",
+        "jp": "Japan"
+      }
     },
     "regions": {
       "eyebrow": "EXPORT REGIONS",

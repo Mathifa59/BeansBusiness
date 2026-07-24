@@ -78,7 +78,7 @@ function ContainerTruckMovingIcon(props: IconProps) {
       <path d="M16 14V9h3l2 3v2" />
       <circle cx="7" cy="16.5" r="1.6" />
       <circle cx="18" cy="16.5" r="1.6" />
-      <path d="M1.6 8h1.4M1.3 10.5h1.7M1.9 13h1.1" />
+      <path d="M0.8 8.8h2.4M0.8 12.5h2.4" strokeWidth={3.2} />
     </Glyph>
   );
 }

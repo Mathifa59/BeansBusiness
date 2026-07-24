@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { MapPin } from "lucide-react";
@@ -70,6 +70,43 @@ export function WorldMapSection() {
   const toggle = (id: MapCountryId) =>
     setSelected((current) => (current === id ? null : id));
 
+  // Posiciona el barco a mano, cuadro a cuadro, en vez de usar <animateMotion>
+  // nativo: ese elemento a veces pinta un primer frame en un punto intermedio
+  // de la ruta antes de "saltar" al inicio real, lo que se ve como un
+  // parpadeo. Controlando el transform desde el primer frame se evita eso.
+  const pathRef = useRef<SVGPathElement>(null);
+  const shipRef = useRef<SVGGElement>(null);
+
+  useLayoutEffect(() => {
+    if (!arc) return;
+    const path = pathRef.current;
+    const ship = shipRef.current;
+    if (!path || !ship) return;
+
+    const totalLength = path.getTotalLength();
+    const duration = 3400; // ms — misma duración que antes (3.4s)
+
+    // Fija la posición inicial (t=0, o sea el origen) de forma síncrona,
+    // ANTES del primer pintado, para que el barco nunca aparezca un frame
+    // en (0,0) mientras espera el primer requestAnimationFrame.
+    const origin = path.getPointAtLength(0);
+    ship.setAttribute("transform", `translate(${origin.x} ${origin.y})`);
+
+    let rafId: number;
+    let start: number | null = null;
+
+    const tick = (timestamp: number) => {
+      if (start === null) start = timestamp;
+      const t = ((timestamp - start) % duration) / duration;
+      const { x, y } = path.getPointAtLength(t * totalLength);
+      ship.setAttribute("transform", `translate(${x} ${y})`);
+      rafId = requestAnimationFrame(tick);
+    };
+    rafId = requestAnimationFrame(tick);
+
+    return () => cancelAnimationFrame(rafId);
+  }, [arc]);
+
   return (
     <SectionWrapper bg="white">
       <AnimatedSection className="text-center">
@@ -107,6 +144,7 @@ export function WorldMapSection() {
                 <g>
                   <motion.path
                     key={active}
+                    ref={pathRef}
                     d={arc.d}
                     fill="none"
                     stroke="#f8b10a"
@@ -117,27 +155,23 @@ export function WorldMapSection() {
                     animate={{ pathLength: 1, opacity: 1 }}
                     transition={{ duration: 0.7, ease: "easeInOut" }}
                   />
-                  {/* Barco portacontenedores que recorre la ruta desde Lambayeque */}
+                  {/* Barco portacontenedores que recorre la ruta desde Lambayeque.
+                      La posición se controla a mano en el useEffect de arriba
+                      (ver pathRef/shipRef) en vez de <animateMotion>. */}
                   <motion.g
                     key={`ship-${active}`}
+                    ref={shipRef}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.4 }}
                   >
-                    <g>
-                      <animateMotion
-                        dur="3.4s"
-                        repeatCount="indefinite"
-                        path={arc.d}
-                      />
-                      <circle r={8} fill="#fff" opacity={0.95} />
-                      {/* casco */}
-                      <path d="M -6 1 H6 L4.4 4.2 H-4.4 Z" fill="#1a2e0f" />
-                      {/* contenedores apilados */}
-                      <rect x="-4" y="-1.6" width="2.4" height="2.6" fill="#489332" />
-                      <rect x="-1.3" y="-3" width="2.4" height="4" fill="#f8b10a" />
-                      <rect x="1.4" y="-1.6" width="2.4" height="2.6" fill="#1a2e0f" />
-                    </g>
+                    <circle r={8} fill="#fff" opacity={0.95} />
+                    {/* casco */}
+                    <path d="M -6 1 H6 L4.4 4.2 H-4.4 Z" fill="#1a2e0f" />
+                    {/* contenedores apilados */}
+                    <rect x="-4" y="-1.6" width="2.4" height="2.6" fill="#489332" />
+                    <rect x="-1.3" y="-3" width="2.4" height="4" fill="#f8b10a" />
+                    <rect x="1.4" y="-1.6" width="2.4" height="2.6" fill="#1a2e0f" />
                   </motion.g>
                 </g>
               )}

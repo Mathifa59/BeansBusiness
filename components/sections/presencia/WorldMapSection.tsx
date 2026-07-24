@@ -117,24 +117,26 @@ export function WorldMapSection() {
                     animate={{ pathLength: 1, opacity: 1 }}
                     transition={{ duration: 0.7, ease: "easeInOut" }}
                   />
-                  {/* Barco que recorre la ruta (se mantiene derecho) */}
+                  {/* Barco portacontenedores que recorre la ruta desde Lambayeque */}
                   <motion.g
                     key={`ship-${active}`}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 0.6, duration: 0.4 }}
+                    transition={{ duration: 0.4 }}
                   >
                     <g>
                       <animateMotion
-                        dur="3.2s"
+                        dur="3.4s"
                         repeatCount="indefinite"
                         path={arc.d}
                       />
-                      <circle r={6} fill="#fff" opacity={0.95} />
+                      <circle r={8} fill="#fff" opacity={0.95} />
                       {/* casco */}
-                      <path d="M -5 0.5 L 5 0.5 L 3.4 3.6 L -3.4 3.6 Z" fill="#1a2e0f" />
-                      {/* vela */}
-                      <path d="M -0.6 0 L -0.6 -4.2 L 3.2 0 Z" fill="#f8b10a" />
+                      <path d="M -6 1 H6 L4.4 4.2 H-4.4 Z" fill="#1a2e0f" />
+                      {/* contenedores apilados */}
+                      <rect x="-4" y="-1.6" width="2.4" height="2.6" fill="#489332" />
+                      <rect x="-1.3" y="-3" width="2.4" height="4" fill="#f8b10a" />
+                      <rect x="1.4" y="-1.6" width="2.4" height="2.6" fill="#1a2e0f" />
                     </g>
                   </motion.g>
                 </g>

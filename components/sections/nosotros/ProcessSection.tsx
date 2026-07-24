@@ -68,23 +68,24 @@ function ContainerTruckIcon(props: IconProps) {
   );
 }
 
-/* Camión con contenedor en tránsito (mismo camión + estela de puntos).
-   Mismo viewBox estándar que el resto (mismo tamaño para los 6 íconos).
-   Los puntos van a la altura de las ruedas, no de la carga: ahí no compiten
-   con las líneas internas del contenedor y se leen como una estela aparte
-   en vez de fundirse con el dibujo del camión. */
+/* Camión con contenedor en tránsito: el mismo camión con una "estela
+   fantasma" semitransparente detrás (efecto de motion blur), en vez de
+   líneas o puntos sueltos — a 28px esos elementos pequeños terminan siendo
+   sub-píxel y desaparecen; una silueta repetida y tenue se sigue viendo. */
 function ContainerTruckMovingIcon(props: IconProps) {
   return (
     <Glyph {...props}>
+      <g opacity={0.45} transform="translate(-1.8, 0)">
+        <path d="M3 14h13" />
+        <path d="M4 14V6h11v8" />
+        <path d="M16 14V9h3l2 3v2" />
+      </g>
       <path d="M3 14h13" />
       <path d="M4 14V6h11v8" />
       <path d="M7.5 6v8M11 6v8" />
       <path d="M16 14V9h3l2 3v2" />
       <circle cx="7" cy="16.5" r="1.6" />
       <circle cx="18" cy="16.5" r="1.6" />
-      <circle cx="2.4" cy="16.5" r="0.85" fill="currentColor" stroke="none" />
-      <circle cx="1.2" cy="16.5" r="0.65" fill="currentColor" stroke="none" />
-      <circle cx="0.2" cy="16.5" r="0.45" fill="currentColor" stroke="none" />
     </Glyph>
   );
 }
@@ -105,17 +106,26 @@ function ContainerShipIcon(props: IconProps) {
  * Ícono de transporte por tramo:
  * carretilla → montacargas → camión vacío → camión con contenedor →
  * camión con contenedor (continúa) → barco portacontenedores.
+ *
+ * Los 6 SVG miden lo mismo (28×28, mismo viewBox 0–24), pero el dibujo real
+ * dentro de cada uno ocupa una franja vertical distinta (medido con
+ * getBBox() en el navegador): la carretilla y el montacargas se extienden
+ * mucho más abajo que los camiones/barco, así que sus "bases" quedan a
+ * alturas distintas aunque las cajas coincidan. `alignPx` corrige eso
+ * empujando cada ícono hacia abajo lo necesario para que todas las bases
+ * queden a la misma altura sobre la línea.
  */
 const STEPS: ReadonlyArray<{
   id: string;
   transport: ComponentType<IconProps>;
+  alignPx: number;
 }> = [
-  { id: "reception", transport: HandTruckIcon },
-  { id: "process", transport: Forklift },
-  { id: "quality", transport: FlatbedTruckIcon },
-  { id: "inspection", transport: ContainerTruckIcon },
-  { id: "documentation", transport: ContainerTruckMovingIcon },
-  { id: "export", transport: ContainerShipIcon },
+  { id: "reception", transport: HandTruckIcon, alignPx: -4 },
+  { id: "process", transport: Forklift, alignPx: -3.5 },
+  { id: "quality", transport: FlatbedTruckIcon, alignPx: 0 },
+  { id: "inspection", transport: ContainerTruckIcon, alignPx: 0 },
+  { id: "documentation", transport: ContainerTruckMovingIcon, alignPx: 0 },
+  { id: "export", transport: ContainerShipIcon, alignPx: -1 },
 ];
 
 export function ProcessSection() {
@@ -135,7 +145,7 @@ export function ProcessSection() {
         <div className="absolute left-6 top-6 hidden h-0.5 w-full bg-primary/20 lg:block" />
 
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-6 lg:gap-6">
-          {STEPS.map(({ id, transport: Transport }, i) => (
+          {STEPS.map(({ id, transport: Transport, alignPx }, i) => (
             <AnimatedSection
               key={id}
               variants={fadeUp}
@@ -146,7 +156,10 @@ export function ProcessSection() {
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-white shadow-md shadow-primary/30">
                   {i + 1}
                 </div>
-                <Transport className="hidden h-7 w-7 shrink-0 text-primary lg:-mt-1.5 lg:block" />
+                <Transport
+                  className="hidden h-7 w-7 shrink-0 text-primary lg:block"
+                  style={{ marginTop: -6 + alignPx }}
+                />
               </div>
 
               <div className="lg:mt-6">

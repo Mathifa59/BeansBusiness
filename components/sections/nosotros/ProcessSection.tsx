@@ -68,22 +68,23 @@ function ContainerTruckIcon(props: IconProps) {
   );
 }
 
-/* Camión con contenedor en tránsito (mismo camión + líneas de movimiento).
-   Usa un viewBox más ancho ("-6 0 30 24" en vez de "0 0 24 24") solo para
-   este ícono: el espacio a la izquierda del camión (dentro del viewBox
-   estándar) es demasiado angosto para que quepan línea + separación visible
-   a 20px — con más aire a la izquierda el camión se ve levemente más chico
-   que sus vecinos, pero las líneas ya no quedan pegadas a él. */
+/* Camión con contenedor en tránsito (mismo camión + estela de puntos).
+   Mismo viewBox estándar que el resto (mismo tamaño para los 6 íconos).
+   Los puntos van a la altura de las ruedas, no de la carga: ahí no compiten
+   con las líneas internas del contenedor y se leen como una estela aparte
+   en vez de fundirse con el dibujo del camión. */
 function ContainerTruckMovingIcon(props: IconProps) {
   return (
-    <Glyph viewBox="-6 0 30 24" {...props}>
+    <Glyph {...props}>
       <path d="M3 14h13" />
       <path d="M4 14V6h11v8" />
       <path d="M7.5 6v8M11 6v8" />
       <path d="M16 14V9h3l2 3v2" />
       <circle cx="7" cy="16.5" r="1.6" />
       <circle cx="18" cy="16.5" r="1.6" />
-      <path d="M-1.5 8.8h2.5M-1.5 12.5h2.5" strokeWidth={2.6} />
+      <circle cx="2.4" cy="16.5" r="0.85" fill="currentColor" stroke="none" />
+      <circle cx="1.2" cy="16.5" r="0.65" fill="currentColor" stroke="none" />
+      <circle cx="0.2" cy="16.5" r="0.45" fill="currentColor" stroke="none" />
     </Glyph>
   );
 }
@@ -145,7 +146,7 @@ export function ProcessSection() {
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-white shadow-md shadow-primary/30">
                   {i + 1}
                 </div>
-                <Transport className="hidden h-5 w-5 shrink-0 text-primary lg:block" />
+                <Transport className="hidden h-7 w-7 shrink-0 text-primary lg:-mt-1.5 lg:block" />
               </div>
 
               <div className="lg:mt-6">
@@ -160,7 +161,7 @@ export function ProcessSection() {
 
                 <div className="mt-4 flex items-center gap-2 lg:hidden">
                   <span className="h-px w-8 bg-primary/30" />
-                  <Transport className="h-5 w-5 text-primary" />
+                  <Transport className="h-7 w-7 text-primary" />
                   <span className="h-px w-8 bg-primary/30" />
                 </div>
               </div>

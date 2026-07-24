@@ -1,8 +1,8 @@
 "use client";
 
-import type { ComponentType, SVGProps } from "react";
+import type { ComponentType, ReactNode, SVGProps } from "react";
 import { useTranslations } from "next-intl";
-import { Forklift, Ship, Truck } from "lucide-react";
+import { Forklift } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { SectionTag } from "@/components/ui/section-tag";
 import { SectionWrapper } from "@/components/ui/section-wrapper";
@@ -10,8 +10,8 @@ import { fadeUp } from "@/lib/animations";
 
 type IconProps = SVGProps<SVGSVGElement>;
 
-/* Carretilla de mano — lucide no incluye este ícono */
-function HandTruckIcon(props: IconProps) {
+/** Base común: mismo grosor y estilo que los íconos de lucide */
+function Glyph({ children, ...props }: IconProps & { children: ReactNode }) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -22,40 +22,67 @@ function HandTruckIcon(props: IconProps) {
       strokeLinejoin="round"
       {...props}
     >
-      <path d="M5 2v14a2 2 0 0 0 2 2h13" />
-      <circle cx="7" cy="21" r="1.5" />
-      <rect x="9" y="9" width="9" height="7" rx="1" />
+      {children}
     </svg>
   );
 }
 
-/* Camión con contenedor — variante del Truck de lucide con contenedor acanalado */
+/* Carretilla / carro de mano con caja */
+function HandTruckIcon(props: IconProps) {
+  return (
+    <Glyph {...props}>
+      <path d="M15 3v15" />
+      <path d="M12 3h3" />
+      <path d="M15 18H8" />
+      <circle cx="15" cy="20" r="1.5" />
+      <path d="M7 9h8v8H7z" />
+      <path d="M7 13h8" />
+    </Glyph>
+  );
+}
+
+/* Camión de plataforma vacío */
+function FlatbedTruckIcon(props: IconProps) {
+  return (
+    <Glyph {...props}>
+      <path d="M2 14h13" />
+      <path d="M2 14v-2" />
+      <path d="M15 14V9h3l3 3v2" />
+      <circle cx="6" cy="16.5" r="1.6" />
+      <circle cx="18" cy="16.5" r="1.6" />
+    </Glyph>
+  );
+}
+
+/* Camión con contenedor cargado */
 function ContainerTruckIcon(props: IconProps) {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
-      <path d="M6 7v7" />
-      <path d="M10 7v7" />
-      <path d="M15 18H9" />
-      <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14" />
-      <circle cx="17" cy="18" r="2" />
-      <circle cx="7" cy="18" r="2" />
-    </svg>
+    <Glyph {...props}>
+      <path d="M2 14V6h13v8" />
+      <path d="M6.5 6v8M11 6v8" />
+      <path d="M15 14V9h3l3 3v2" />
+      <circle cx="6" cy="16.5" r="1.6" />
+      <circle cx="18.5" cy="16.5" r="1.6" />
+    </Glyph>
+  );
+}
+
+/* Barco portacontenedores */
+function ContainerShipIcon(props: IconProps) {
+  return (
+    <Glyph {...props}>
+      <path d="M3 15h16l-2 4H5z" />
+      <path d="M6 15v-3h3v3" />
+      <path d="M9 15v-5h3v5" />
+      <path d="M13 15v-4h3v4" />
+    </Glyph>
   );
 }
 
 /*
- * Cada paso lleva el ícono del transporte de su tramo saliente:
+ * Ícono de transporte por tramo:
  * carretilla → montacargas → camión vacío → camión con contenedor →
- * camión con contenedor (continúa a puerto) → barco portacontenedores.
+ * camión con contenedor (continúa) → barco portacontenedores.
  */
 const STEPS: ReadonlyArray<{
   id: string;
@@ -63,10 +90,10 @@ const STEPS: ReadonlyArray<{
 }> = [
   { id: "reception", transport: HandTruckIcon },
   { id: "process", transport: Forklift },
-  { id: "quality", transport: Truck },
+  { id: "quality", transport: FlatbedTruckIcon },
   { id: "inspection", transport: ContainerTruckIcon },
   { id: "documentation", transport: ContainerTruckIcon },
-  { id: "export", transport: Ship },
+  { id: "export", transport: ContainerShipIcon },
 ];
 
 export function ProcessSection() {
@@ -77,7 +104,7 @@ export function ProcessSection() {
     <SectionWrapper bg="white">
       <AnimatedSection className="text-center">
         <SectionTag className="justify-center">{t("eyebrow")}</SectionTag>
-        <h2 className="mt-3 text-4xl font-bold tracking-tight text-dark lg:text-5xl">
+        <h2 className="mx-auto mt-3 max-w-3xl text-4xl font-bold tracking-tight text-dark lg:text-5xl">
           {t("title")}
         </h2>
       </AnimatedSection>
@@ -109,13 +136,13 @@ export function ProcessSection() {
 
                 <div className="mt-4 flex items-center gap-2 lg:hidden">
                   <span className="h-px w-8 bg-primary/30" />
-                  <Transport className="h-4 w-4 text-primary" />
+                  <Transport className="h-5 w-5 text-primary" />
                   <span className="h-px w-8 bg-primary/30" />
                 </div>
               </div>
 
-              <div className="absolute -top-1 left-1/2 z-10 hidden h-7 w-7 -translate-x-1/2 items-center justify-center rounded-full bg-off-white text-primary lg:flex">
-                <Transport className="h-4 w-4" />
+              <div className="absolute -top-2.5 left-1/2 z-10 hidden h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full bg-white text-primary ring-4 ring-off-white lg:flex">
+                <Transport className="h-5 w-5" />
               </div>
             </AnimatedSection>
           ))}

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { PageHero } from "@/components/sections/presencia/PageHero";
 import { WorldMapSection } from "@/components/sections/presencia/WorldMapSection";
-import { RegionsSection } from "@/components/sections/presencia/RegionsSection";
 import { ContactCta } from "@/components/sections/home/ContactCta";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -15,7 +14,6 @@ export default function PresenciaPage() {
     <>
       <PageHero />
       <WorldMapSection />
-      <RegionsSection />
       <ContactCta />
     </>
   );

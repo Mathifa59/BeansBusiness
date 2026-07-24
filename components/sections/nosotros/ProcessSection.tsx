@@ -78,7 +78,7 @@ function ContainerTruckMovingIcon(props: IconProps) {
       <path d="M16 14V9h3l2 3v2" />
       <circle cx="7" cy="16.5" r="1.6" />
       <circle cx="18" cy="16.5" r="1.6" />
-      <path d="M0.8 8.8h2.4M0.8 12.5h2.4" strokeWidth={3.2} />
+      <path d="M1.3 8.8h1.3M1.3 12.5h1.3" strokeWidth={2.6} />
     </Glyph>
   );
 }
@@ -136,8 +136,11 @@ export function ProcessSection() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="relative flex gap-5 lg:flex-col lg:gap-0"
             >
-              <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-white shadow-md shadow-primary/30">
-                {i + 1}
+              <div className="relative z-10 flex shrink-0 items-center gap-2">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-white shadow-md shadow-primary/30">
+                  {i + 1}
+                </div>
+                <Transport className="hidden h-5 w-5 shrink-0 text-primary lg:block" />
               </div>
 
               <div className="lg:mt-6">
@@ -155,10 +158,6 @@ export function ProcessSection() {
                   <Transport className="h-5 w-5 text-primary" />
                   <span className="h-px w-8 bg-primary/30" />
                 </div>
-              </div>
-
-              <div className="absolute -top-6 left-1/2 z-10 hidden h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full bg-white text-primary ring-4 ring-off-white lg:flex">
-                <Transport className="h-5 w-5" />
               </div>
             </AnimatedSection>
           ))}

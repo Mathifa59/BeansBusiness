@@ -45,24 +45,40 @@ function HandTruckIcon(props: IconProps) {
 function FlatbedTruckIcon(props: IconProps) {
   return (
     <Glyph {...props}>
-      <path d="M2 14h13" />
-      <path d="M2 14v-2" />
-      <path d="M15 14V9h3l3 3v2" />
-      <circle cx="6" cy="16.5" r="1.6" />
+      <path d="M3 14h13" />
+      <path d="M3 14v-3" />
+      <path d="M16 14V9h3l2 3v2" />
+      <circle cx="7" cy="16.5" r="1.6" />
       <circle cx="18" cy="16.5" r="1.6" />
     </Glyph>
   );
 }
 
-/* Camión con contenedor cargado */
+/* Camión con contenedor cargado (con chasis) */
 function ContainerTruckIcon(props: IconProps) {
   return (
     <Glyph {...props}>
-      <path d="M2 14V6h13v8" />
-      <path d="M6.5 6v8M11 6v8" />
-      <path d="M15 14V9h3l3 3v2" />
-      <circle cx="6" cy="16.5" r="1.6" />
-      <circle cx="18.5" cy="16.5" r="1.6" />
+      <path d="M3 14h13" />
+      <path d="M4 14V6h11v8" />
+      <path d="M7.5 6v8M11 6v8" />
+      <path d="M16 14V9h3l2 3v2" />
+      <circle cx="7" cy="16.5" r="1.6" />
+      <circle cx="18" cy="16.5" r="1.6" />
+    </Glyph>
+  );
+}
+
+/* Camión con contenedor en tránsito (mismo camión + líneas de movimiento) */
+function ContainerTruckMovingIcon(props: IconProps) {
+  return (
+    <Glyph {...props}>
+      <path d="M3 14h13" />
+      <path d="M4 14V6h11v8" />
+      <path d="M7.5 6v8M11 6v8" />
+      <path d="M16 14V9h3l2 3v2" />
+      <circle cx="7" cy="16.5" r="1.6" />
+      <circle cx="18" cy="16.5" r="1.6" />
+      <path d="M.5 7h2M.5 10.5h2.5M.5 14h1.5" />
     </Glyph>
   );
 }
@@ -92,7 +108,7 @@ const STEPS: ReadonlyArray<{
   { id: "process", transport: Forklift },
   { id: "quality", transport: FlatbedTruckIcon },
   { id: "inspection", transport: ContainerTruckIcon },
-  { id: "documentation", transport: ContainerTruckIcon },
+  { id: "documentation", transport: ContainerTruckMovingIcon },
   { id: "export", transport: ContainerShipIcon },
 ];
 

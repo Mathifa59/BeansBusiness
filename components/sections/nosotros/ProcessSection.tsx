@@ -157,7 +157,7 @@ export function ProcessSection() {
                 </div>
               </div>
 
-              <div className="absolute -top-2.5 left-1/2 z-10 hidden h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full bg-white text-primary ring-4 ring-off-white lg:flex">
+              <div className="absolute -top-6 left-1/2 z-10 hidden h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full bg-white text-primary ring-4 ring-off-white lg:flex">
                 <Transport className="h-5 w-5" />
               </div>
             </AnimatedSection>

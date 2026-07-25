@@ -117,6 +117,8 @@ const SEGMENT_MS = 2400; // recorrido de un número al siguiente
 const HANDOFF_MS = 450; // espera en el nodo antes de ceder el relevo
 const DEPART_MS = 2600; // el barco zarpa fuera del cuadro
 const RESTART_MS = 1200; // pausa antes de reiniciar el ciclo
+/** fracción del tramo que ocupa el desvanecido de entrada y de salida */
+const FADE = 0.15;
 
 /*
  * Ícono de transporte por tramo:
@@ -155,7 +157,9 @@ export function ProcessSection() {
   const reduce = useReducedMotion();
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const nodeRefs = useRef<(HTMLDivElement | null)[]>([]);
+  // Los íconos fijos son las "estaciones": el relevo va de uno a otro, no de
+  // círculo a círculo (si no, el vehículo termina encima del número).
+  const stationRefs = useRef<(SVGSVGElement | null)[]>([]);
   const travelerRef = useRef<HTMLDivElement>(null);
 
   // Segmento activo del relevo (-1 = inactivo). El viajero lleva el ícono
@@ -175,29 +179,37 @@ export function ProcessSection() {
     const easeInOut = (p: number) =>
       p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
 
-    // La Y es constante (la línea no se mueve). Medir la Y de los nodos daba
-    // valores erróneos mientras la animación de entrada (fadeUp) aún no
-    // asentaba, así que solo medimos la X.
-    const nodeX = (i: number) => {
-      const n = nodeRefs.current[i];
-      if (!n) return null;
+    // La Y es constante (la línea no se mueve). Medir la Y daba valores
+    // erróneos mientras la animación de entrada (fadeUp) aún no asentaba,
+    // así que solo medimos la X. `visibility:hidden` conserva el layout,
+    // por eso la estación se puede medir aunque su ícono esté oculto.
+    const stationX = (i: number) => {
+      const s = stationRefs.current[i];
+      if (!s) return null;
       const cr = c.getBoundingClientRect();
-      const nr = n.getBoundingClientRect();
-      return nr.left + nr.width / 2 - cr.left;
+      const sr = s.getBoundingClientRect();
+      return sr.left + sr.width / 2 - cr.left;
     };
     /** apoya el ícono del tramo `s` sobre la línea, centrado en x */
     const place = (x: number, s: number) => {
       const top = topForLine(STEPS[s].baseVB);
       trav.style.transform = `translate(${x - ICON_PX / 2}px, ${top}px)`;
     };
-    const tween = (dur: number, onP: (e: number) => void) =>
+    /** entra y sale con desvanecido, para que no aparezca ni corte de golpe */
+    const fadeAt = (p: number) => {
+      if (p < FADE) return p / FADE;
+      if (p > 1 - FADE) return (1 - p) / FADE;
+      return 1;
+    };
+    /** `onP` recibe el progreso lineal (0–1); la suavización se aplica dentro */
+    const tween = (dur: number, onP: (p: number) => void) =>
       new Promise<void>((resolve) => {
         let start: number | null = null;
         const step = (ts: number) => {
           if (cancelled) return resolve();
           if (start === null) start = ts;
           const p = Math.min((ts - start) / dur, 1);
-          onP(easeInOut(p));
+          onP(p);
           if (p < 1) raf = requestAnimationFrame(step);
           else resolve();
         };
@@ -207,35 +219,44 @@ export function ProcessSection() {
     async function run() {
       setAnimating(true);
       while (!cancelled) {
-        // relevo entre nodos consecutivos
+        // relevo de estación en estación
         for (let s = 0; s < STEPS.length - 1; s++) {
           if (cancelled) return;
-          const from = nodeX(s);
-          const to = nodeX(s + 1);
+          const from = stationX(s);
+          const to = stationX(s + 1);
           if (from === null || to === null) {
             await tween(300, () => {});
             continue;
           }
           setSegment(s);
-          trav.style.opacity = "1";
           place(from, s);
-          await tween(SEGMENT_MS, (e) => place(from + (to - from) * e, s));
-          // pausa breve en el nodo: se ve como "llega y entrega el relevo"
+          trav.style.opacity = "0";
+          await tween(SEGMENT_MS, (p) => {
+            place(from + (to - from) * easeInOut(p), s);
+            trav.style.opacity = String(fadeAt(p));
+          });
+          // el vehículo ya se disolvió al llegar; el de la siguiente estación
+          // toma la posta tras una pausa breve
+          trav.style.opacity = "0";
           await tween(HANDOFF_MS, () => {});
         }
         if (cancelled) return;
-        // el barco zarpa desde el último nodo y se desvanece en el borde
-        const last = nodeX(STEPS.length - 1);
+        // el barco zarpa desde la última estación y se pierde en el borde
+        const last = stationX(STEPS.length - 1);
         if (last !== null) {
           const width = c.getBoundingClientRect().width;
           const shipSeg = STEPS.length - 1;
           setSegment(shipSeg);
-          trav.style.opacity = "1";
           place(last, shipSeg);
-          await tween(DEPART_MS, (e) => {
-            place(last + (width - last) * e, shipSeg);
-            trav.style.opacity = String(1 - e);
+          trav.style.opacity = "0";
+          await tween(DEPART_MS, (p) => {
+            place(last + (width - last) * easeInOut(p), shipSeg);
+            // aparece igual que los demás, pero se desvanece al salir
+            trav.style.opacity = String(
+              p < FADE ? p / FADE : Math.min(1, (1 - p) / 0.35)
+            );
           });
+          trav.style.opacity = "0";
         }
         // pausa antes de reiniciar el ciclo
         await tween(RESTART_MS, () => {});
@@ -281,11 +302,12 @@ export function ProcessSection() {
       <div ref={containerRef} className="relative mt-20">
         <div className="absolute left-6 top-6 hidden h-0.5 w-full bg-primary/20 lg:block" />
 
-        {/* Viajero del relevo (solo desktop) */}
+        {/* Viajero del relevo (solo desktop). Va por debajo de los números
+            (que son z-10) para pasar por detrás de ellos en vez de taparlos. */}
         <div
           ref={travelerRef}
           aria-hidden
-          className="pointer-events-none absolute left-0 top-0 z-20 hidden h-7 w-7 items-center justify-center text-primary lg:flex"
+          className="pointer-events-none absolute left-0 top-0 z-0 hidden h-7 w-7 items-center justify-center text-primary lg:flex"
           style={{ opacity: 0 }}
         >
           {Traveler && <Traveler className="h-7 w-7" />}
@@ -300,15 +322,13 @@ export function ProcessSection() {
               className="relative flex gap-5 lg:flex-col lg:gap-0"
             >
               <div className="relative z-10 flex shrink-0 items-start gap-2">
-                <div
-                  ref={(el) => {
-                    nodeRefs.current[i] = el;
-                  }}
-                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-white shadow-md shadow-primary/30"
-                >
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-white shadow-md shadow-primary/30">
                   {i + 1}
                 </div>
                 <Transport
+                  ref={(el) => {
+                    stationRefs.current[i] = el;
+                  }}
                   className={cn(
                     "hidden h-7 w-7 shrink-0 text-primary lg:block",
                     animating && segment === i && "lg:invisible"

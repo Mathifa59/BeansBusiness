@@ -105,27 +105,49 @@ function ContainerShipIcon(props: IconProps) {
   );
 }
 
+const ICON_PX = 28; // h-7 / w-7
+const VIEWBOX = 24;
+const STROKE_HALF = 1; // strokeWidth 2 sobresale 1 unidad del bbox
+/** La línea gris vive en `top-6` del contenedor */
+const LINE_Y = 24;
+
+/* Ritmo del relevo (ms) — pausado a propósito: la línea de tiempo se lee
+   con calma, no compite con el contenido. */
+const SEGMENT_MS = 2400; // recorrido de un número al siguiente
+const HANDOFF_MS = 450; // espera en el nodo antes de ceder el relevo
+const DEPART_MS = 2600; // el barco zarpa fuera del cuadro
+const RESTART_MS = 1200; // pausa antes de reiniciar el ciclo
+
 /*
  * Ícono de transporte por tramo:
  * carretilla → montacargas → camión vacío → camión con contenedor →
  * camión con contenedor (continúa) → barco portacontenedores.
  *
- * `alignPx` empuja cada ícono fijo hacia abajo lo necesario para que todas
- * las bases queden a la misma altura sobre la línea (la carretilla y el
- * montacargas se dibujan más abajo dentro de su viewBox que los camiones).
+ * `baseVB` es dónde termina el dibujo dentro del viewBox 0–24 (medido con
+ * getBBox en el navegador). Cada glifo ocupa una franja vertical distinta —
+ * la carretilla y el montacargas llegan más abajo que los camiones — así que
+ * con este valor calculamos cuánto bajar cada ícono para que su base quede
+ * apoyada sobre la línea, y no atravesada por ella.
  */
 const STEPS: ReadonlyArray<{
   id: string;
   transport: ComponentType<IconProps>;
-  alignPx: number;
+  baseVB: number;
 }> = [
-  { id: "reception", transport: HandTruckIcon, alignPx: -4 },
-  { id: "process", transport: Forklift, alignPx: -3.5 },
-  { id: "quality", transport: FlatbedTruckIcon, alignPx: 0 },
-  { id: "inspection", transport: ContainerTruckIcon, alignPx: 0 },
-  { id: "documentation", transport: ContainerTruckMovingIcon, alignPx: 0 },
-  { id: "export", transport: ContainerShipIcon, alignPx: -1 },
+  { id: "reception", transport: HandTruckIcon, baseVB: 21.5 },
+  { id: "process", transport: Forklift, baseVB: 21 },
+  { id: "quality", transport: FlatbedTruckIcon, baseVB: 18.1 },
+  { id: "inspection", transport: ContainerTruckIcon, baseVB: 18.1 },
+  { id: "documentation", transport: ContainerTruckMovingIcon, baseVB: 18.1 },
+  { id: "export", transport: ContainerShipIcon, baseVB: 19 },
 ];
+
+/** píxeles desde el borde superior del ícono hasta la base del dibujo */
+const baseOffset = (baseVB: number) =>
+  (baseVB + STROKE_HALF) * (ICON_PX / VIEWBOX);
+
+/** desplazamiento vertical para que el ícono se apoye sobre la línea */
+const topForLine = (baseVB: number) => LINE_Y - baseOffset(baseVB);
 
 export function ProcessSection() {
   const t = useTranslations("about.process");
@@ -153,10 +175,9 @@ export function ProcessSection() {
     const easeInOut = (p: number) =>
       p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
 
-    // La Y es constante: la línea vive en `top-6` (24px), centro de los
-    // círculos. Medir la Y de los nodos daba valores erróneos mientras la
-    // animación de entrada (fadeUp) aún no asentaba. Solo medimos la X.
-    const LINE_Y = 24;
+    // La Y es constante (la línea no se mueve). Medir la Y de los nodos daba
+    // valores erróneos mientras la animación de entrada (fadeUp) aún no
+    // asentaba, así que solo medimos la X.
     const nodeX = (i: number) => {
       const n = nodeRefs.current[i];
       if (!n) return null;
@@ -164,9 +185,10 @@ export function ProcessSection() {
       const nr = n.getBoundingClientRect();
       return nr.left + nr.width / 2 - cr.left;
     };
-    const place = (x: number) => {
-      // -14 para centrar el ícono de 28px sobre el punto
-      trav.style.transform = `translate(${x - 14}px, ${LINE_Y - 14}px)`;
+    /** apoya el ícono del tramo `s` sobre la línea, centrado en x */
+    const place = (x: number, s: number) => {
+      const top = topForLine(STEPS[s].baseVB);
+      trav.style.transform = `translate(${x - ICON_PX / 2}px, ${top}px)`;
     };
     const tween = (dur: number, onP: (e: number) => void) =>
       new Promise<void>((resolve) => {
@@ -196,31 +218,49 @@ export function ProcessSection() {
           }
           setSegment(s);
           trav.style.opacity = "1";
-          place(from);
-          await tween(1100, (e) => place(from + (to - from) * e));
+          place(from, s);
+          await tween(SEGMENT_MS, (e) => place(from + (to - from) * e, s));
+          // pausa breve en el nodo: se ve como "llega y entrega el relevo"
+          await tween(HANDOFF_MS, () => {});
         }
         if (cancelled) return;
         // el barco zarpa desde el último nodo y se desvanece en el borde
         const last = nodeX(STEPS.length - 1);
         if (last !== null) {
           const width = c.getBoundingClientRect().width;
-          setSegment(STEPS.length - 1);
+          const shipSeg = STEPS.length - 1;
+          setSegment(shipSeg);
           trav.style.opacity = "1";
-          place(last);
-          await tween(1200, (e) => {
-            place(last + (width - last) * e);
+          place(last, shipSeg);
+          await tween(DEPART_MS, (e) => {
+            place(last + (width - last) * e, shipSeg);
             trav.style.opacity = String(1 - e);
           });
         }
-        // pequeña pausa antes de reiniciar el ciclo
-        await tween(600, () => {});
+        // pausa antes de reiniciar el ciclo
+        await tween(RESTART_MS, () => {});
       }
     }
 
-    const startId = window.setTimeout(run, 350);
+    // Arranca cuando la sección entra en pantalla, no al cargar la página:
+    // así el relevo siempre se ve desde el paso 1 en vez de sorprender a
+    // media secuencia, y no consume cuadros mientras está fuera de vista.
+    let startId = 0;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          io.disconnect();
+          startId = window.setTimeout(run, 350);
+        }
+      },
+      { threshold: 0.25 }
+    );
+    io.observe(c);
+
     return () => {
       cancelled = true;
       cancelAnimationFrame(raf);
+      io.disconnect();
       window.clearTimeout(startId);
       setSegment(-1);
       setAnimating(false);
@@ -252,7 +292,7 @@ export function ProcessSection() {
         </div>
 
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-6 lg:gap-6">
-          {STEPS.map(({ id, transport: Transport, alignPx }, i) => (
+          {STEPS.map(({ id, transport: Transport, baseVB }, i) => (
             <AnimatedSection
               key={id}
               variants={fadeUp}
@@ -273,7 +313,7 @@ export function ProcessSection() {
                     "hidden h-7 w-7 shrink-0 text-primary lg:block",
                     animating && segment === i && "lg:invisible"
                   )}
-                  style={{ marginTop: -6 + alignPx }}
+                  style={{ marginTop: topForLine(baseVB) }}
                 />
               </div>
 

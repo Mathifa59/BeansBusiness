@@ -207,6 +207,20 @@ export function ProcessSection() {
       if (p > 1 - FADE_OUT) return (1 - p) / FADE_OUT;
       return 1;
     };
+    /**
+     * `setSegment` es asíncrono: durante uno o dos cuadros el viajero todavía
+     * muestra el ícono del tramo anterior, y con su línea base. Si el
+     * desvanecido arranca en ese lapso se alcanza a ver el ícono viejo como
+     * una estela desplazada. Esperamos a que React pinte el nuevo —siempre
+     * con opacidad 0, así el cambio es invisible— antes de mover nada.
+     */
+    const settleIcon = () =>
+      new Promise<void>((resolve) => {
+        raf = requestAnimationFrame(() => {
+          if (cancelled) return resolve();
+          raf = requestAnimationFrame(() => resolve());
+        });
+      });
     /** `onP` recibe el progreso lineal (0–1); la suavización se aplica dentro */
     const tween = (dur: number, onP: (p: number) => void) =>
       new Promise<void>((resolve) => {
@@ -235,9 +249,11 @@ export function ProcessSection() {
             await tween(300, () => {});
             continue;
           }
-          setSegment(s);
-          place(from, s);
           trav.style.opacity = "0";
+          setSegment(s);
+          await settleIcon();
+          if (cancelled) return;
+          place(from, s);
           await tween(SEGMENT_MS, (p) => {
             place(from + (to - from) * easeInOut(p), s);
             trav.style.opacity = String(fadeAt(p));
@@ -251,9 +267,11 @@ export function ProcessSection() {
         if (last !== null) {
           const width = c.getBoundingClientRect().width;
           const shipSeg = STEPS.length - 1;
-          setSegment(shipSeg);
-          place(last, shipSeg);
           trav.style.opacity = "0";
+          setSegment(shipSeg);
+          await settleIcon();
+          if (cancelled) return;
+          place(last, shipSeg);
           await tween(DEPART_MS, (p) => {
             place(last + (width - last) * easeInOut(p), shipSeg);
             // aparece igual que los demás y se desvanece al salir del cuadro

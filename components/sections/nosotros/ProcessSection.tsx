@@ -224,11 +224,17 @@ export function ProcessSection() {
     /** `onP` recibe el progreso lineal (0–1); la suavización se aplica dentro */
     const tween = (dur: number, onP: (p: number) => void) =>
       new Promise<void>((resolve) => {
-        let start: number | null = null;
+        let elapsed = 0;
+        let prev: number | null = null;
         const step = (ts: number) => {
           if (cancelled) return resolve();
-          if (start === null) start = ts;
-          const p = Math.min((ts - start) / dur, 1);
+          if (prev === null) prev = ts;
+          // El navegador congela rAF mientras la pestaña está oculta. Al
+          // volver, el salto entre cuadros puede ser de varios segundos y la
+          // animación daría un tirón hasta el final; acotamos cada paso.
+          elapsed += Math.min(ts - prev, 100);
+          prev = ts;
+          const p = Math.min(elapsed / dur, 1);
           onP(p);
           if (p < 1) raf = requestAnimationFrame(step);
           else resolve();

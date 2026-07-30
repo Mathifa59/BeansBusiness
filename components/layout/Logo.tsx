@@ -16,8 +16,8 @@ export function Logo({ variant = "color", href, className }: LogoProps) {
     <Image
       src={isWhite ? "/logos/sinfondoblack.png" : "/logos/sinfondO.png"}
       alt="Business Beans Perú"
-      width={256}
-      height={264}
+      width={332}
+      height={100}
       priority
       className={cn(
         "h-12 w-auto select-none",

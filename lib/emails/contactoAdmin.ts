@@ -33,7 +33,8 @@ const PRODUCT_LABELS: Record<string, string> = {
   "quinua-blanca": "Quinua Blanca",
   "quinua-roja": "Quinua Roja",
   "quinua-negra": "Quinua Negra",
-  ajonjoli: "Ajonjolí",
+  "ajonjoli-blanco": "Ajonjolí Blanco",
+  "ajonjoli-negro": "Ajonjolí Negro",
   other: "Otro",
 };
 

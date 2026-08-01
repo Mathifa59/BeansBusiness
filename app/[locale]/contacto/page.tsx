@@ -11,7 +11,8 @@ import { ContactInfo } from "@/components/sections/contacto/ContactInfo";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("nav");
-  return { title: t("contacto") };
+  const tHero = await getTranslations("contact.hero");
+  return { title: t("contacto"), description: tHero("subtitle") };
 }
 
 function ContactHero() {

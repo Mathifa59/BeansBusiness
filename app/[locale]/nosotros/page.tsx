@@ -8,7 +8,8 @@ import { CommitmentSection } from "@/components/sections/nosotros/CommitmentSect
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("nav");
-  return { title: t("nosotros") };
+  const tHero = await getTranslations("about.hero");
+  return { title: t("nosotros"), description: tHero("subtitle") };
 }
 
 export default function NosotrosPage() {

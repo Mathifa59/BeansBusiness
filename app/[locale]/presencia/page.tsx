@@ -6,7 +6,8 @@ import { ContactCta } from "@/components/sections/home/ContactCta";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("nav");
-  return { title: t("presencia") };
+  const tHero = await getTranslations("presence.hero");
+  return { title: t("presencia"), description: tHero("subtitle") };
 }
 
 export default function PresenciaPage() {

@@ -33,7 +33,8 @@ export const PRODUCT_OPTIONS = [
   "quinua-blanca",
   "quinua-roja",
   "quinua-negra",
-  "ajonjoli",
+  "ajonjoli-blanco",
+  "ajonjoli-negro",
   "other",
 ] as const;
 

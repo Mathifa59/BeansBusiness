@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, DM_Sans } from "next/font/google";
+import { COMPANY_INFO } from "@/lib/constants/company";
 import "./globals.css";
+
+const SITE_URL = `https://${COMPANY_INFO.website}`;
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -15,9 +18,10 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    template: "%s | Business Beans Perú",
-    default: "Business Beans Perú — Agroexportadora",
+    template: "%s | Business Beans",
+    default: "Business Beans — Agroexportadora Peruana",
   },
   description:
     "Exportadores de legumbres y productos agrícolas peruanos. Certificaciones FDA, SENASA, HACCP. Presencia en 15+ países.",
@@ -28,9 +32,14 @@ export const metadata: Metadata = {
     "pallar baby perú",
   ],
   openGraph: {
-    siteName: "Business Beans Perú",
-    locale: "es_PE",
+    siteName: "Business Beans",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Business Beans — Agroexportadora Peruana",
+    description:
+      "Exportadores de legumbres y productos agrícolas peruanos. Certificaciones FDA, SENASA, HACCP. Presencia en 15+ países.",
   },
 };
 

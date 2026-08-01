@@ -15,7 +15,7 @@ export function Logo({ variant = "color", href, className }: LogoProps) {
   const content = (
     <Image
       src={isWhite ? "/logos/sinfondoblack.png" : "/logos/sinfondO.png"}
-      alt="Business Beans Perú"
+      alt="Business Beans"
       width={332}
       height={100}
       priority
@@ -29,7 +29,7 @@ export function Logo({ variant = "color", href, className }: LogoProps) {
 
   if (href) {
     return (
-      <Link href={href} aria-label="Business Beans Perú">
+      <Link href={href} aria-label="Business Beans">
         {content}
       </Link>
     );

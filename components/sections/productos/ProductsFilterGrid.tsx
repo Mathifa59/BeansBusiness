@@ -1,11 +1,20 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
-import { Filter, MapPin, ShieldCheck, ArrowRight, Eye, Package } from "lucide-react";
-import { PRODUCTS } from "@/lib/constants/company";
+import {
+  Filter,
+  MapPin,
+  ShieldCheck,
+  ArrowRight,
+  Eye,
+  Package,
+  ChevronDown,
+  Layers,
+} from "lucide-react";
+import { PRODUCTS, CATALOG_ENTRIES } from "@/lib/constants/company";
 import type { ProductCategory } from "@/types/product";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
@@ -39,6 +48,7 @@ export function ProductsFilterGrid() {
   const tFilters = useTranslations("products.filters");
   const tSpecs = useTranslations("products.specs");
   const tItems = useTranslations("products.items");
+  const tGroups = useTranslations("products.groups");
   const tCommon = useTranslations("products");
   const locale = useLocale();
 
@@ -46,21 +56,42 @@ export function ProductsFilterGrid() {
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>("all");
   const [showFilters, setShowFilters] = useState(false);
   const [activeProductId, setActiveProductId] = useState<string | null>(null);
+  const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
+
+  const certsOf = useCallback(
+    (productId: string) =>
+      tItems.raw(
+        `${productId}.certifications` as Parameters<typeof tItems.raw>[0]
+      ) as string[],
+    [tItems]
+  );
 
   const filtered = useMemo(() => {
-    return PRODUCTS.filter((product) => {
-      if (categoryFilter !== "all" && product.category !== categoryFilter) return false;
+    return CATALOG_ENTRIES.filter((entry) => {
+      const category =
+        entry.kind === "product" ? entry.product.category : entry.group.category;
+      if (categoryFilter !== "all" && category !== categoryFilter) return false;
+
       if (certFilter !== "all") {
-        const certs = tItems.raw(
-          `${product.id}.certifications` as Parameters<typeof tItems.raw>[0]
-        ) as string[];
-        if (!certs.includes(certFilter)) return false;
+        const ids =
+          entry.kind === "product" ? [entry.product.id] : entry.group.variantIds;
+        const matches = ids.some((id) => certsOf(id).includes(certFilter));
+        if (!matches) return false;
       }
       return true;
     });
-  }, [certFilter, categoryFilter, tItems]);
+  }, [certFilter, categoryFilter, certsOf]);
 
   const activeProduct = PRODUCTS.find((p) => p.id === activeProductId);
+
+  const toggleGroup = (groupId: string) => {
+    setExpandedGroups((current) => {
+      const next = new Set(current);
+      if (next.has(groupId)) next.delete(groupId);
+      else next.add(groupId);
+      return next;
+    });
+  };
 
   return (
     <section className="py-20 md:py-28">
@@ -141,26 +172,125 @@ export function ProductsFilterGrid() {
 
           {/* Products grid */}
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-3">
-            {filtered.map((product, i) => {
-              const certs = tItems.raw(
-                `${product.id}.certifications` as Parameters<typeof tItems.raw>[0]
-              ) as string[];
+            {filtered.map((entry, i) => {
+              if (entry.kind === "product") {
+                const { product } = entry;
+                const certs = certsOf(product.id);
+                const destinations = tItems.raw(
+                  `${product.id}.destinations` as Parameters<typeof tItems.raw>[0]
+                ) as string[];
+
+                return (
+                  <AnimatedSection
+                    key={product.id}
+                    variants={scaleIn}
+                    transition={{ duration: 0.5, delay: (i % 6) * 0.06 }}
+                    className="flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-gray-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-primary/30"
+                  >
+                    <div className="relative aspect-[4/3] w-full overflow-hidden bg-off-white">
+                      {product.imageSrc ? (
+                        <Image
+                          src={product.imageSrc}
+                          alt={tItems(`${product.id}.name` as Parameters<typeof tItems>[0])}
+                          fill
+                          sizes="(min-width: 1280px) 33vw, (min-width: 640px) 50vw, 100vw"
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      ) : (
+                        <div className="flex h-full items-center justify-center">
+                          <Package className="h-12 w-12 text-gray-200" />
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="flex flex-1 flex-col p-6">
+                      <h3 className="font-display text-lg font-bold text-dark">
+                        {tItems(`${product.id}.name` as Parameters<typeof tItems>[0])}
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-gray-700">
+                        {tItems(
+                          `${product.id}.shortDescription` as Parameters<typeof tItems>[0]
+                        )}
+                      </p>
+
+                      <dl className="mt-4 space-y-2 text-xs text-gray-700">
+                        <div className="flex items-start gap-2">
+                          <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                          <span>
+                            <dt className="inline font-semibold text-dark">
+                              {tSpecs("tariffCode")}:{" "}
+                            </dt>
+                            <dd className="inline">{product.tariffCode}</dd>
+                          </span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                          <span>
+                            <dt className="inline font-semibold text-dark">
+                              {tSpecs("destinations")}:{" "}
+                            </dt>
+                            <dd className="inline">{destinations.join(", ")}</dd>
+                          </span>
+                        </div>
+                      </dl>
+
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {certs.map((cert) => (
+                          <Badge
+                            key={cert}
+                            className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary-dark"
+                          >
+                            {cert}
+                          </Badge>
+                        ))}
+                      </div>
+
+                      <div className="mt-6 flex items-center gap-3">
+                        <button
+                          type="button"
+                          onClick={() => setActiveProductId(product.id)}
+                          className="group inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-primary-dark"
+                        >
+                          <Eye className="h-4 w-4" />
+                          {tCommon("viewDetails")}
+                        </button>
+                        <Link
+                          href={`/${locale}/contacto?producto=${product.id}`}
+                          className="group ml-auto inline-flex items-center gap-1.5 text-sm font-semibold text-dark transition-colors hover:text-primary"
+                        >
+                          {tCommon("requestQuote")}
+                          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </Link>
+                      </div>
+                    </div>
+                  </AnimatedSection>
+                );
+              }
+
+              // Grouped entry (Quinua, Ajonjolí…): one card, expandable variant list
+              const { group } = entry;
+              const isExpanded = expandedGroups.has(group.id);
+              const representativeId = group.variantIds[0];
               const destinations = tItems.raw(
-                `${product.id}.destinations` as Parameters<typeof tItems.raw>[0]
+                `${representativeId}.destinations` as Parameters<typeof tItems.raw>[0]
               ) as string[];
+              const certs = certsOf(representativeId);
+              const representativeProduct = PRODUCTS.find(
+                (p) => p.id === representativeId
+              );
 
               return (
                 <AnimatedSection
-                  key={product.id}
+                  key={group.id}
                   variants={scaleIn}
                   transition={{ duration: 0.5, delay: (i % 6) * 0.06 }}
                   className="flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-gray-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-primary/30"
                 >
                   <div className="relative aspect-[4/3] w-full overflow-hidden bg-off-white">
-                    {product.imageSrc ? (
+                    {group.imageSrc ? (
                       <Image
-                        src={product.imageSrc}
-                        alt={tItems(`${product.id}.name` as Parameters<typeof tItems>[0])}
+                        src={group.imageSrc}
+                        alt={tGroups(`${group.id}.name` as Parameters<typeof tGroups>[0])}
                         fill
                         sizes="(min-width: 1280px) 33vw, (min-width: 640px) 50vw, 100vw"
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -170,38 +300,44 @@ export function ProductsFilterGrid() {
                         <Package className="h-12 w-12 text-gray-200" />
                       </div>
                     )}
+                    <Badge className="absolute left-3 top-3 rounded-full bg-dark/80 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
+                      <Layers className="h-3 w-3" />
+                      {group.variantIds.length}
+                    </Badge>
                   </div>
 
                   <div className="flex flex-1 flex-col p-6">
                     <h3 className="font-display text-lg font-bold text-dark">
-                      {tItems(`${product.id}.name` as Parameters<typeof tItems>[0])}
+                      {tGroups(`${group.id}.name` as Parameters<typeof tGroups>[0])}
                     </h3>
                     <p className="mt-2 text-sm leading-relaxed text-gray-700">
-                      {tItems(
-                        `${product.id}.shortDescription` as Parameters<typeof tItems>[0]
+                      {tGroups(
+                        `${group.id}.shortDescription` as Parameters<typeof tGroups>[0]
                       )}
                     </p>
 
-                    <dl className="mt-4 space-y-2 text-xs text-gray-700">
-                      <div className="flex items-start gap-2">
-                        <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                        <span>
-                          <dt className="inline font-semibold text-dark">
-                            {tSpecs("tariffCode")}:{" "}
-                          </dt>
-                          <dd className="inline">{product.tariffCode}</dd>
-                        </span>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                        <span>
-                          <dt className="inline font-semibold text-dark">
-                            {tSpecs("destinations")}:{" "}
-                          </dt>
-                          <dd className="inline">{destinations.join(", ")}</dd>
-                        </span>
-                      </div>
-                    </dl>
+                    {representativeProduct && (
+                      <dl className="mt-4 space-y-2 text-xs text-gray-700">
+                        <div className="flex items-start gap-2">
+                          <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                          <span>
+                            <dt className="inline font-semibold text-dark">
+                              {tSpecs("tariffCode")}:{" "}
+                            </dt>
+                            <dd className="inline">{representativeProduct.tariffCode}</dd>
+                          </span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                          <span>
+                            <dt className="inline font-semibold text-dark">
+                              {tSpecs("destinations")}:{" "}
+                            </dt>
+                            <dd className="inline">{destinations.join(", ")}</dd>
+                          </span>
+                        </div>
+                      </dl>
+                    )}
 
                     <div className="mt-4 flex flex-wrap gap-2">
                       {certs.map((cert) => (
@@ -214,23 +350,56 @@ export function ProductsFilterGrid() {
                       ))}
                     </div>
 
-                    <div className="mt-6 flex items-center gap-3">
-                      <button
-                        type="button"
-                        onClick={() => setActiveProductId(product.id)}
-                        className="group inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-primary-dark"
-                      >
-                        <Eye className="h-4 w-4" />
-                        {tCommon("viewDetails")}
-                      </button>
-                      <Link
-                        href={`/${locale}/contacto?producto=${product.id}`}
-                        className="group ml-auto inline-flex items-center gap-1.5 text-sm font-semibold text-dark transition-colors hover:text-primary"
-                      >
-                        {tCommon("requestQuote")}
-                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </Link>
-                    </div>
+                    <button
+                      type="button"
+                      onClick={() => toggleGroup(group.id)}
+                      aria-expanded={isExpanded}
+                      className="mt-6 flex items-center justify-between rounded-xl bg-off-white px-4 py-3 text-sm font-semibold text-dark transition-colors hover:bg-primary/10 hover:text-primary-dark"
+                    >
+                      {tGroups(
+                        `${group.id}.variantsLabel` as Parameters<typeof tGroups>[0]
+                      )}
+                      <ChevronDown
+                        className={cn(
+                          "h-4 w-4 transition-transform duration-300",
+                          isExpanded && "rotate-180"
+                        )}
+                      />
+                    </button>
+
+                    {isExpanded && (
+                      <ul className="mt-3 space-y-2 border-t border-gray-100 pt-3">
+                        {group.variantIds.map((variantId) => (
+                          <li
+                            key={variantId}
+                            className="flex items-center justify-between gap-2 rounded-lg px-2 py-2 hover:bg-off-white"
+                          >
+                            <span className="text-sm font-medium text-dark">
+                              {tItems(
+                                `${variantId}.name` as Parameters<typeof tItems>[0]
+                              )}
+                            </span>
+                            <div className="flex items-center gap-3">
+                              <button
+                                type="button"
+                                onClick={() => setActiveProductId(variantId)}
+                                className="inline-flex items-center gap-1 text-xs font-semibold text-primary transition-colors hover:text-primary-dark"
+                              >
+                                <Eye className="h-3.5 w-3.5" />
+                                {tCommon("viewDetails")}
+                              </button>
+                              <Link
+                                href={`/${locale}/contacto?producto=${variantId}`}
+                                className="inline-flex items-center gap-1 text-xs font-semibold text-dark transition-colors hover:text-primary"
+                              >
+                                {tCommon("requestQuote")}
+                                <ArrowRight className="h-3.5 w-3.5" />
+                              </Link>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 </AnimatedSection>
               );

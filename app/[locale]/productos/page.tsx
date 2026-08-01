@@ -6,7 +6,8 @@ import { CatalogDownload } from "@/components/sections/productos/CatalogDownload
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("nav");
-  return { title: t("productos") };
+  const tHero = await getTranslations("products.hero");
+  return { title: t("productos"), description: tHero("subtitle") };
 }
 
 export default function ProductosPage() {

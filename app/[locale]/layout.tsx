@@ -23,9 +23,8 @@ const SITE_URL = `https://${COMPANY_INFO.website}`;
 /**
  * `name` es la marca comercial (Business Beans); `legalName` es la razón
  * social registrada (Business Beans Perú SRL) — no coinciden a propósito
- * tras el rebranding. RUC y dirección postal no se incluyen: los valores
- * actuales en COMPANY_INFO son placeholders ("20XXXXXXXXX", "Av. Ejemplo
- * 123") y no deben publicarse en datos estructurados indexables.
+ * tras el rebranding. No se incluye `address`: la empresa no opera desde
+ * una dirección fija.
  */
 function organizationJsonLd(locale: string) {
   return {
@@ -33,6 +32,7 @@ function organizationJsonLd(locale: string) {
     "@type": "Organization",
     name: "Business Beans",
     legalName: COMPANY_INFO.razonSocial,
+    taxID: COMPANY_INFO.ruc,
     url: `${SITE_URL}/${locale}`,
     logo: `${SITE_URL}/logos/sinfondO.png`,
     email: COMPANY_INFO.email,

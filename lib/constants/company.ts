@@ -2,8 +2,7 @@ import type { Product, Certification, ProductVariantGroup } from "@/types/produc
 
 export const COMPANY_INFO = {
   razonSocial: "Business Beans Perú SRL",
-  ruc: "20XXXXXXXXX",
-  direccion: "Av. Ejemplo 123, Lambayeque, Perú",
+  ruc: "20600960084",
   email: "info@businessbeans.com",
   telefono: "+51 981 916 198",
   website: "www.businessbeans.com",

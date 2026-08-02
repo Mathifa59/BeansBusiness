@@ -27,7 +27,7 @@ export function ReclamacionForm() {
         <h2 className="mb-4 text-xs font-semibold uppercase tracking-widest text-gray-400">
           {tP("title")}
         </h2>
-        <dl className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-3">
+        <dl className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-2">
           <div>
             <dt className="text-xs text-gray-400">{tP("razonSocial")}</dt>
             <dd className="mt-0.5 font-semibold text-dark">{COMPANY_INFO.razonSocial}</dd>
@@ -35,10 +35,6 @@ export function ReclamacionForm() {
           <div>
             <dt className="text-xs text-gray-400">{tP("ruc")}</dt>
             <dd className="mt-0.5 font-semibold text-dark">{COMPANY_INFO.ruc}</dd>
-          </div>
-          <div>
-            <dt className="text-xs text-gray-400">{tP("direccion")}</dt>
-            <dd className="mt-0.5 font-semibold text-dark">{COMPANY_INFO.direccion}</dd>
           </div>
         </dl>
       </div>

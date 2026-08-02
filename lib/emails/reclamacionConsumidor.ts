@@ -1,4 +1,5 @@
 import type { ReclamacionSchema } from "@/lib/validations/reclamacionSchema";
+import { COMPANY_INFO } from "@/lib/constants/company";
 
 export function reclamacionConsumidorHtml(
   data: ReclamacionSchema,
@@ -120,7 +121,7 @@ export function reclamacionConsumidorHtml(
           <!-- Footer -->
           <tr>
             <td style="background:#f9fafb;padding:24px 40px;border-top:1px solid #e5e7eb;text-align:center;">
-              <p style="margin:0;font-size:12px;color:#9ca3af;">Business Beans Perú SRL · RUC: 20XXXXXXXXX · Lambayeque, Perú</p>
+              <p style="margin:0;font-size:12px;color:#9ca3af;">${COMPANY_INFO.razonSocial} · RUC: ${COMPANY_INFO.ruc}</p>
               <p style="margin:6px 0 0;font-size:11px;color:#d1d5db;">Este es un correo automático. Por favor guarde el código de reclamación para seguimiento.</p>
             </td>
           </tr>

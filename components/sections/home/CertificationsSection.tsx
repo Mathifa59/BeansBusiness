@@ -58,11 +58,16 @@ export function CertificationsSection() {
   const [animate, setAnimate] = useState(false);
   const touchStartX = useRef<number | null>(null);
 
-  // al cambiar perPage reposicionamos al primer elemento real
-  useEffect(() => {
+  // al cambiar perPage reposicionamos al primer elemento real. Se ajusta
+  // durante el render (patrón recomendado por React para "resetear estado
+  // cuando cambia un valor") en vez de en un efecto, para evitar el
+  // repintado extra.
+  const [prevOffset, setPrevOffset] = useState(offset);
+  if (offset !== prevOffset) {
+    setPrevOffset(offset);
     setAnimate(false);
     setIndex(offset);
-  }, [offset]);
+  }
 
   const next = useCallback(() => {
     if (!canLoop) return;

@@ -33,9 +33,14 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
+  // Cierra el drawer móvil al navegar. Se ajusta durante el render (patrón
+  // recomendado por React para "resetear estado cuando cambia un valor") en
+  // vez de en un efecto, para evitar el repintado extra.
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
     setIsOpen(false);
-  }, [pathname]);
+  }
 
   const localizedHref = (href: string) => `/${locale}${href}`;
 

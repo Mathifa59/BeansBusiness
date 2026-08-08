@@ -23,10 +23,10 @@ const p = (id: string, opts: Omit<Product, "id" | "nameKey" | "shortDescriptionK
 
 export const PRODUCTS: Product[] = [
   // ── Legumbres y Menestras ─────────────────────────────────────────────────
-  p("frejol-adzuki",    { category: "legumbres", tariffCode: "0713.32.90.00", availability: "all-year", imageSrc: "/productos/frejol_adzuki_fb.png" }),
-  p("frejol-bayo",      { category: "legumbres", tariffCode: "0713.33.99.00", availability: "all-year", imageSrc: "/productos/frejol_bayo_fb.png" }),
+  p("frejol-adzuki",    { category: "legumbres", tariffCode: "0713.32.90.00", availability: "all-year", imageSrc: "/productos/frejol-adzuki.jpg" }),
+  p("frejol-bayo",      { category: "legumbres", tariffCode: "0713.33.99.00", availability: "all-year", imageSrc: "/productos/frejol-bayo.jpg" }),
   p("frejol-caballero", { category: "legumbres", tariffCode: "0713.33.99.00", availability: "all-year", imageSrc: "/productos/frejol-caballero.png" }),
-  p("frejol-calima",    { category: "legumbres", tariffCode: "0713.33.99.00", availability: "all-year", imageSrc: "/productos/04_frejol_calima.png" }),
+  p("frejol-calima",    { category: "legumbres", tariffCode: "0713.33.99.00", availability: "all-year", imageSrc: "/productos/frejol-calima.png" }),
   p("frijol-canario",   { category: "legumbres", tariffCode: "0713.33.92.00", availability: "all-year", imageSrc: "/productos/frijol-canario.png",   featured: true }),
   p("frijol-castilla",  { category: "legumbres", tariffCode: "0713.35.90.00", availability: "all-year", imageSrc: "/productos/frijol-castilla.png",  featured: true }),
   p("frejol-palo-seco", { category: "legumbres", tariffCode: "0713.60.90.00", availability: "all-year", imageSrc: "/productos/frejol-palo-seco.png" }),
@@ -42,20 +42,18 @@ export const PRODUCTS: Product[] = [
   p("frejol-zarandaja", { category: "legumbres", tariffCode: "0713.39.99.00", availability: "all-year", imageSrc: "/productos/frejol-zarandaja.png" }),
 
   // ── Granos Andinos y Superalimentos ──────────────────────────────────────
-  p("canihua",           { category: "granos-andinos", tariffCode: "1008.90.20.00", availability: "all-year", imageSrc: "/productos/canihua_fb.png" }),
+  p("canihua",           { category: "granos-andinos", tariffCode: "1008.90.20.00", availability: "all-year", imageSrc: "/productos/canihua.jpg" }),
   p("chocho-tarwi",      { category: "granos-andinos", tariffCode: "0713.39.99.00", availability: "all-year", imageSrc: "/productos/chocho_tarwi_fb.png" }),
   p("kiwicha",           { category: "granos-andinos", tariffCode: "1008.90.29.00", availability: "all-year", imageSrc: "/productos/kiwicha_fb.png" }),
-  p("maca-harina",       { category: "granos-andinos", tariffCode: "1106.20.10.00", availability: "all-year", imageSrc: "/productos/maca_en_harina_fb.png" }),
+  p("maca-harina",       { category: "granos-andinos", tariffCode: "1106.20.10.00", availability: "all-year", imageSrc: "/productos/maca-harina.jpg" }),
   p("maiz-gigante-cusco",{ category: "granos-andinos", tariffCode: "1005.90.90.10", availability: "all-year", imageSrc: "/productos/maiz-gigante-cusco.png", featured: true }),
-  p("quinua-blanca",     { category: "granos-andinos", tariffCode: "1008.50.90.00", availability: "all-year", imageSrc: "/productos/04_quinua_blanca.png" }),
-  p("quinua-roja",       { category: "granos-andinos", tariffCode: "1008.50.90.00", availability: "all-year", imageSrc: "/productos/quinua_roja_fb.png" }),
-  p("quinua-negra",      { category: "granos-andinos", tariffCode: "1008.50.90.00", availability: "all-year", imageSrc: "/productos/03_quinua_negra.png" }),
+  p("quinua-blanca",     { category: "granos-andinos", tariffCode: "1008.50.90.00", availability: "all-year", imageSrc: "/productos/quinua-blanca.jpg" }),
+  p("quinua-roja",       { category: "granos-andinos", tariffCode: "1008.50.90.00", availability: "all-year", imageSrc: "/productos/quinua-roja.jpg" }),
+  p("quinua-negra",      { category: "granos-andinos", tariffCode: "1008.50.90.00", availability: "all-year", imageSrc: "/productos/quinua-negra.jpg" }),
 
   // ── Otros Productos ───────────────────────────────────────────────────────
-  // Blanco y Negro comparten foto por ahora — no hay una imagen real distinta
-  // por variedad todavía.
-  p("ajonjoli-blanco",   { category: "otros", tariffCode: "1207.40.90.00", availability: "all-year", imageSrc: "/productos/ajonjoli_fb.png" }),
-  p("ajonjoli-negro",    { category: "otros", tariffCode: "1207.40.90.00", availability: "all-year", imageSrc: "/productos/ajonjoli_fb.png" }),
+  p("ajonjoli-blanco",   { category: "otros", tariffCode: "1207.40.90.00", availability: "all-year", imageSrc: "/productos/ajonjoli-blanco.jpg" }),
+  p("ajonjoli-negro",    { category: "otros", tariffCode: "1207.40.90.00", availability: "all-year", imageSrc: "/productos/ajonjoli-negro.jpg" }),
 ];
 
 export const PRODUCTS_FEATURED = PRODUCTS.filter((p) => p.featured);
@@ -73,7 +71,7 @@ export const PRODUCT_VARIANT_GROUPS: ProductVariantGroup[] = [
     shortDescriptionKey: "products.groups.quinua.shortDescription",
     variantsLabelKey: "products.groups.quinua.variantsLabel",
     variantIds: ["quinua-blanca", "quinua-roja", "quinua-negra"],
-    imageSrc: "/productos/04_quinua_blanca.png",
+    imageSrc: "/productos/quinua-blanca.jpg",
   },
   {
     id: "ajonjoli",
@@ -82,7 +80,7 @@ export const PRODUCT_VARIANT_GROUPS: ProductVariantGroup[] = [
     shortDescriptionKey: "products.groups.ajonjoli.shortDescription",
     variantsLabelKey: "products.groups.ajonjoli.variantsLabel",
     variantIds: ["ajonjoli-blanco", "ajonjoli-negro"],
-    imageSrc: "/productos/ajonjoli_fb.png",
+    imageSrc: "/productos/ajonjoli-blanco.jpg",
   },
 ];
 

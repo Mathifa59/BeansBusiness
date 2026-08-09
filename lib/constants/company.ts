@@ -30,8 +30,8 @@ export const PRODUCTS: Product[] = [
   p("frijol-canario",   { category: "legumbres", tariffCode: "0713.33.92.00", availability: "all-year", imageSrc: "/productos/frijol-canario.png",   featured: true }),
   p("frijol-castilla",  { category: "legumbres", tariffCode: "0713.35.90.00", availability: "all-year", imageSrc: "/productos/frijol-castilla.png",  featured: true }),
   p("frejol-palo-seco", { category: "legumbres", tariffCode: "0713.60.90.00", availability: "all-year", imageSrc: "/productos/frejol-palo-seco.png" }),
-  p("habas-secas",      { category: "legumbres", tariffCode: "0713.50.90.00", availability: "all-year", imageSrc: "/productos/15_habas_secas.png",      featured: true }),
-  p("frejol-loctao",    { category: "legumbres", tariffCode: "0713.31.90.00", availability: "all-year", imageSrc: "/productos/08_frejol_loctao.png" }),
+  p("habas-secas",      { category: "legumbres", tariffCode: "0713.50.90.00", availability: "all-year", imageSrc: "/productos/habas-secas.png",      featured: true }),
+  p("frejol-loctao",    { category: "legumbres", tariffCode: "0713.31.90.00", availability: "all-year", imageSrc: "/productos/frejol-loctao.png" }),
   p("frejol-negro",     { category: "legumbres", tariffCode: "0713.33.11.00", availability: "all-year", imageSrc: "/productos/frejol-negro.png" }),
   p("frejol-panamito",  { category: "legumbres", tariffCode: "0713.33.99.00", availability: "all-year", imageSrc: "/productos/frejol-panamito.png" }),
   p("pallar-baby",      { category: "legumbres", tariffCode: "0713.39.91.00", availability: "all-year", imageSrc: "/productos/pallar-baby.png",      featured: true }),
@@ -43,8 +43,8 @@ export const PRODUCTS: Product[] = [
 
   // ── Granos Andinos y Superalimentos ──────────────────────────────────────
   p("canihua",           { category: "granos-andinos", tariffCode: "1008.90.20.00", availability: "all-year", imageSrc: "/productos/canihua.jpg" }),
-  p("chocho-tarwi",      { category: "granos-andinos", tariffCode: "0713.39.99.00", availability: "all-year", imageSrc: "/productos/chocho_tarwi_fb.png" }),
-  p("kiwicha",           { category: "granos-andinos", tariffCode: "1008.90.29.00", availability: "all-year", imageSrc: "/productos/kiwicha_fb.png" }),
+  p("chocho-tarwi",      { category: "granos-andinos", tariffCode: "0713.39.99.00", availability: "all-year", imageSrc: "/productos/chocho-tarwi.png" }),
+  p("kiwicha",           { category: "granos-andinos", tariffCode: "1008.90.29.00", availability: "all-year", imageSrc: "/productos/kiwicha.png" }),
   p("maca-harina",       { category: "granos-andinos", tariffCode: "1106.20.10.00", availability: "all-year", imageSrc: "/productos/maca-harina.jpg" }),
   p("maiz-gigante-cusco",{ category: "granos-andinos", tariffCode: "1005.90.90.10", availability: "all-year", imageSrc: "/productos/maiz-gigante-cusco.png", featured: true }),
   p("quinua-blanca",     { category: "granos-andinos", tariffCode: "1008.50.90.00", availability: "all-year", imageSrc: "/productos/quinua-blanca.jpg" }),

@@ -1,14 +1,22 @@
 import { useTranslations } from "next-intl";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { pageAlternates, breadcrumbJsonLd } from "@/lib/seo";
 import { SectionWrapper } from "@/components/ui/section-wrapper";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { fadeUp } from "@/lib/animations";
 import { ReclamacionForm } from "@/components/sections/reclamaciones/ReclamacionForm";
 
+const PATH = "/libro-de-reclamaciones";
+
 export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
   const t = await getTranslations("reclamaciones.hero");
-  return { title: t("title") };
+  return {
+    title: t("title"),
+    description: t("description"),
+    alternates: pageAlternates(locale, PATH),
+  };
 }
 
 function ReclamacionesHero() {
@@ -28,9 +36,24 @@ function ReclamacionesHero() {
   );
 }
 
-export default function LibroDeReclamacionesPage() {
+export default async function LibroDeReclamacionesPage() {
+  const locale = await getLocale();
+  const t = await getTranslations("nav");
+  const tHero = await getTranslations("reclamaciones.hero");
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbJsonLd(locale, [
+              { name: t("home"), path: "" },
+              { name: tHero("title"), path: PATH },
+            ])
+          ),
+        }}
+      />
       <ReclamacionesHero />
       <SectionWrapper bg="off-white" innerClassName="max-w-3xl">
         <AnimatedSection variants={fadeUp}>

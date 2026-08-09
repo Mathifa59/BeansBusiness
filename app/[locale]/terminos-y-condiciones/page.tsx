@@ -1,13 +1,24 @@
 import { useTranslations } from "next-intl";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { pageAlternates, breadcrumbJsonLd } from "@/lib/seo";
 import { SectionWrapper } from "@/components/ui/section-wrapper";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { fadeUp, staggerContainer } from "@/lib/animations";
 
+const PATH = "/terminos-y-condiciones";
+
 export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
   const t = await getTranslations("terminos");
-  return { title: t("title") };
+  return {
+    title: t("title"),
+    description:
+      locale === "en"
+        ? "Terms and Conditions governing the use of the Business Beans website."
+        : "Términos y Condiciones que regulan el uso del sitio web de Business Beans.",
+    alternates: pageAlternates(locale, PATH),
+  };
 }
 
 function TerminosHero() {
@@ -26,8 +37,10 @@ function TerminosHero() {
   );
 }
 
-export default function TerminosPage() {
-  const t = useTranslations("terminos");
+export default async function TerminosPage() {
+  const locale = await getLocale();
+  const t = await getTranslations("terminos");
+  const tNav = await getTranslations("nav");
   const sectionKeys = [
     "general",
     "services",
@@ -40,6 +53,17 @@ export default function TerminosPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbJsonLd(locale, [
+              { name: tNav("home"), path: "" },
+              { name: t("title"), path: PATH },
+            ])
+          ),
+        }}
+      />
       <TerminosHero />
       <SectionWrapper bg="off-white" innerClassName="max-w-3xl">
         <AnimatedSection

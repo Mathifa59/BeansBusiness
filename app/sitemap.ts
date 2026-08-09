@@ -1,8 +1,6 @@
 import type { MetadataRoute } from "next";
-import { COMPANY_INFO } from "@/lib/constants/company";
 import { routing } from "@/lib/i18n/routing";
-
-const SITE_URL = `https://${COMPANY_INFO.website}`;
+import { SITE_URL } from "@/lib/seo";
 
 const ROUTES = [
   { path: "", priority: 1, changeFrequency: "weekly" as const },

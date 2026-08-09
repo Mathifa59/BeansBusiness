@@ -4,6 +4,7 @@ import { getMessages } from "next-intl/server";
 import type { Metadata } from "next";
 import { routing } from "@/lib/i18n/routing";
 import { COMPANY_INFO } from "@/lib/constants/company";
+import { SITE_URL, OG_IMAGE } from "@/lib/seo";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
@@ -17,8 +18,6 @@ const OG_LOCALES: Record<string, string> = {
   es: "es_PE",
   en: "en_US",
 };
-
-const SITE_URL = `https://${COMPANY_INFO.website}`;
 
 /**
  * `name` es la marca comercial (Business Beans); `legalName` es la razón
@@ -50,12 +49,13 @@ export async function generateMetadata({
   const { locale } = await params;
   return {
     // Next no combina objetos anidados entre layouts: el `openGraph` de este
-    // layout reemplaza por completo el del root, así que siteName/type se
-    // repiten aquí para que no desaparezcan de las páginas renderizadas.
+    // layout reemplaza por completo el del root, así que siteName/type/images
+    // se repiten aquí para que no desaparezcan de las páginas renderizadas.
     openGraph: {
       siteName: "Business Beans",
       type: "website",
       locale: OG_LOCALES[locale] ?? "es_PE",
+      images: [OG_IMAGE],
     },
   };
 }

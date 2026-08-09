@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, DM_Sans } from "next/font/google";
-import { COMPANY_INFO } from "@/lib/constants/company";
+import { SITE_URL, OG_IMAGE } from "@/lib/seo";
 import "./globals.css";
-
-const SITE_URL = `https://${COMPANY_INFO.website}`;
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -27,19 +25,25 @@ export const metadata: Metadata = {
     "Exportadores de legumbres y productos agrícolas peruanos. Certificaciones FDA, SENASA, HACCP. Presencia en 15+ países.",
   keywords: [
     "legumbres peruanas",
-    "agroexportadora perú",
+    "agroexportadora Perú",
+    "exportador de menestras Perú",
     "frijol canario exportación",
-    "pallar baby perú",
+    "pallar baby Perú",
+    "quinua exportación Perú",
+    "granos andinos exportación",
+    "proveedor legumbres FDA SENASA HACCP",
   ],
   openGraph: {
     siteName: "Business Beans",
     type: "website",
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: "Business Beans — Agroexportadora Peruana",
     description:
       "Exportadores de legumbres y productos agrícolas peruanos. Certificaciones FDA, SENASA, HACCP. Presencia en 15+ países.",
+    images: [OG_IMAGE.url],
   },
 };
 

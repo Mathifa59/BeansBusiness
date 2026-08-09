@@ -1,18 +1,33 @@
 import { Suspense } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { pageAlternates, breadcrumbJsonLd } from "@/lib/seo";
 import { SectionWrapper } from "@/components/ui/section-wrapper";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { fadeUp } from "@/lib/animations";
 import { ContactForm } from "@/components/sections/contacto/ContactForm";
 import { ContactInfo } from "@/components/sections/contacto/ContactInfo";
 
+const PATH = "/contacto";
+
 export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
   const t = await getTranslations("nav");
   const tHero = await getTranslations("contact.hero");
-  return { title: t("contacto"), description: tHero("subtitle") };
+  return {
+    title: t("contacto"),
+    description: tHero("subtitle"),
+    keywords:
+      locale === "en"
+        ? ["Peruvian legumes quote request", "contact Peru grain exporter"]
+        : [
+            "cotización legumbres peruanas",
+            "contacto exportador de granos Perú",
+          ],
+    alternates: pageAlternates(locale, PATH),
+  };
 }
 
 function ContactHero() {
@@ -37,9 +52,23 @@ function ContactHero() {
   );
 }
 
-export default function ContactoPage() {
+export default async function ContactoPage() {
+  const locale = await getLocale();
+  const t = await getTranslations("nav");
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbJsonLd(locale, [
+              { name: t("home"), path: "" },
+              { name: t("contacto"), path: PATH },
+            ])
+          ),
+        }}
+      />
       <ContactHero />
       <SectionWrapper bg="off-white">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-5 lg:gap-12">

@@ -1,7 +1,5 @@
 import type { MetadataRoute } from "next";
-import { COMPANY_INFO } from "@/lib/constants/company";
-
-const SITE_URL = `https://${COMPANY_INFO.website}`;
+import { SITE_URL } from "@/lib/seo";
 
 export default function robots(): MetadataRoute.Robots {
   return {

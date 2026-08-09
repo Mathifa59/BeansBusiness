@@ -5,7 +5,7 @@ export const COMPANY_INFO = {
   ruc: "20600960084",
   email: "info@businessbeans.com",
   telefono: "+51 981 916 198",
-  website: "www.businessbeans.com",
+  website: "www.businessbeans.com.pe",
 } as const;
 
 const p = (id: string, opts: Omit<Product, "id" | "nameKey" | "shortDescriptionKey" | "descriptionKey" | "seasonalityKey" | "destinationsKey" | "certificationsKey" | "calibreKey" | "packagingKey">): Product => ({

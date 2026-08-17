@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale } from "next-intl";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter, usePathname } from "@/lib/i18n/navigation";
 import { cn } from "@/lib/utils";
 
 interface LocaleSwitcherProps {
@@ -14,9 +14,7 @@ export function LocaleSwitcher({ variant = "light" }: LocaleSwitcherProps) {
   const pathname = usePathname();
 
   const switchLocale = (newLocale: string) => {
-    const segments = pathname.split("/");
-    segments[1] = newLocale;
-    router.push(segments.join("/"));
+    router.push(pathname, { locale: newLocale });
   };
 
   const isDark = variant === "dark";

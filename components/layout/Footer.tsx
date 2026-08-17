@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
+import { Link, getPathname } from "@/lib/i18n/navigation";
 import { Logo } from "./Logo";
 import { InstagramIcon, LinkedInIcon } from "./SocialIcons";
 import { COMPANY_INFO, VISIBLE_PRODUCTS, CERTIFICATIONS } from "@/lib/constants/company";
@@ -11,7 +11,7 @@ export function Footer() {
   const tCerts = useTranslations("home.certifications.items");
   const locale = useLocale();
 
-  const localizedHref = (href: string) => `/${locale}${href}`;
+  const homeHref = getPathname({ href: "/", locale });
   const currentYear = new Date().getFullYear();
 
   return (
@@ -20,7 +20,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-[1fr_auto_2fr_auto]">
           {/* Brand */}
           <div>
-            <Logo variant="white" href={`/${locale}`} />
+            <Logo variant="white" href={homeHref} />
             <p className="mt-4 text-sm leading-relaxed text-white/60">
               {t("description")}
             </p>
@@ -35,7 +35,7 @@ export function Footer() {
               {["nosotros", "productos", "presencia", "contacto"].map((key) => (
                 <li key={key}>
                   <Link
-                    href={localizedHref(`/${key}`)}
+                    href={`/${key}`}
                     className="text-sm text-white/70 transition-colors hover:text-white"
                   >
                     {tNav(key as Parameters<typeof tNav>[0])}
@@ -54,7 +54,7 @@ export function Footer() {
               {VISIBLE_PRODUCTS.map((product) => (
                 <li key={product.id}>
                   <Link
-                    href={localizedHref("/productos")}
+                    href="/productos"
                     className="text-xs text-white/60 transition-colors hover:text-white"
                   >
                     {tProducts(`${product.id}.name` as Parameters<typeof tProducts>[0])}
@@ -109,7 +109,7 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-6 text-xs text-white/40">
             <Link
-              href={localizedHref("/terminos-y-condiciones")}
+              href="/terminos-y-condiciones"
               className="transition-colors hover:text-white"
             >
               {t("terms")}

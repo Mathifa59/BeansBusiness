@@ -1,15 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
+import { Link } from "@/lib/i18n/navigation";
 import { ArrowRight, ChevronDown, MessageCircle } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { SectionTag } from "@/components/ui/section-tag";
 
 export function HeroSection() {
   const t = useTranslations("home.hero");
-  const locale = useLocale();
 
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
@@ -61,7 +60,7 @@ export function HeroSection() {
           className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
           <Link
-            href={`/${locale}/productos`}
+            href="/productos"
             className={buttonVariants({
               size: "lg",
               className:
@@ -72,7 +71,7 @@ export function HeroSection() {
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
           <Link
-            href={`/${locale}/contacto`}
+            href="/contacto"
             className={buttonVariants({
               variant: "outline",
               size: "lg",

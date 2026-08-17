@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
+import { Link } from "@/lib/i18n/navigation";
 import { ArrowRight, Check } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { SectionTag } from "@/components/ui/section-tag";
@@ -11,7 +11,6 @@ import { slideInLeft, fadeUp } from "@/lib/animations";
 
 export function AboutPreview() {
   const t = useTranslations("home.about");
-  const locale = useLocale();
 
   const features = t.raw("features") as string[];
 
@@ -53,7 +52,7 @@ export function AboutPreview() {
           </ul>
 
           <Link
-            href={`/${locale}/nosotros`}
+            href="/nosotros"
             className="group mt-8 inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-primary-dark"
           >
             {t("cta")}

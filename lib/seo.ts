@@ -17,17 +17,39 @@ export const OG_IMAGE = {
 } as const;
 
 /**
- * `alternates` para una ruta (sin locale, ej. "/productos" o "" para home):
- * canonical autoreferenciado + un `languages` con cada locale disponible,
- * para que Google entienda que /es/productos y /en/productos son la misma
- * página en dos idiomas en vez de contenido duplicado.
+ * URL absoluta para una ruta (sin locale, ej. "/productos" o "" para home)
+ * en un locale dado. El locale por defecto (español) se sirve sin prefijo
+ * (`localePrefix: "as-needed"`); los demás locales llevan su prefijo.
+ */
+export function localizedUrl(locale: string, path: string): string {
+  return locale === routing.defaultLocale
+    ? `${SITE_URL}${path}`
+    : `${SITE_URL}/${locale}${path}`;
+}
+
+/**
+ * Mapa hreflang para una ruta: una entrada por locale disponible más
+ * `x-default` apuntando a la versión en el idioma por defecto (español, sin
+ * prefijo) — le dice a Google qué URL servir cuando ningún idioma/región del
+ * visitante coincide con los que declaramos explícitamente.
+ */
+export function languageAlternates(path: string): Record<string, string> {
+  return {
+    ...Object.fromEntries(routing.locales.map((l) => [l, localizedUrl(l, path)])),
+    "x-default": localizedUrl(routing.defaultLocale, path),
+  };
+}
+
+/**
+ * `alternates` para una ruta: canonical autoreferenciado + hreflang para
+ * cada locale disponible (incluye x-default), para que Google entienda que
+ * /productos y /en/productos son la misma página en dos idiomas en vez de
+ * contenido duplicado.
  */
 export function pageAlternates(locale: string, path: string) {
   return {
-    canonical: `${SITE_URL}/${locale}${path}`,
-    languages: Object.fromEntries(
-      routing.locales.map((l) => [l, `${SITE_URL}/${l}${path}`])
-    ),
+    canonical: localizedUrl(locale, path),
+    languages: languageAlternates(path),
   };
 }
 
@@ -45,7 +67,7 @@ export function breadcrumbJsonLd(locale: string, items: BreadcrumbItem[]) {
       "@type": "ListItem",
       position: i + 1,
       name: item.name,
-      item: `${SITE_URL}/${locale}${item.path}`,
+      item: localizedUrl(locale, item.path),
     })),
   };
 }

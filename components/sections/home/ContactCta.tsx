@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
+import { Link } from "@/lib/i18n/navigation";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { AnimatedSection } from "@/components/ui/animated-section";
@@ -10,7 +10,6 @@ import { WHATSAPP_URL } from "@/lib/constants/company";
 
 export function ContactCta() {
   const t = useTranslations("home.finalCta");
-  const locale = useLocale();
 
   return (
     <SectionWrapper
@@ -28,7 +27,7 @@ export function ContactCta() {
 
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
-            href={`/${locale}/contacto`}
+            href="/contacto"
             className={buttonVariants({
               size: "lg",
               className:

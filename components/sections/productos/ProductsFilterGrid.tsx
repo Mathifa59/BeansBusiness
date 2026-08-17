@@ -2,8 +2,8 @@
 
 import { useCallback, useMemo, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
+import { Link } from "@/lib/i18n/navigation";
 import {
   Filter,
   MapPin,
@@ -50,7 +50,6 @@ export function ProductsFilterGrid() {
   const tItems = useTranslations("products.items");
   const tGroups = useTranslations("products.groups");
   const tCommon = useTranslations("products");
-  const locale = useLocale();
 
   const [certFilter, setCertFilter] = useState<CertFilter>("all");
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>("all");
@@ -255,7 +254,7 @@ export function ProductsFilterGrid() {
                           {tCommon("viewDetails")}
                         </button>
                         <Link
-                          href={`/${locale}/contacto?producto=${product.id}`}
+                          href={`/contacto?producto=${product.id}`}
                           className="group ml-auto inline-flex items-center gap-1.5 text-sm font-semibold text-dark transition-colors hover:text-primary"
                         >
                           {tCommon("requestQuote")}
@@ -389,7 +388,7 @@ export function ProductsFilterGrid() {
                                 {tCommon("viewDetails")}
                               </button>
                               <Link
-                                href={`/${locale}/contacto?producto=${variantId}`}
+                                href={`/contacto?producto=${variantId}`}
                                 className="inline-flex items-center gap-1 text-xs font-semibold text-dark transition-colors hover:text-primary"
                               >
                                 {tCommon("requestQuote")}
@@ -504,7 +503,7 @@ export function ProductsFilterGrid() {
 
               <DialogFooter>
                 <Link
-                  href={`/${locale}/contacto?producto=${activeProduct.id}`}
+                  href={`/contacto?producto=${activeProduct.id}`}
                   className={buttonVariants({
                     size: "lg",
                     className:

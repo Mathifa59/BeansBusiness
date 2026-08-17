@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { routing } from "@/lib/i18n/routing";
-import { SITE_URL } from "@/lib/seo";
+import { localizedUrl, languageAlternates } from "@/lib/seo";
 
 const ROUTES = [
   { path: "", priority: 1, changeFrequency: "weekly" as const },
@@ -24,17 +24,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
 
   return ROUTES.map(({ path, priority, changeFrequency }) => ({
-    url: `${SITE_URL}/${routing.defaultLocale}${path}`,
+    url: localizedUrl(routing.defaultLocale, path),
     lastModified,
     changeFrequency,
     priority,
     alternates: {
-      languages: Object.fromEntries(
-        routing.locales.map((locale) => [
-          locale,
-          `${SITE_URL}/${locale}${path}`,
-        ])
-      ),
+      languages: languageAlternates(path),
     },
   }));
 }

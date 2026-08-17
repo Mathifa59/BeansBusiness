@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
+import { Link } from "@/lib/i18n/navigation";
 import { ArrowRight } from "lucide-react";
 import { PRODUCTS_FEATURED } from "@/lib/constants/company";
 import { Badge } from "@/components/ui/badge";
@@ -14,7 +14,6 @@ import { scaleIn } from "@/lib/animations";
 export function ProductsPreview() {
   const t = useTranslations("home.products");
   const tP = useTranslations("products.items");
-  const locale = useLocale();
 
   return (
     <SectionWrapper bg="off-white">
@@ -80,7 +79,7 @@ export function ProductsPreview() {
 
       <AnimatedSection className="mt-12 text-center">
         <Link
-          href={`/${locale}/productos`}
+          href="/productos"
           className={
             "group inline-flex items-center gap-2 rounded-full border-2 border-primary px-8 py-3 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white"
           }

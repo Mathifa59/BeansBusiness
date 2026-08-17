@@ -4,7 +4,7 @@ import { getMessages } from "next-intl/server";
 import type { Metadata } from "next";
 import { routing } from "@/lib/i18n/routing";
 import { COMPANY_INFO } from "@/lib/constants/company";
-import { SITE_URL, OG_IMAGE } from "@/lib/seo";
+import { SITE_URL, OG_IMAGE, localizedUrl } from "@/lib/seo";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
@@ -32,7 +32,7 @@ function organizationJsonLd(locale: string) {
     name: "Business Beans",
     legalName: COMPANY_INFO.razonSocial,
     taxID: COMPANY_INFO.ruc,
-    url: `${SITE_URL}/${locale}`,
+    url: localizedUrl(locale, ""),
     logo: `${SITE_URL}/logos/sinfondO.png`,
     email: COMPANY_INFO.email,
     telephone: COMPANY_INFO.telefono,

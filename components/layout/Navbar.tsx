@@ -1,9 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
-import { usePathname } from "next/navigation";
+import { Link, usePathname, getPathname } from "@/lib/i18n/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -42,10 +41,10 @@ export function Navbar() {
     setIsOpen(false);
   }
 
-  const localizedHref = (href: string) => `/${locale}${href}`;
+  const homeHref = getPathname({ href: "/", locale });
 
   const isActive = (href: string) => {
-    const target = `/${locale}${href}`;
+    const target = href || "/";
     return href === "" ? pathname === target : pathname.startsWith(target);
   };
 
@@ -64,7 +63,7 @@ export function Navbar() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
         <Logo
           variant={lightText ? "white" : "color"}
-          href={`/${locale}`}
+          href={homeHref}
         />
 
         {/* Desktop nav */}
@@ -72,7 +71,7 @@ export function Navbar() {
           {LINKS.map((link) => (
             <Link
               key={link.key}
-              href={localizedHref(link.href)}
+              href={link.href || "/"}
               className={cn(
                 "group relative py-1 text-sm font-medium transition-colors",
                 lightText
@@ -95,7 +94,7 @@ export function Navbar() {
         <div className="hidden items-center gap-4 lg:flex">
           <LocaleSwitcher variant={lightText ? "light" : "dark"} />
           <Link
-            href={localizedHref("/contacto")}
+            href="/contacto"
             className={buttonVariants({
               size: "sm",
               className:
@@ -140,7 +139,7 @@ export function Navbar() {
               className="fixed inset-y-0 right-0 z-50 flex w-full max-w-sm flex-col bg-white p-6 shadow-2xl lg:hidden"
             >
               <div className="flex items-center justify-between">
-                <Logo variant="color" href={`/${locale}`} />
+                <Logo variant="color" href={homeHref} />
                 <button
                   className="text-dark"
                   onClick={() => setIsOpen(false)}
@@ -154,7 +153,7 @@ export function Navbar() {
                 {LINKS.map((link) => (
                   <Link
                     key={link.key}
-                    href={localizedHref(link.href)}
+                    href={link.href || "/"}
                     onClick={() => setIsOpen(false)}
                     className={cn(
                       "rounded-lg px-4 py-3 text-base font-semibold transition-colors",
@@ -167,7 +166,7 @@ export function Navbar() {
                   </Link>
                 ))}
                 <Link
-                  href={localizedHref("/contacto")}
+                  href="/contacto"
                   onClick={() => setIsOpen(false)}
                   className="mt-2 rounded-full bg-primary px-4 py-3 text-center text-base font-semibold text-white transition-colors hover:bg-primary-dark"
                 >

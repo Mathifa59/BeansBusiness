@@ -36,10 +36,7 @@ function organizationJsonLd(locale: string) {
     logo: `${SITE_URL}/logos/sinfondO.png`,
     email: COMPANY_INFO.email,
     telephone: COMPANY_INFO.telefono,
-    sameAs: [
-      "https://instagram.com/businessbeansperu",
-      "https://facebook.com/businessbeansperu",
-    ],
+    sameAs: [COMPANY_INFO.instagram, COMPANY_INFO.linkedin],
   };
 }
 

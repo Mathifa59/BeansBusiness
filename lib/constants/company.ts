@@ -4,9 +4,17 @@ export const COMPANY_INFO = {
   razonSocial: "Business Beans Perú SRL",
   ruc: "20600960084",
   email: "info@businessbeans.com",
-  telefono: "+51 981 916 198",
+  telefono: "+51 947 698 007",
+  whatsapp: "+51 920 833 371",
+  direccion: "José Leonardo Ortiz, Lambayeque, Perú",
   website: "www.businessbeans.com.pe",
+  linkedin: "https://www.linkedin.com/company/business-beans-peru-s-r-l/",
+  instagram: "https://www.instagram.com/businessbeansperu/",
 } as const;
+
+/** Único punto de verdad para el link de WhatsApp — evita que los distintos
+ * botones del sitio queden apuntando a números distintos. */
+export const WHATSAPP_URL = `https://wa.me/${COMPANY_INFO.whatsapp.replace(/\D/g, "")}`;
 
 const p = (id: string, opts: Omit<Product, "id" | "nameKey" | "shortDescriptionKey" | "descriptionKey" | "seasonalityKey" | "destinationsKey" | "certificationsKey" | "calibreKey" | "packagingKey">): Product => ({
   id,
@@ -30,7 +38,7 @@ export const PRODUCTS: Product[] = [
   p("frijol-canario",   { category: "legumbres", tariffCode: "0713.33.92.00", availability: "all-year", imageSrc: "/productos/frijol-canario.png",   featured: true }),
   p("frijol-castilla",  { category: "legumbres", tariffCode: "0713.35.90.00", availability: "all-year", imageSrc: "/productos/frijol-castilla.png",  featured: true }),
   p("frejol-palo-seco", { category: "legumbres", tariffCode: "0713.60.90.00", availability: "all-year", imageSrc: "/productos/frejol-palo-seco.png" }),
-  p("habas-secas",      { category: "legumbres", tariffCode: "0713.50.90.00", availability: "all-year", imageSrc: "/productos/habas-secas.png",      featured: true }),
+  p("habas-secas",      { category: "legumbres", tariffCode: "0713.50.90.00", availability: "all-year", imageSrc: "/productos/habas-secas.png",      featured: true, hidden: true }),
   p("frejol-loctao",    { category: "legumbres", tariffCode: "0713.31.90.00", availability: "all-year", imageSrc: "/productos/frejol-loctao.png" }),
   p("frejol-negro",     { category: "legumbres", tariffCode: "0713.33.11.00", availability: "all-year", imageSrc: "/productos/frejol-negro.png" }),
   p("frejol-panamito",  { category: "legumbres", tariffCode: "0713.33.99.00", availability: "all-year", imageSrc: "/productos/frejol-panamito.png" }),
@@ -38,7 +46,7 @@ export const PRODUCTS: Product[] = [
   p("pallar-grande",    { category: "legumbres", tariffCode: "0713.39.91.00", availability: "all-year", imageSrc: "/productos/pallar-grande.png" }),
   p("frejol-rojo-claro",  { category: "legumbres", tariffCode: "0713.33.99.00", availability: "all-year", imageSrc: "/productos/frejol-rojo-claro.png" }),
   p("frejol-rojo-oscuro", { category: "legumbres", tariffCode: "0713.33.99.00", availability: "all-year", imageSrc: "/productos/frejol-rojo-oscuro.png" }),
-  p("garbanzo",         { category: "legumbres", tariffCode: "0713.20.90.00", availability: "all-year", imageSrc: "/productos/garbanzo.png",         featured: true }),
+  p("garbanzo",         { category: "legumbres", tariffCode: "0713.20.90.00", availability: "all-year", imageSrc: "/productos/garbanzo.png",         featured: true, hidden: true }),
   p("frejol-zarandaja", { category: "legumbres", tariffCode: "0713.39.99.00", availability: "all-year", imageSrc: "/productos/frejol-zarandaja.png" }),
 
   // ── Granos Andinos y Superalimentos ──────────────────────────────────────
@@ -56,7 +64,10 @@ export const PRODUCTS: Product[] = [
   p("ajonjoli-negro",    { category: "otros", tariffCode: "1207.40.90.00", availability: "all-year", imageSrc: "/productos/ajonjoli-negro.jpg" }),
 ];
 
-export const PRODUCTS_FEATURED = PRODUCTS.filter((p) => p.featured);
+export const PRODUCTS_FEATURED = PRODUCTS.filter((p) => p.featured && !p.hidden);
+
+/** Productos visibles al público: excluye los ocultos temporalmente del catálogo. */
+export const VISIBLE_PRODUCTS = PRODUCTS.filter((p) => !p.hidden);
 
 /**
  * Familias que se muestran consolidadas en una sola tarjeta dentro del
@@ -97,9 +108,9 @@ export const CATALOG_ENTRIES: Array<
   | { kind: "product"; product: Product }
   | { kind: "group"; group: ProductVariantGroup }
 > = [
-  ...PRODUCTS.filter((product) => !GROUPED_VARIANT_IDS.has(product.id)).map(
-    (product) => ({ kind: "product" as const, product })
-  ),
+  ...PRODUCTS.filter(
+    (product) => !GROUPED_VARIANT_IDS.has(product.id) && !product.hidden
+  ).map((product) => ({ kind: "product" as const, product })),
   ...PRODUCT_VARIANT_GROUPS.map((group) => ({ kind: "group" as const, group })),
 ];
 

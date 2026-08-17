@@ -2,8 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
-
-const WHATSAPP_URL = "https://wa.me/51981916198";
+import { WHATSAPP_URL } from "@/lib/constants/company";
 
 function WhatsAppIcon({ className }: { className?: string }) {
   return (

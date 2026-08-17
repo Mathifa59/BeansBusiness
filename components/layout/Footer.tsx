@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { Logo } from "./Logo";
-import { InstagramIcon, FacebookIcon } from "./SocialIcons";
-import { COMPANY_INFO, PRODUCTS, CERTIFICATIONS } from "@/lib/constants/company";
+import { InstagramIcon, LinkedInIcon } from "./SocialIcons";
+import { COMPANY_INFO, VISIBLE_PRODUCTS, CERTIFICATIONS } from "@/lib/constants/company";
 
 export function Footer() {
   const t = useTranslations("footer");
@@ -51,7 +51,7 @@ export function Footer() {
               {t("productsTitle")}
             </h3>
             <ul className="grid grid-cols-2 gap-x-8 gap-y-2 sm:grid-cols-3">
-              {PRODUCTS.map((product) => (
+              {VISIBLE_PRODUCTS.map((product) => (
                 <li key={product.id}>
                   <Link
                     href={localizedHref("/productos")}
@@ -82,7 +82,7 @@ export function Footer() {
             </h3>
             <div className="flex items-center gap-3">
               <a
-                href="https://instagram.com/businessbeansperu"
+                href={COMPANY_INFO.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -91,13 +91,13 @@ export function Footer() {
                 <InstagramIcon className="h-4 w-4" />
               </a>
               <a
-                href="https://facebook.com/businessbeansperu"
+                href={COMPANY_INFO.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Facebook"
+                aria-label="LinkedIn"
                 className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/70 transition-colors hover:bg-primary hover:text-white"
               >
-                <FacebookIcon className="h-4 w-4" />
+                <LinkedInIcon className="h-4 w-4" />
               </a>
             </div>
           </div>

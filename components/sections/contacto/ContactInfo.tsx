@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import { MapPin, Phone, MessageCircle } from "lucide-react";
-import { InstagramIcon, FacebookIcon } from "@/components/layout/SocialIcons";
+import { InstagramIcon, LinkedInIcon } from "@/components/layout/SocialIcons";
+import { WHATSAPP_URL } from "@/lib/constants/company";
 
 export function ContactInfo() {
   const t = useTranslations("contact.info");
@@ -12,8 +13,8 @@ export function ContactInfo() {
   ];
 
   const socials = [
-    { icon: FacebookIcon, label: t("facebook") },
     { icon: InstagramIcon, label: t("instagram") },
+    { icon: LinkedInIcon, label: t("linkedin") },
   ];
 
   return (
@@ -41,7 +42,7 @@ export function ContactInfo() {
       </div>
 
       <a
-        href="https://wa.me/51981916198"
+        href={WHATSAPP_URL}
         target="_blank"
         rel="noopener noreferrer"
         className="mt-8 flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"

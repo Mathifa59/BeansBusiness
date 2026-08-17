@@ -6,8 +6,7 @@ import { ArrowRight, MessageCircle } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { SectionWrapper } from "@/components/ui/section-wrapper";
-
-const WHATSAPP_URL = "https://wa.me/51981916198";
+import { WHATSAPP_URL } from "@/lib/constants/company";
 
 export function ContactCta() {
   const t = useTranslations("home.finalCta");

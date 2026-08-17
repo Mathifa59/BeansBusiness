@@ -18,7 +18,7 @@ export function InstagramIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-export function FacebookIcon(props: React.SVGProps<SVGSVGElement>) {
+export function LinkedInIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -29,7 +29,9 @@ export function FacebookIcon(props: React.SVGProps<SVGSVGElement>) {
       strokeLinejoin="round"
       {...props}
     >
-      <path d="M15 3h-2a4 4 0 0 0-4 4v3H7v3h2v8h3v-8h2.5l.5-3H12V7a1 1 0 0 1 1-1h2z" />
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4V8h4v1.5A5.98 5.98 0 0 1 16 8z" />
+      <rect x="2" y="9" width="4" height="12" />
+      <circle cx="4" cy="4" r="2" fill="currentColor" stroke="none" />
     </svg>
   );
 }

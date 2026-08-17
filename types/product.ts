@@ -5,6 +5,7 @@ export interface Product {
   imageSrc?: string;
   category: ProductCategory;
   featured?: boolean;
+  hidden?: boolean;
   nameKey: string;
   shortDescriptionKey: string;
   descriptionKey: string;

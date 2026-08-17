@@ -10,7 +10,7 @@ import {
   PARTICIPANT_OPTIONS,
   PRODUCT_OPTIONS,
 } from "@/lib/validations/contactSchema";
-import { PRODUCTS } from "@/lib/constants/company";
+import { VISIBLE_PRODUCTS } from "@/lib/constants/company";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -26,16 +26,16 @@ import {
 const PRODUCT_GROUPS = [
   {
     key: "categoryLegumbres",
-    ids: PRODUCTS.filter((p) => p.category === "legumbres").map((p) => p.id),
+    ids: VISIBLE_PRODUCTS.filter((p) => p.category === "legumbres").map((p) => p.id),
   },
   {
     key: "categoryGranosAndinos",
-    ids: PRODUCTS.filter((p) => p.category === "granos-andinos").map((p) => p.id),
+    ids: VISIBLE_PRODUCTS.filter((p) => p.category === "granos-andinos").map((p) => p.id),
   },
   {
     key: "categoryOtros",
     ids: [
-      ...PRODUCTS.filter((p) => p.category === "otros").map((p) => p.id),
+      ...VISIBLE_PRODUCTS.filter((p) => p.category === "otros").map((p) => p.id),
       "other" as const,
     ],
   },
@@ -64,6 +64,20 @@ export function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="space-y-6">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -z-10 h-0 w-0 overflow-hidden opacity-0"
+      >
+        <label htmlFor="web">No completar este campo</label>
+        <input
+          id="web"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          {...register("web")}
+        />
+      </div>
+
       <div className="space-y-2">
         <Label>{t("participantLabel")}</Label>
         <Controller

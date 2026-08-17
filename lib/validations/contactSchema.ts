@@ -47,6 +47,8 @@ export const contactSchema = z.object({
   telefono: z.string().optional(),
   productos: z.array(z.enum(PRODUCT_OPTIONS)).optional(),
   mensaje: z.string().min(20, "Mínimo 20 caracteres").max(2000),
+  // Honeypot anti-spam: los usuarios reales nunca lo ven ni lo completan.
+  web: z.string().optional(),
 });
 
 export type ContactSchema = z.infer<typeof contactSchema>;

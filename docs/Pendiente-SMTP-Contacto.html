@@ -1,0 +1,413 @@
+<title>Configuración SMTP del contacto</title>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #f4f7f1;
+    --bg-raised: #ffffff;
+    --ink: #1c2618;
+    --ink-soft: #4a5642;
+    --ink-faint: #7c8973;
+    --line: #d9e0d1;
+    --line-soft: #e7ecdf;
+    --green: #3f7a2c;
+    --green-dark: #2c5a1f;
+    --green-tint: #e7f0e0;
+    --amber: #b6790a;
+    --amber-tint: #fbf0da;
+    --mono-bg: #1c2618;
+    --mono-ink: #eef3e8;
+    --mono-accent: #9fd97a;
+    --shadow: 0 1px 2px rgba(28, 38, 24, 0.06), 0 8px 24px -12px rgba(28, 38, 24, 0.18);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141a10;
+      --bg-raised: #1b2316;
+      --ink: #eaf0e4;
+      --ink-soft: #b9c5b0;
+      --ink-faint: #7f8c76;
+      --line: #2c3625;
+      --line-soft: #232c1d;
+      --green: #7cc558;
+      --green-dark: #9fd97a;
+      --green-tint: #202b1a;
+      --amber: #e0a94a;
+      --amber-tint: #2c2411;
+      --mono-bg: #0e1309;
+      --mono-ink: #dce8d4;
+      --mono-accent: #8fd766;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 32px -16px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #141a10;
+    --bg-raised: #1b2316;
+    --ink: #eaf0e4;
+    --ink-soft: #b9c5b0;
+    --ink-faint: #7f8c76;
+    --line: #2c3625;
+    --line-soft: #232c1d;
+    --green: #7cc558;
+    --green-dark: #9fd97a;
+    --green-tint: #202b1a;
+    --amber: #e0a94a;
+    --amber-tint: #2c2411;
+    --mono-bg: #0e1309;
+    --mono-ink: #dce8d4;
+    --mono-accent: #8fd766;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 32px -16px rgba(0, 0, 0, 0.5);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 24px 96px;
+  }
+
+  .status-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--amber);
+    background: var(--amber-tint);
+    border: 1px solid var(--amber);
+    border-radius: 100px;
+    padding: 5px 12px 5px 10px;
+  }
+
+  .status-pill::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--amber);
+  }
+
+  .meta {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 12.5px;
+    color: var(--ink-faint);
+  }
+
+  h1 {
+    font-family: "Fraunces", ui-serif, Georgia, serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: clamp(1.9rem, 3.6vw, 2.5rem);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+
+  .dek {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    max-width: 54ch;
+    margin: 0 0 40px;
+  }
+
+  h2 {
+    font-family: "Fraunces", ui-serif, Georgia, serif;
+    font-weight: 500;
+    font-size: 1.3rem;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+    margin: 0 0 4px;
+  }
+
+  .section {
+    padding: 36px 0;
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .section:first-of-type { border-top: 1px solid var(--line); }
+
+  .section-eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin: 0 0 10px;
+  }
+
+  p { margin: 12px 0; max-width: 66ch; color: var(--ink); }
+  .section p { color: var(--ink-soft); }
+
+  strong { color: var(--ink); font-weight: 600; }
+
+  code.inline {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.87em;
+    background: var(--green-tint);
+    color: var(--green-dark);
+    padding: 0.1em 0.4em;
+    border-radius: 4px;
+  }
+
+  .codeblock {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 13.5px;
+    line-height: 1.7;
+    background: var(--mono-bg);
+    color: var(--mono-ink);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin: 18px 0;
+    overflow-x: auto;
+    box-shadow: var(--shadow);
+  }
+
+  .codeblock .key { color: var(--mono-accent); }
+  .codeblock .comment { color: #7f9670; }
+
+  .checklist {
+    list-style: none;
+    margin: 18px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .checklist li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+  }
+
+  .checklist .num {
+    flex: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--green-tint);
+    color: var(--green-dark);
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+
+  .checklist .body b {
+    display: block;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .checklist .body span {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+
+  .providers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 18px;
+  }
+
+  .provider {
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+  }
+
+  .provider h3 {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+
+  .provider dl {
+    margin: 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4px 10px;
+    font-size: 0.85rem;
+  }
+
+  .provider dt {
+    color: var(--ink-faint);
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.78rem;
+  }
+
+  .provider dd {
+    margin: 0;
+    color: var(--ink-soft);
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.78rem;
+  }
+
+  .note {
+    border-left: 3px solid var(--green);
+    background: var(--green-tint);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin: 16px 0;
+    font-size: 0.93rem;
+    color: var(--green-dark);
+  }
+
+  .footer {
+    margin-top: 8px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line-soft);
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+  }
+
+  a { color: var(--green-dark); }
+
+  @media (max-width: 520px) {
+    .page { padding: 40px 18px 72px; }
+  }
+</style>
+
+<div class="page">
+
+  <div class="status-row">
+    <span class="status-pill">Pendiente</span>
+    <span class="meta">business-beans · app/api/contacto</span>
+  </div>
+
+  <h1>Configuración SMTP del formulario de contacto</h1>
+  <p class="dek">El código ya está migrado de Resend a SMTP propio. Falta un solo paso: las credenciales del buzón que va a enviar los correos.</p>
+
+  <div class="section">
+    <p class="section-eyebrow">Qué pasó</p>
+    <h2>El envío ya no depende de Resend</h2>
+    <p>En un pull reciente se migró el formulario de contacto de Resend a <strong>SMTP autenticado</strong>, usando el buzón propio del cliente (<code class="inline">comercial@businessbeans.com.pe</code>). El código en <code class="inline">app/api/contacto/route.ts</code> y <code class="inline">lib/mail/transporter.ts</code> ya está listo, con honeypot anti-spam y límite de envíos por IP incluidos.</p>
+  </div>
+
+  <div class="section">
+    <p class="section-eyebrow">Qué falta</p>
+    <h2>Las variables de entorno nunca se configuraron</h2>
+    <p><code class="inline">.env.local</code> todavía tiene las variables de la época de Resend, que el código actual ya no lee. Necesita estas cinco:</p>
+    <div class="codeblock">
+<span class="comment"># .env.local — y las mismas 5 en Vercel</span>
+<span class="key">SMTP_HOST</span>=
+<span class="key">SMTP_PORT</span>=465
+<span class="key">SMTP_USER</span>=
+<span class="key">SMTP_PASS</span>=
+<span class="key">MAIL_TO</span>=
+    </div>
+    <p>Sin esto, el formulario responde bien en pantalla pero el envío del correo falla en silencio del lado del servidor.</p>
+  </div>
+
+  <div class="section">
+    <p class="section-eyebrow">Qué necesito de ti</p>
+    <h2>Tres datos para cerrar esto</h2>
+    <ul class="checklist">
+      <li>
+        <span class="num">1</span>
+        <span class="body">
+          <b>Dónde está alojado comercial@businessbeans.com.pe</b>
+          <span>Google Workspace, Microsoft 365, o el panel de hosting/dominio donde se creó el correo — define el host y puerto SMTP correctos.</span>
+        </span>
+      </li>
+      <li>
+        <span class="num">2</span>
+        <span class="body">
+          <b>La contraseña de esa cuenta</b>
+          <span>Si tiene verificación en 2 pasos (Gmail/Workspace), hace falta generar una "contraseña de aplicación" — la contraseña normal de login no funciona para SMTP.</span>
+        </span>
+      </li>
+      <li>
+        <span class="num">3</span>
+        <span class="body">
+          <b>A qué correo(s) deben llegar los mensajes</b>
+          <span>Puede ser el mismo comercial@... u otra dirección interna del equipo comercial.</span>
+        </span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <p class="section-eyebrow">Referencia rápida</p>
+    <h2>SMTP según dónde vive el correo</h2>
+    <div class="providers">
+      <div class="provider">
+        <h3>Google Workspace</h3>
+        <dl>
+          <dt>host</dt><dd>smtp.gmail.com</dd>
+          <dt>puerto</dt><dd>465</dd>
+          <dt>auth</dt><dd>contraseña de app</dd>
+        </dl>
+      </div>
+      <div class="provider">
+        <h3>Microsoft 365</h3>
+        <dl>
+          <dt>host</dt><dd>smtp.office365.com</dd>
+          <dt>puerto</dt><dd>587</dd>
+          <dt>auth</dt><dd>login normal / app</dd>
+        </dl>
+      </div>
+      <div class="provider">
+        <h3>Panel de hosting</h3>
+        <dl>
+          <dt>host</dt><dd>mail.tudominio.pe</dd>
+          <dt>puerto</dt><dd>465 / 587</dd>
+          <dt>auth</dt><dd>usuario del correo</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="note">Si no sabes cuál aplica, dime cómo entras normalmente a revisar ese correo (¿por gmail.com, outlook.com, o un webmail del proveedor de hosting?) y lo identifico por ahí.</div>
+  </div>
+
+  <div class="section">
+    <p class="section-eyebrow">Dónde pegarlo</p>
+    <h2>Local y producción</h2>
+    <p><strong>Local:</strong> las 5 variables van en <code class="inline">.env.local</code>, en la raíz del proyecto.</p>
+    <p><strong>Producción:</strong> Vercel → proyecto <code class="inline">beans-business</code> → Settings → Environment Variables → agregar las mismas 5, entorno "Production". Eso lo tienes que hacer tú directamente en el panel de Vercel, por seguridad de la contraseña.</p>
+  </div>
+
+  <div class="footer">
+    Business Beans Perú — nota de trabajo interna, generada a partir de la revisión de app/api/contacto.
+  </div>
+
+</div>

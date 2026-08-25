@@ -11,7 +11,7 @@ export function PageHero() {
 
   return (
     <section className="gradient-hero relative overflow-hidden pb-12 pt-28">
-      <Image src="/cosecha-garbanzo.jpg" alt="" fill priority className="object-cover" />
+      <Image src="/pallar-fondo.jpg" alt="" fill priority className="object-cover" />
       <div className="absolute inset-0 bg-gradient-to-br from-dark/80 via-primary-dark/70 to-primary/60" />
 
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center text-white lg:px-8">

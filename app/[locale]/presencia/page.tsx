@@ -49,7 +49,7 @@ export default async function PresenciaPage() {
       />
       <PageHero />
       <WorldMapSection />
-      <ContactCta />
+      <ContactCta showImage={false} />
     </>
   );
 }

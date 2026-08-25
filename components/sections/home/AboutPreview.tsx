@@ -20,7 +20,7 @@ export function AboutPreview() {
         <AnimatedSection variants={slideInLeft} className="relative">
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-lg">
             <Image
-              src="/cosecha-garbanzo.jpg"
+              src="/seleccion.jpg"
               alt=""
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"

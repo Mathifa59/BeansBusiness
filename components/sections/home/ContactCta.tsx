@@ -8,14 +8,20 @@ import { AnimatedSection } from "@/components/ui/animated-section";
 import { SectionWrapper } from "@/components/ui/section-wrapper";
 import { WHATSAPP_URL } from "@/lib/constants/company";
 
-export function ContactCta() {
+interface ContactCtaProps {
+  showImage?: boolean;
+}
+
+export function ContactCta({ showImage = true }: ContactCtaProps) {
   const t = useTranslations("home.finalCta");
 
   return (
     <SectionWrapper
-      bg="dark"
-      bgImage="/cosecha-garbanzo.jpg"
-      bgOverlayClassName="bg-gradient-to-br from-dark/95 via-dark/85 to-primary-dark/80"
+      bg={showImage ? "dark" : "green"}
+      bgImage={showImage ? "/pallar-fondo.jpg" : undefined}
+      bgOverlayClassName={
+        showImage ? "bg-gradient-to-br from-dark/95 via-dark/85 to-primary-dark/80" : undefined
+      }
     >
       <AnimatedSection className="text-center">
         <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">

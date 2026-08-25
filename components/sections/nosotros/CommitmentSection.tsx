@@ -11,7 +11,7 @@ export function CommitmentSection() {
   return (
     <SectionWrapper
       bg="green"
-      bgImage="/Campos.jpg"
+      bgImage="/canario-fondo.jpg"
       bgOverlayClassName="bg-gradient-to-br from-primary-dark/90 via-primary/80 to-primary/70"
     >
       <AnimatedSection variants={fadeUp} className="mx-auto max-w-3xl text-center">

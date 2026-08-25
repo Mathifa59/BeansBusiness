@@ -1,7 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Download, FileText } from "lucide-react";
+import { Mail, FileText } from "lucide-react";
+import { Link } from "@/lib/i18n/navigation";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { SectionWrapper } from "@/components/ui/section-wrapper";
 import { buttonVariants } from "@/components/ui/button";
@@ -29,18 +30,17 @@ export function CatalogDownload() {
         <p className="mt-4 max-w-xl text-lg leading-relaxed text-white/80">
           {t("subtitle")}
         </p>
-        <a
-          href="/catalogo.pdf"
-          download
+        <Link
+          href="/contacto"
           className={buttonVariants({
             size: "lg",
             className:
               "group mt-8 rounded-full border-2 border-white/40 bg-white/10 px-10 py-5 text-base font-semibold text-white backdrop-blur-sm hover:bg-white hover:text-primary hover:border-white hover:shadow-xl",
           })}
         >
-          <Download className="mr-2 h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
+          <Mail className="mr-2 h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
           {t("cta")}
-        </a>
+        </Link>
       </AnimatedSection>
     </SectionWrapper>
   );

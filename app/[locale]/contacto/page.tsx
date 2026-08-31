@@ -14,10 +14,12 @@ const PATH = "/contacto";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
-  const t = await getTranslations("nav");
   const tHero = await getTranslations("contact.hero");
   return {
-    title: t("contacto"),
+    title:
+      locale === "en"
+        ? "Request a Quote for Peruvian Legumes"
+        : "Solicita tu Cotización de Legumbres Peruanas",
     description: tHero("subtitle"),
     keywords:
       locale === "en"

@@ -32,7 +32,7 @@
     "about": {
       "eyebrow": "WHO WE ARE",
       "title": "Connecting Peru's agricultural richness with the world",
-      "description": "Business Beans Perú was founded with the mission of bringing the best of Peruvian agriculture to national and international markets. We specialize in the selection, processing, and export of high-quality legumes, operating under the strictest food safety standards.",
+      "description": "Business Beans was founded with the mission of bringing the best of Peruvian agriculture to national and international markets. We specialize in the selection, processing, and export of high-quality legumes, operating under the strictest food safety standards.",
       "features": [
         "FDA, SENASA, and HACCP certified processes",
         "Technified selection with state-of-the-art machinery",
@@ -150,7 +150,7 @@
     },
     "commitment": {
       "quote": "We believe quality is not a destination, but the starting point of every shipment that leaves Peru for the world.",
-      "signature": "— Business Beans Perú"
+      "signature": "— Business Beans"
     }
   },
   "products": {
@@ -527,7 +527,7 @@
     "institutional": {
       "eyebrow": "INSTITUTIONAL SUPPORT",
       "title": "Aligned with Peru's export promotion",
-      "description": "Business Beans Perú operates in alignment with the export promotion objectives driven by PROMPERÚ and MINCETUR, contributing to increasing the international visibility of Peru's exports and strengthening agro-export sector competitiveness."
+      "description": "Business Beans operates in alignment with the export promotion objectives driven by PROMPERÚ and MINCETUR, contributing to increasing the international visibility of Peru's exports and strengthening agro-export sector competitiveness."
     },
     "testimonials": {
       "eyebrow": "OUR TRADE PARTNERS",
@@ -620,7 +620,7 @@
       "location": "José Leonardo Ortiz, Lambayeque, Peru",
       "phone": "+51 947 698 007",
       "whatsapp": "WhatsApp: +51 920 833 371",
-      "linkedin": "LinkedIn: Business Beans Peru",
+      "linkedin": "LinkedIn: Business Beans",
       "instagram": "Instagram: businessbeansperu",
       "whatsappCta": "Message on WhatsApp"
     }
@@ -634,6 +634,7 @@
     "certificationsTitle": "Certifications",
     "socialTitle": "Social Media",
     "terms": "Terms and Conditions",
+    "privacy": "Privacy Policy",
     "complaints": "Complaints Book",
     "suggestions": "Complaints & Suggestions"
   },
@@ -728,5 +729,58 @@
         "content": "For any questions about these Terms and Conditions, you may contact us at: info@businessbeans.com"
       }
     }
+  },
+  "privacidad": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: August 2026",
+    "sections": {
+      "responsable": {
+        "title": "1. Data controller",
+        "content": "Business Beans Perú SRL (Tax ID / RUC 20600960084), domiciled at José Leonardo Ortiz, Lambayeque, Peru, is responsible for processing the personal data you provide through this website, in accordance with Law No. 29733, the Personal Data Protection Law, and its Regulation approved by Supreme Decree No. 016-2024-JUS."
+      },
+      "datosRecopilados": {
+        "title": "2. Data we collect",
+        "content": "Through the contact form we collect: name, company, country, email address, phone number, products of interest, and the message you write. Through the Virtual Complaints Book we additionally collect ID document type and number, address, and details of the product or service being reported, as required by the Consumer Protection Code (Law No. 29571)."
+      },
+      "finalidad": {
+        "title": "3. Purpose of processing",
+        "content": "We use your data solely to respond to your inquiries and commercial quote requests, and to manage and respond to complaints or claims filed through the Complaints Book. We do not use your data to send advertising, nor do we share it for marketing purposes."
+      },
+      "conservacion": {
+        "title": "4. Retention period",
+        "content": "We retain your data only for as long as necessary to handle your request and comply with applicable legal obligations, including the retention periods required for Complaints Books under consumer protection regulations."
+      },
+      "terceros": {
+        "title": "5. Data processors and third parties",
+        "content": "To send emails we use messaging service providers (our own corporate email and an external email delivery provider), which act as data processors under a confidentiality obligation. We do not sell or share your data with third parties for purposes other than those described here."
+      },
+      "derechosArco": {
+        "title": "6. Your rights",
+        "content": "You may exercise your rights to access, rectify, cancel, and object to the processing of your data at any time, as well as withdraw your consent, by writing to info@businessbeans.com indicating the right you wish to exercise and attaching a copy of your ID document."
+      },
+      "seguridad": {
+        "title": "7. Security measures",
+        "content": "We adopt reasonable technical and organizational measures to protect your personal data against unauthorized access, loss, or alteration."
+      },
+      "cookies": {
+        "title": "8. Cookies",
+        "content": "This site currently uses only essential technical cookies required for it to function; we do not use analytics or advertising cookies. If we add measurement tools in the future, we will update this policy and request your consent before activating them."
+      },
+      "cambios": {
+        "title": "9. Changes to this policy",
+        "content": "We may update this Privacy Policy to reflect legal or operational changes. The date of the last update is shown at the top of this page."
+      },
+      "contacto": {
+        "title": "10. Contact",
+        "content": "For questions about this Privacy Policy or how your data is processed, write to us at info@businessbeans.com."
+      }
+    }
+  },
+  "notFound": {
+    "eyebrow": "Error 404",
+    "title": "This page doesn't exist",
+    "description": "The link may be broken or the page may have moved. Head back home or check out our product catalog.",
+    "cta": "Back to home",
+    "ctaSecondary": "View products"
   }
 }

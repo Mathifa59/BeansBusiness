@@ -9,10 +9,12 @@ const PATH = "/productos";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
-  const t = await getTranslations("nav");
   const tHero = await getTranslations("products.hero");
   return {
-    title: t("productos"),
+    title:
+      locale === "en"
+        ? "Peruvian Legumes & Andean Grains for Export"
+        : "Legumbres y Granos Andinos para Exportación",
     description: tHero("subtitle"),
     keywords:
       locale === "en"

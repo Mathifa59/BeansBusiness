@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, DM_Sans } from "next/font/google";
+import { getLocale } from "next-intl/server";
 import { SITE_URL, OG_IMAGE } from "@/lib/seo";
 import "./globals.css";
 
@@ -47,14 +48,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+
   return (
     <html
-      lang="es"
+      lang={locale}
       className={`${plusJakarta.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">{children}</body>

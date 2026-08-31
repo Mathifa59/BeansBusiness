@@ -1,0 +1,90 @@
+import { useTranslations } from "next-intl";
+import { getTranslations, getLocale } from "next-intl/server";
+import type { Metadata } from "next";
+import { pageAlternates, breadcrumbJsonLd } from "@/lib/seo";
+import { SectionWrapper } from "@/components/ui/section-wrapper";
+import { AnimatedSection } from "@/components/ui/animated-section";
+import { fadeUp, staggerContainer } from "@/lib/animations";
+
+const PATH = "/politica-de-privacidad";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const t = await getTranslations("privacidad");
+  return {
+    title: t("title"),
+    description:
+      locale === "en"
+        ? "How Business Beans collects, uses, and protects your personal data."
+        : "Cómo Business Beans recopila, usa y protege tus datos personales.",
+    alternates: pageAlternates(locale, PATH),
+  };
+}
+
+function PrivacidadHero() {
+  const t = useTranslations("privacidad");
+  return (
+    <section className="gradient-hero relative overflow-hidden pb-16 pt-32">
+      <div className="absolute inset-0 bg-dark/30" />
+      <div className="blur-blob absolute -left-16 bottom-0 h-72 w-72 rounded-full bg-accent/30" />
+      <div className="relative z-10 mx-auto max-w-4xl px-6 text-center text-white lg:px-8">
+        <AnimatedSection variants={fadeUp}>
+          <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">{t("title")}</h1>
+          <p className="mt-4 text-sm text-white/50">{t("lastUpdated")}</p>
+        </AnimatedSection>
+      </div>
+    </section>
+  );
+}
+
+export default async function PrivacidadPage() {
+  const locale = await getLocale();
+  const t = await getTranslations("privacidad");
+  const tNav = await getTranslations("nav");
+  const sectionKeys = [
+    "responsable",
+    "datosRecopilados",
+    "finalidad",
+    "conservacion",
+    "terceros",
+    "derechosArco",
+    "seguridad",
+    "cookies",
+    "cambios",
+    "contacto",
+  ] as const;
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbJsonLd(locale, [
+              { name: tNav("home"), path: "" },
+              { name: t("title"), path: PATH },
+            ])
+          ),
+        }}
+      />
+      <PrivacidadHero />
+      <SectionWrapper bg="off-white" innerClassName="max-w-3xl">
+        <AnimatedSection
+          variants={staggerContainer}
+          className="space-y-10 rounded-2xl bg-white p-8 shadow-sm sm:p-10"
+        >
+          {sectionKeys.map((key) => (
+            <AnimatedSection key={key} variants={fadeUp}>
+              <h2 className="text-lg font-bold text-dark">
+                {t(`sections.${key}.title`)}
+              </h2>
+              <p className="mt-3 leading-relaxed text-gray-700">
+                {t(`sections.${key}.content`)}
+              </p>
+            </AnimatedSection>
+          ))}
+        </AnimatedSection>
+      </SectionWrapper>
+    </>
+  );
+}

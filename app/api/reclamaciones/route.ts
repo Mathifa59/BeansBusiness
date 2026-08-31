@@ -4,9 +4,15 @@ import { reclamacionSchema } from "@/lib/validations/reclamacionSchema";
 import { generateCodigo } from "@/lib/services/counterService";
 import { reclamacionConsumidorHtml } from "@/lib/emails/reclamacionConsumidor";
 import { reclamacionAdminHtml } from "@/lib/emails/reclamacionAdmin";
+import { isRateLimited, getClientIp } from "@/lib/mail/rateLimit";
 
 export async function POST(req: NextRequest) {
   try {
+    const ip = getClientIp(req);
+    if (isRateLimited(ip)) {
+      return NextResponse.json({ ok: false, error: "rate_limited" }, { status: 429 });
+    }
+
     const body: unknown = await req.json();
     const parsed = reclamacionSchema.safeParse(body);
 
@@ -18,6 +24,13 @@ export async function POST(req: NextRequest) {
     }
 
     const data = parsed.data;
+
+    // Honeypot: si un bot completó este campo oculto, respondemos "ok" sin
+    // enviar el correo, para no revelar que fue detectado.
+    if (data.web) {
+      return NextResponse.json({ ok: true, codigo: "" });
+    }
+
     const codigo = await generateCodigo();
     const resend = new Resend(process.env.RESEND_API_KEY);
 

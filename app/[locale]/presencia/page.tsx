@@ -9,10 +9,12 @@ const PATH = "/presencia";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
-  const t = await getTranslations("nav");
   const tHero = await getTranslations("presence.hero");
   return {
-    title: t("presencia"),
+    title:
+      locale === "en"
+        ? "Global Reach: Exporting to 15+ Countries"
+        : "Presencia Internacional: Exportamos a 15+ Países",
     description: tHero("subtitle"),
     keywords:
       locale === "en"

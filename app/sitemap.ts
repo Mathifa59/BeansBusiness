@@ -18,6 +18,11 @@ const ROUTES = [
     priority: 0.3,
     changeFrequency: "yearly" as const,
   },
+  {
+    path: "/politica-de-privacidad",
+    priority: 0.3,
+    changeFrequency: "yearly" as const,
+  },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

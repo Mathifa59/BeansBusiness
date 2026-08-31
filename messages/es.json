@@ -32,7 +32,7 @@
     "about": {
       "eyebrow": "QUIÉNES SOMOS",
       "title": "Conectamos la riqueza agrícola del Perú con el mundo",
-      "description": "Business Beans Perú nace con la misión de llevar lo mejor del campo peruano a mercados nacionales e internacionales. Somos especialistas en la selección, procesamiento y exportación de legumbres de alta calidad, trabajando bajo los más estrictos estándares de inocuidad alimentaria.",
+      "description": "Business Beans nace con la misión de llevar lo mejor del campo peruano a mercados nacionales e internacionales. Somos especialistas en la selección, procesamiento y exportación de legumbres de alta calidad, trabajando bajo los más estrictos estándares de inocuidad alimentaria.",
       "features": [
         "Procesos certificados FDA, SENASA y HACCP",
         "Selección tecnificada con maquinaria de última generación",
@@ -150,7 +150,7 @@
     },
     "commitment": {
       "quote": "Creemos que la calidad no es un destino, sino el punto de partida de cada embarque que sale del Perú al mundo.",
-      "signature": "— Business Beans Perú"
+      "signature": "— Business Beans"
     }
   },
   "products": {
@@ -527,7 +527,7 @@
     "institutional": {
       "eyebrow": "RESPALDO INSTITUCIONAL",
       "title": "Alineados con la promoción exportadora del Perú",
-      "description": "Business Beans Perú trabaja en línea con los objetivos de promoción de exportaciones impulsados por PROMPERÚ y MINCETUR, contribuyendo a incrementar la visibilidad internacional de la oferta peruana y fortalecer la competitividad del sector agroexportador."
+      "description": "Business Beans trabaja en línea con los objetivos de promoción de exportaciones impulsados por PROMPERÚ y MINCETUR, contribuyendo a incrementar la visibilidad internacional de la oferta peruana y fortalecer la competitividad del sector agroexportador."
     },
     "testimonials": {
       "eyebrow": "NUESTROS SOCIOS COMERCIALES",
@@ -620,7 +620,7 @@
       "location": "José Leonardo Ortiz, Lambayeque, Perú",
       "phone": "+51 947 698 007",
       "whatsapp": "WhatsApp: +51 920 833 371",
-      "linkedin": "LinkedIn: Business Beans Perú",
+      "linkedin": "LinkedIn: Business Beans",
       "instagram": "Instagram: businessbeansperu",
       "whatsappCta": "Escribir por WhatsApp"
     }
@@ -634,6 +634,7 @@
     "certificationsTitle": "Certificaciones",
     "socialTitle": "Redes Sociales",
     "terms": "Términos y Condiciones",
+    "privacy": "Política de Privacidad",
     "complaints": "Libro de Reclamaciones",
     "suggestions": "Reclamos y Sugerencias"
   },
@@ -728,5 +729,58 @@
         "content": "Para cualquier consulta sobre estos Términos y Condiciones, puede contactarnos en: info@businessbeans.com"
       }
     }
+  },
+  "privacidad": {
+    "title": "Política de Privacidad",
+    "lastUpdated": "Última actualización: Agosto 2026",
+    "sections": {
+      "responsable": {
+        "title": "1. Responsable del tratamiento",
+        "content": "Business Beans Perú SRL (RUC 20600960084), con domicilio en José Leonardo Ortiz, Lambayeque, Perú, es responsable del tratamiento de los datos personales que usted proporciona a través de este sitio web, de acuerdo con la Ley N.° 29733, Ley de Protección de Datos Personales, y su Reglamento aprobado mediante el D.S. N.° 016-2024-JUS."
+      },
+      "datosRecopilados": {
+        "title": "2. Datos que recopilamos",
+        "content": "A través del formulario de contacto recopilamos: nombre, empresa, país, correo electrónico, teléfono, productos de interés y el mensaje que usted redacta. A través del Libro de Reclamaciones Virtual recopilamos, además, tipo y número de documento de identidad, dirección, y los datos del bien o servicio reclamado, conforme lo exige el Código de Protección y Defensa del Consumidor (Ley N.° 29571)."
+      },
+      "finalidad": {
+        "title": "3. Finalidad del tratamiento",
+        "content": "Usamos sus datos únicamente para responder sus consultas y cotizaciones comerciales, y para gestionar y dar respuesta a reclamos o quejas registrados en el Libro de Reclamaciones. No usamos sus datos para enviar publicidad ni los cedemos con fines de marketing."
+      },
+      "conservacion": {
+        "title": "4. Plazo de conservación",
+        "content": "Conservamos sus datos únicamente durante el tiempo necesario para atender su solicitud y cumplir con las obligaciones legales aplicables, incluyendo los plazos de conservación exigidos a los Libros de Reclamaciones por la normativa de protección al consumidor."
+      },
+      "terceros": {
+        "title": "5. Encargados de tratamiento y terceros",
+        "content": "Para el envío de correos electrónicos utilizamos proveedores de servicios de mensajería (correo corporativo propio y un proveedor externo de envío de correos), que actúan como encargados de tratamiento bajo obligación de confidencialidad. No vendemos ni compartimos sus datos con terceros para fines distintos a los aquí descritos."
+      },
+      "derechosArco": {
+        "title": "6. Sus derechos (ARCO)",
+        "content": "Usted puede ejercer en cualquier momento sus derechos de acceso, rectificación, cancelación y oposición (ARCO), así como revocar su consentimiento, escribiendo a info@businessbeans.com indicando el derecho que desea ejercer y adjuntando copia de su documento de identidad."
+      },
+      "seguridad": {
+        "title": "7. Medidas de seguridad",
+        "content": "Adoptamos medidas técnicas y organizativas razonables para proteger sus datos personales frente a accesos no autorizados, pérdida o alteración."
+      },
+      "cookies": {
+        "title": "8. Cookies",
+        "content": "Actualmente este sitio solo utiliza cookies técnicas esenciales para su funcionamiento; no usamos cookies de analítica ni de publicidad. Si en el futuro incorporamos herramientas de medición, actualizaremos esta política y solicitaremos su consentimiento antes de activarlas."
+      },
+      "cambios": {
+        "title": "9. Cambios a esta política",
+        "content": "Podemos actualizar esta Política de Privacidad para reflejar cambios legales u operativos. La fecha de la última actualización se indica al inicio de esta página."
+      },
+      "contacto": {
+        "title": "10. Contacto",
+        "content": "Para consultas sobre esta Política de Privacidad o el tratamiento de sus datos, escríbanos a info@businessbeans.com."
+      }
+    }
+  },
+  "notFound": {
+    "eyebrow": "Error 404",
+    "title": "Esta página no existe",
+    "description": "Es posible que el enlace esté roto o que la página se haya movido. Vuelve al inicio o revisa nuestro catálogo de productos.",
+    "cta": "Volver al inicio",
+    "ctaSecondary": "Ver productos"
   }
 }

@@ -11,10 +11,12 @@ const PATH = "/nosotros";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
-  const t = await getTranslations("nav");
   const tHero = await getTranslations("about.hero");
   return {
-    title: t("nosotros"),
+    title:
+      locale === "en"
+        ? "Certified Peruvian Agro-Export Company"
+        : "Empresa Agroexportadora Peruana Certificada",
     description: tHero("subtitle"),
     keywords:
       locale === "en"

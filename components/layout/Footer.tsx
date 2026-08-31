@@ -114,6 +114,18 @@ export function Footer() {
             >
               {t("terms")}
             </Link>
+            <Link
+              href="/politica-de-privacidad"
+              className="transition-colors hover:text-white"
+            >
+              {t("privacy")}
+            </Link>
+            <Link
+              href="/libro-de-reclamaciones"
+              className="transition-colors hover:text-white"
+            >
+              {t("complaints")}
+            </Link>
             <a
               href="https://docs.google.com/forms/d/e/1FAIpQLSe4WPXnSJcxVehgIS9fgcGe8zawMcvjW862Tnv6tmAPLmhwkw/viewform"
               target="_blank"

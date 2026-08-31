@@ -22,6 +22,20 @@ export function ReclamacionForm() {
 
   return (
     <form onSubmit={onSubmit} className="space-y-10">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -z-10 h-0 w-0 overflow-hidden opacity-0"
+      >
+        <label htmlFor="web">No completar este campo</label>
+        <input
+          id="web"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          {...form.register("web")}
+        />
+      </div>
+
       {/* Proveedor — read only */}
       <div className="rounded-xl bg-off-white p-6">
         <h2 className="mb-4 text-xs font-semibold uppercase tracking-widest text-gray-400">

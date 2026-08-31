@@ -50,6 +50,7 @@ export const reclamacionSchema = z.object({
   consumidor: datosConsumidorSchema,
   bienServicio: datosBienServicioSchema,
   detalle: detalleReclamacionSchema,
+  web: z.string().optional(),
 });
 
 export type ReclamacionSchema = z.infer<typeof reclamacionSchema>;

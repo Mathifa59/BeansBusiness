@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { WHATSAPP_URL } from "@/lib/constants/company";
+import { whatsappUrl } from "@/lib/constants/company";
 
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
@@ -18,7 +18,7 @@ export function WhatsAppButton() {
 
   return (
     <a
-      href={WHATSAPP_URL}
+      href={whatsappUrl(t("whatsappMessage"))}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="WhatsApp"

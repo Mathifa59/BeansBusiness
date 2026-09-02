@@ -5,16 +5,23 @@ export const COMPANY_INFO = {
   ruc: "20600960084",
   email: "info@businessbeans.com",
   telefono: "+51 947 698 007",
-  whatsapp: "+51 920 833 371",
+  whatsapp: "+51 947 698 007",
   direccion: "José Leonardo Ortiz, Lambayeque, Perú",
   website: "www.businessbeans.com.pe",
   linkedin: "https://www.linkedin.com/company/business-beans-peru-s-r-l/",
   instagram: "https://www.instagram.com/businessbeansperu/",
 } as const;
 
+const WHATSAPP_NUMBER = COMPANY_INFO.whatsapp.replace(/\D/g, "");
+
 /** Único punto de verdad para el link de WhatsApp — evita que los distintos
- * botones del sitio queden apuntando a números distintos. */
-export const WHATSAPP_URL = `https://wa.me/${COMPANY_INFO.whatsapp.replace(/\D/g, "")}`;
+ * botones del sitio queden apuntando a números o mensajes distintos.
+ * `message` va traducido (namespace "common", key "whatsappMessage") desde
+ * cada componente, así el mensaje precargado sale en el idioma del sitio. */
+export function whatsappUrl(message?: string) {
+  const base = `https://wa.me/${WHATSAPP_NUMBER}`;
+  return message ? `${base}?text=${encodeURIComponent(message)}` : base;
+}
 
 const p = (id: string, opts: Omit<Product, "id" | "nameKey" | "shortDescriptionKey" | "descriptionKey" | "seasonalityKey" | "destinationsKey" | "certificationsKey" | "calibreKey" | "packagingKey">): Product => ({
   id,

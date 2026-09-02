@@ -6,7 +6,7 @@ import { ArrowRight, MessageCircle } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { SectionWrapper } from "@/components/ui/section-wrapper";
-import { WHATSAPP_URL } from "@/lib/constants/company";
+import { whatsappUrl } from "@/lib/constants/company";
 
 interface ContactCtaProps {
   showImage?: boolean;
@@ -14,6 +14,7 @@ interface ContactCtaProps {
 
 export function ContactCta({ showImage = true }: ContactCtaProps) {
   const t = useTranslations("home.finalCta");
+  const tCommon = useTranslations("common");
 
   return (
     <SectionWrapper
@@ -44,7 +45,7 @@ export function ContactCta({ showImage = true }: ContactCtaProps) {
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
           <a
-            href={WHATSAPP_URL}
+            href={whatsappUrl(tCommon("whatsappMessage"))}
             target="_blank"
             rel="noopener noreferrer"
             className={buttonVariants({

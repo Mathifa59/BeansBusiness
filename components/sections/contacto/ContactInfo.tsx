@@ -1,10 +1,11 @@
 import { useTranslations } from "next-intl";
 import { MapPin, Phone, MessageCircle } from "lucide-react";
 import { InstagramIcon, LinkedInIcon } from "@/components/layout/SocialIcons";
-import { WHATSAPP_URL } from "@/lib/constants/company";
+import { whatsappUrl } from "@/lib/constants/company";
 
 export function ContactInfo() {
   const t = useTranslations("contact.info");
+  const tCommon = useTranslations("common");
 
   const items = [
     { icon: MapPin, label: t("location") },
@@ -42,7 +43,7 @@ export function ContactInfo() {
       </div>
 
       <a
-        href={WHATSAPP_URL}
+        href={whatsappUrl(tCommon("whatsappMessage"))}
         target="_blank"
         rel="noopener noreferrer"
         className="mt-8 flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"

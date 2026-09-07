@@ -1,5 +1,6 @@
 import type { ReclamacionSchema } from "@/lib/validations/reclamacionSchema";
 import { COMPANY_INFO } from "@/lib/constants/company";
+import { escapeHtml } from "@/lib/utils";
 
 export function reclamacionConsumidorHtml(
   data: ReclamacionSchema,
@@ -8,6 +9,7 @@ export function reclamacionConsumidorHtml(
   const { consumidor, bienServicio, detalle } = data;
   const tipoLabel = detalle.tipo === "RECLAMO" ? "Reclamo" : "Queja";
   const bienLabel = bienServicio.tipo === "PRODUCTO" ? "Producto" : "Servicio";
+  const e = escapeHtml;
 
   return `<!DOCTYPE html>
 <html lang="es">
@@ -24,8 +26,8 @@ export function reclamacionConsumidorHtml(
 
           <!-- Header -->
           <tr>
-            <td style="background:linear-gradient(135deg,#2d6a2e,#4a9b4c);padding:32px 40px;">
-              <h1 style="margin:0;font-size:22px;font-weight:900;color:#ffffff;">BEANS</h1>
+            <td style="background:linear-gradient(135deg,#1a2e0f,#489332);padding:32px 40px;">
+              <h1 style="margin:0;font-size:21px;font-weight:900;color:#ffffff;letter-spacing:0.02em;">BUSINESS BEANS</h1>
               <p style="margin:4px 0 0;font-size:13px;color:rgba(255,255,255,0.75);">Business Beans Perú SRL</p>
             </td>
           </tr>
@@ -37,7 +39,7 @@ export function reclamacionConsumidorHtml(
               <p style="margin:8px 0 0;font-size:13px;color:#6b7280;">Su reclamación ha sido registrada exitosamente</p>
               <div style="margin:20px auto;display:inline-block;background:#e8f5e9;border:1px solid #c8e6c9;border-radius:8px;padding:12px 28px;">
                 <p style="margin:0;font-size:11px;font-weight:700;color:#4a9b4c;text-transform:uppercase;letter-spacing:0.08em;">Código de reclamación</p>
-                <p style="margin:6px 0 0;font-size:24px;font-weight:900;color:#2d6a2e;letter-spacing:0.1em;">${codigo}</p>
+                <p style="margin:6px 0 0;font-size:24px;font-weight:900;color:#2d6a2e;letter-spacing:0.1em;">${e(codigo)}</p>
               </div>
             </td>
           </tr>
@@ -51,19 +53,19 @@ export function reclamacionConsumidorHtml(
               <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;margin-bottom:24px;">
                 <tr style="background:#f9fafb;">
                   <td style="padding:12px 16px;font-size:12px;color:#6b7280;width:40%;">Nombre</td>
-                  <td style="padding:12px 16px;font-size:13px;font-weight:600;color:#111827;">${consumidor.nombreCompleto}</td>
+                  <td style="padding:12px 16px;font-size:13px;font-weight:600;color:#111827;">${e(consumidor.nombreCompleto)}</td>
                 </tr>
                 <tr>
                   <td style="padding:12px 16px;font-size:12px;color:#6b7280;border-top:1px solid #e5e7eb;">Documento</td>
-                  <td style="padding:12px 16px;font-size:13px;color:#111827;border-top:1px solid #e5e7eb;">${consumidor.tipoDocumento}: ${consumidor.numeroDocumento}</td>
+                  <td style="padding:12px 16px;font-size:13px;color:#111827;border-top:1px solid #e5e7eb;">${e(consumidor.tipoDocumento)}: ${e(consumidor.numeroDocumento)}</td>
                 </tr>
                 <tr style="background:#f9fafb;">
                   <td style="padding:12px 16px;font-size:12px;color:#6b7280;border-top:1px solid #e5e7eb;">Email</td>
-                  <td style="padding:12px 16px;font-size:13px;color:#111827;border-top:1px solid #e5e7eb;">${consumidor.email}</td>
+                  <td style="padding:12px 16px;font-size:13px;color:#111827;border-top:1px solid #e5e7eb;">${e(consumidor.email)}</td>
                 </tr>
                 <tr>
                   <td style="padding:12px 16px;font-size:12px;color:#6b7280;border-top:1px solid #e5e7eb;">Teléfono</td>
-                  <td style="padding:12px 16px;font-size:13px;color:#111827;border-top:1px solid #e5e7eb;">${consumidor.telefono}</td>
+                  <td style="padding:12px 16px;font-size:13px;color:#111827;border-top:1px solid #e5e7eb;">${e(consumidor.telefono)}</td>
                 </tr>
               </table>
 
@@ -72,11 +74,11 @@ export function reclamacionConsumidorHtml(
               <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;margin-bottom:24px;">
                 <tr style="background:#f9fafb;">
                   <td style="padding:12px 16px;font-size:12px;color:#6b7280;width:40%;">Tipo</td>
-                  <td style="padding:12px 16px;font-size:13px;font-weight:600;color:#111827;">${bienLabel}</td>
+                  <td style="padding:12px 16px;font-size:13px;font-weight:600;color:#111827;">${e(bienLabel)}</td>
                 </tr>
                 <tr>
                   <td style="padding:12px 16px;font-size:12px;color:#6b7280;border-top:1px solid #e5e7eb;">Descripción</td>
-                  <td style="padding:12px 16px;font-size:13px;color:#111827;border-top:1px solid #e5e7eb;">${bienServicio.descripcion}</td>
+                  <td style="padding:12px 16px;font-size:13px;color:#111827;border-top:1px solid #e5e7eb;">${e(bienServicio.descripcion)}</td>
                 </tr>
                 ${
                   bienServicio.montoReclamado
@@ -93,19 +95,19 @@ export function reclamacionConsumidorHtml(
               <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;margin-bottom:28px;">
                 <tr style="background:#f9fafb;">
                   <td style="padding:12px 16px;font-size:12px;color:#6b7280;width:40%;">Tipo</td>
-                  <td style="padding:12px 16px;font-size:13px;font-weight:600;color:#111827;">${tipoLabel}</td>
+                  <td style="padding:12px 16px;font-size:13px;font-weight:600;color:#111827;">${e(tipoLabel)}</td>
                 </tr>
                 <tr>
                   <td colspan="2" style="padding:12px 16px;font-size:12px;color:#6b7280;border-top:1px solid #e5e7eb;">Descripción del problema</td>
                 </tr>
                 <tr>
-                  <td colspan="2" style="padding:4px 16px 12px;font-size:13px;color:#374151;line-height:1.6;white-space:pre-wrap;">${detalle.descripcion}</td>
+                  <td colspan="2" style="padding:4px 16px 12px;font-size:13px;color:#374151;line-height:1.6;white-space:pre-wrap;">${e(detalle.descripcion)}</td>
                 </tr>
                 <tr style="background:#f9fafb;">
                   <td colspan="2" style="padding:12px 16px;font-size:12px;color:#6b7280;border-top:1px solid #e5e7eb;">Pedido del consumidor</td>
                 </tr>
                 <tr style="background:#f9fafb;">
-                  <td colspan="2" style="padding:4px 16px 12px;font-size:13px;color:#374151;line-height:1.6;white-space:pre-wrap;">${detalle.pedido}</td>
+                  <td colspan="2" style="padding:4px 16px 12px;font-size:13px;color:#374151;line-height:1.6;white-space:pre-wrap;">${e(detalle.pedido)}</td>
                 </tr>
               </table>
 

@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Resend } from "resend";
 import { reclamacionSchema } from "@/lib/validations/reclamacionSchema";
 import { generateCodigo } from "@/lib/services/counterService";
 import { reclamacionConsumidorHtml } from "@/lib/emails/reclamacionConsumidor";
 import { reclamacionAdminHtml } from "@/lib/emails/reclamacionAdmin";
+import { getMailTransporter } from "@/lib/mail/transporter";
 import { isRateLimited, getClientIp } from "@/lib/mail/rateLimit";
+
+const FROM = '"Business Beans Perú SRL" <comercial@businessbeans.com.pe>';
 
 export async function POST(req: NextRequest) {
   try {
@@ -32,18 +34,18 @@ export async function POST(req: NextRequest) {
     }
 
     const codigo = await generateCodigo();
-    const resend = new Resend(process.env.RESEND_API_KEY);
+    const transporter = getMailTransporter();
 
     await Promise.all([
-      resend.emails.send({
-        from: process.env.RECLAMOS_FROM ?? "Reclamaciones <onboarding@resend.dev>",
+      transporter.sendMail({
+        from: FROM,
         to: data.consumidor.email,
         subject: `Constancia de reclamación ${codigo} — Business Beans Perú SRL`,
         html: reclamacionConsumidorHtml(data, codigo),
       }),
-      resend.emails.send({
-        from: process.env.RECLAMOS_FROM ?? "Reclamaciones <onboarding@resend.dev>",
-        to: process.env.RECLAMOS_ADMIN ?? "",
+      transporter.sendMail({
+        from: FROM,
+        to: process.env.MAIL_TO ?? "",
         subject: `[${codigo}] Nueva ${data.detalle.tipo.toLowerCase()} de ${data.consumidor.nombreCompleto}`,
         html: reclamacionAdminHtml(data, codigo),
       }),

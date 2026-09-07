@@ -1,6 +1,9 @@
 import type { ReclamacionSchema } from "@/lib/validations/reclamacionSchema";
 import { COMPANY_INFO } from "@/lib/constants/company";
 import { escapeHtml } from "@/lib/utils";
+import { SITE_URL } from "@/lib/seo";
+
+const LOGO_URL = `${SITE_URL}/logos/sinfondoblanco.png`;
 
 export function reclamacionConsumidorHtml(
   data: ReclamacionSchema,
@@ -26,9 +29,9 @@ export function reclamacionConsumidorHtml(
 
           <!-- Header -->
           <tr>
-            <td style="background:linear-gradient(135deg,#1a2e0f,#489332);padding:32px 40px;">
-              <h1 style="margin:0;font-size:21px;font-weight:900;color:#ffffff;letter-spacing:0.02em;">BUSINESS BEANS</h1>
-              <p style="margin:4px 0 0;font-size:13px;color:rgba(255,255,255,0.75);">Business Beans Perú SRL</p>
+            <td style="background:linear-gradient(135deg,#1a2e0f,#489332);padding:28px 40px 30px;">
+              <img src="${LOGO_URL}" width="140" height="42" alt="Business Beans" style="display:block;border:0;margin:0 0 14px;" />
+              <p style="margin:0;font-size:13px;color:rgba(255,255,255,0.75);">Business Beans Perú SRL</p>
             </td>
           </tr>
 

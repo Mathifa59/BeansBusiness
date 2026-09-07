@@ -1,6 +1,9 @@
 import type { ContactSchema } from "@/lib/validations/contactSchema";
 import { PRODUCTS } from "@/lib/constants/company";
 import { escapeHtml } from "@/lib/utils";
+import { SITE_URL } from "@/lib/seo";
+
+const LOGO_URL = `${SITE_URL}/logos/sinfondoblanco.png`;
 
 const PARTICIPANT_LABELS: Record<string, string> = {
   importer: "Importadora",
@@ -144,7 +147,8 @@ export function contactoAdminHtml(data: ContactSchema): string {
 
           <!-- Header -->
           <tr>
-            <td style="background:#16a34a;padding:32px 40px;">
+            <td style="background:#16a34a;padding:28px 40px 32px;">
+              <img src="${LOGO_URL}" width="130" height="39" alt="Business Beans" style="display:block;border:0;margin:0 0 16px;" />
               <p style="margin:0;font-size:13px;font-weight:700;color:rgba(255,255,255,0.8);text-transform:uppercase;letter-spacing:0.08em;">Nueva solicitud comercial</p>
               <h1 style="margin:6px 0 0;font-size:22px;font-weight:800;color:#ffffff;">${escapeHtml(data.empresa)}</h1>
             </td>

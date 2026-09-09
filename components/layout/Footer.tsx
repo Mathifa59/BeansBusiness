@@ -106,6 +106,16 @@ export function Footer() {
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
           <p className="text-xs text-white/40">
             © {currentYear} {COMPANY_INFO.razonSocial}
+            <span className="mx-2 text-white/20">·</span>
+            Desarrollado por{" "}
+            <a
+              href="https://www.devhorses.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-white/60 transition-colors hover:text-white"
+            >
+              DevHorses
+            </a>
           </p>
           <div className="flex items-center gap-6 text-xs text-white/40">
             <Link

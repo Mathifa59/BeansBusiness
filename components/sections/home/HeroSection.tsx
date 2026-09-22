@@ -14,7 +14,7 @@ export function HeroSection() {
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
       <div className="gradient-hero absolute inset-0" />
       <video
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover object-[85%_80%]"
         src="/hero-beans.mp4"
         autoPlay
         loop
@@ -23,8 +23,16 @@ export function HeroSection() {
         poster="/Campos.jpg"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/50 to-primary-dark/50" />
-      {/* Oculta el watermark incrustado en el video (esquina sup. izq.) detrás del logo del header */}
-      <div className="absolute left-0 top-0 h-56 w-56 bg-gradient-to-br from-dark/90 via-dark/40 to-transparent sm:h-72 sm:w-72" />
+      {/* Respaldo por si el recorte del video no alcanza a tapar del todo el watermark incrustado (esquina sup. izq.).
+          Tamaño en % (no px) para que la cobertura escale con el contenedor igual que el propio watermark del video,
+          con un núcleo sólido (no solo degradado) para que no se transparente en proporciones cercanas a 16:9. */}
+      <div
+        className="pointer-events-none absolute left-0 top-0 h-[34%] w-[22%] min-h-[220px] min-w-[220px]"
+        style={{
+          background:
+            "radial-gradient(ellipse at top left, rgba(4,21,32,0.95) 0%, rgba(4,21,32,0.95) 55%, rgba(4,21,32,0) 100%)",
+        }}
+      />
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 py-32 text-center lg:px-8">
         <motion.div

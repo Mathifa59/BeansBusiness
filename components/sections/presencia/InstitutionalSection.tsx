@@ -7,10 +7,7 @@ import { SectionTag } from "@/components/ui/section-tag";
 import { SectionWrapper } from "@/components/ui/section-wrapper";
 import { fadeUp } from "@/lib/animations";
 
-const LOGOS = [
-  { name: "PROMPERÚ", src: "/promperu.png" },
-  { name: "MINCETUR", src: "/mincetur.png" },
-];
+const LOGOS = [{ name: "Marca Perú", src: "/Marca Peru.png" }];
 
 export function InstitutionalSection() {
   const t = useTranslations("presence.institutional");
@@ -31,14 +28,14 @@ export function InstitutionalSection() {
         <AnimatedSection
           variants={fadeUp}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="grid grid-cols-2 gap-6"
+          className="flex justify-center lg:justify-start"
         >
           {LOGOS.map(({ name, src }) => (
             <div
               key={name}
-              className="flex h-32 flex-col items-center justify-center gap-3 rounded-2xl bg-white p-6"
+              className="flex h-48 w-full max-w-xs flex-col items-center justify-center gap-4 rounded-2xl bg-white p-8"
             >
-              <div className="relative h-16 w-full">
+              <div className="relative h-24 w-full">
                 <Image src={src} alt={name} fill className="object-contain" />
               </div>
               <span className="text-sm font-bold tracking-wide text-dark">

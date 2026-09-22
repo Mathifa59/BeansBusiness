@@ -3,6 +3,7 @@ import { getTranslations, getLocale } from "next-intl/server";
 import { pageAlternates, breadcrumbJsonLd } from "@/lib/seo";
 import { PageHero } from "@/components/sections/presencia/PageHero";
 import { WorldMapSection } from "@/components/sections/presencia/WorldMapSection";
+import { InstitutionalSection } from "@/components/sections/presencia/InstitutionalSection";
 import { ContactCta } from "@/components/sections/home/ContactCta";
 
 const PATH = "/presencia";
@@ -51,6 +52,7 @@ export default async function PresenciaPage() {
       />
       <PageHero />
       <WorldMapSection />
+      <InstitutionalSection />
       <ContactCta showImage={false} />
     </>
   );

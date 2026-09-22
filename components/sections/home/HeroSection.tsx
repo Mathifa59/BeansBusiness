@@ -23,14 +23,15 @@ export function HeroSection() {
         poster="/Campos.jpg"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/50 to-primary-dark/50" />
-      {/* Respaldo por si el recorte del video no alcanza a tapar del todo el watermark incrustado (esquina sup. izq.).
-          Tamaño en % (no px) para que la cobertura escale con el contenedor igual que el propio watermark del video,
+      {/* Franja superior a todo lo ancho (no solo en la esquina) para tapar el watermark incrustado
+          en el video sin que se vea como un parche aislado — se lee como viñeta de cabecera.
+          Alto en % del contenedor para que la cobertura escale igual que el propio watermark del video,
           con un núcleo sólido (no solo degradado) para que no se transparente en proporciones cercanas a 16:9. */}
       <div
-        className="pointer-events-none absolute left-0 top-0 h-[34%] w-[22%] min-h-[220px] min-w-[220px]"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[34%] min-h-[220px]"
         style={{
           background:
-            "radial-gradient(ellipse at top left, rgba(4,21,32,0.95) 0%, rgba(4,21,32,0.95) 55%, rgba(4,21,32,0) 100%)",
+            "linear-gradient(to bottom, rgba(4,21,32,0.85) 0%, rgba(4,21,32,0.85) 70%, rgba(4,21,32,0) 100%)",
         }}
       />
 

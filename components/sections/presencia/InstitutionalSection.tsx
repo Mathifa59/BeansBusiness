@@ -33,14 +33,11 @@ export function InstitutionalSection() {
           {LOGOS.map(({ name, src }) => (
             <div
               key={name}
-              className="flex h-48 w-full max-w-xs flex-col items-center justify-center gap-4 rounded-2xl bg-white p-8"
+              className="flex h-48 w-full max-w-xs items-center justify-center rounded-2xl bg-white p-8"
             >
-              <div className="relative h-24 w-full">
+              <div className="relative h-full w-full">
                 <Image src={src} alt={name} fill className="object-contain" />
               </div>
-              <span className="text-sm font-bold tracking-wide text-dark">
-                {name}
-              </span>
             </div>
           ))}
         </AnimatedSection>

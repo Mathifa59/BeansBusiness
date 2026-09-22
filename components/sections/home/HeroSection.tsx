@@ -23,6 +23,8 @@ export function HeroSection() {
         poster="/Campos.jpg"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/50 to-primary-dark/50" />
+      {/* Oculta el watermark incrustado en el video (esquina sup. izq.) detrás del logo del header */}
+      <div className="absolute left-0 top-0 h-56 w-56 bg-gradient-to-br from-dark/90 via-dark/40 to-transparent sm:h-72 sm:w-72" />
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 py-32 text-center lg:px-8">
         <motion.div

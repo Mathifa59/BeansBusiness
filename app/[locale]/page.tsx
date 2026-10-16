@@ -1,6 +1,6 @@
 import { getTranslations, getLocale } from "next-intl/server";
 import type { Metadata } from "next";
-import { pageAlternates } from "@/lib/seo";
+import { pageAlternates, websiteJsonLd } from "@/lib/seo";
 import { HeroSection } from "@/components/sections/home/HeroSection";
 import { StatsSection } from "@/components/sections/home/StatsSection";
 import { AboutPreview } from "@/components/sections/home/AboutPreview";
@@ -20,6 +20,10 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }}
+      />
       <HeroSection />
       <StatsSection />
       <AboutPreview />

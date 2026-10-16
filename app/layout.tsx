@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     template: "%s | Business Beans",
-    default: "Business Beans — Agroexportadora Peruana",
+    default: "Business Beans Peru — Agroexportadora Peruana",
   },
   description:
     "Exportadores de legumbres y productos agrícolas peruanos. Certificaciones FDA, SENASA, HACCP. Presencia en 15+ países.",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Business Beans — Agroexportadora Peruana",
+    title: "Business Beans Peru — Agroexportadora Peruana",
     description:
       "Exportadores de legumbres y productos agrícolas peruanos. Certificaciones FDA, SENASA, HACCP. Presencia en 15+ países.",
     images: [OG_IMAGE.url],

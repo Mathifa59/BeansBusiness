@@ -53,6 +53,21 @@ export function pageAlternates(locale: string, path: string) {
   };
 }
 
+/**
+ * JSON-LD WebSite — Google lo usa para el "nombre del sitio" que muestra
+ * sobre el título en los resultados de búsqueda (si no está, cae al dominio
+ * crudo, ej. "businessbeans.com.pe"). Debe ir solo en la home.
+ */
+export function websiteJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Business Beans Peru",
+    alternateName: ["Business Beans", "Business Beans Perú"],
+    url: `${SITE_URL}/`,
+  };
+}
+
 export interface BreadcrumbItem {
   name: string;
   path: string; // sin locale, ej. "/productos"

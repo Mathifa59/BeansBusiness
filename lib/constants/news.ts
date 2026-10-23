@@ -33,16 +33,11 @@ export const NEWS: NewsItem[] = [
     id: "feria-stand",
     category: "eventos",
     cover: feria(1),
-    images: [feria(1), feria(2), feria(3), feria(4), feria(5), feria(6), feria(7), feria(8)],
+    images: [feria(1), feria(3), feria(2)],
     videos: [
       {
         src: "/media/video/feria-stand-1.mp4",
         poster: "/media/video/feria-stand-1-poster.jpg",
-        portrait: true,
-      },
-      {
-        src: "/media/video/feria-stand-2.mp4",
-        poster: "/media/video/feria-stand-2-poster.jpg",
         portrait: true,
       },
     ],
@@ -75,13 +70,9 @@ export const NEWS: NewsItem[] = [
     id: "equipo-en-campo",
     category: "empresa",
     cover: equipo(1),
-    images: [equipo(1), equipo(2), equipo(3), equipo(4), equipo(7)],
+    images: [equipo(1), equipo(2), equipo(3), equipo(4)],
   },
 ];
-
-/** fotos tomadas en vertical (celular): se muestran completas, sin recortar rostros */
-const PORTRAIT_PHOTOS = new Set([feria(4), feria(5), feria(6), feria(7), feria(8)]);
-export const isPortraitPhoto = (src: string) => PORTRAIT_PHOTOS.has(src);
 
 /** Fotos del equipo para las secciones "humanas" (Conócenos / Detrás de cada producto). */
 export const TEAM_PHOTOS = {

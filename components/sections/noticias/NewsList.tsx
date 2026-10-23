@@ -1,16 +1,13 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
-import { Play } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/animated-section";
-import { MediaVideo } from "@/components/ui/media-video";
+import { MediaCarousel, type MediaEntry } from "./MediaCarousel";
 import { SectionWrapper } from "@/components/ui/section-wrapper";
 import {
   NEWS,
   NEWS_CATEGORIES,
-  isPortraitPhoto,
   type NewsCategory,
   type NewsItem,
 } from "@/lib/constants/news";
@@ -34,9 +31,8 @@ const CATEGORY_STYLES: Record<NewsCategory, { active: string; tag: string }> = {
   },
 };
 
-type MediaEntry =
-  | { kind: "image"; src: string }
-  | { kind: "video"; src: string; poster: string };
+/** máximo de fotos/videos que rota cada noticia */
+const MAX_SLIDES = 4;
 
 /** si la portada es el poster de un video, el video va primero */
 function buildMedia(item: NewsItem): MediaEntry[] {
@@ -47,7 +43,8 @@ function buildMedia(item: NewsItem): MediaEntry[] {
     poster: v.poster,
   }));
   const coverIsVideo = (item.videos ?? []).some((v) => v.poster === item.cover);
-  return coverIsVideo ? [...videos, ...images] : [...images, ...videos];
+  const all = coverIsVideo ? [...videos, ...images] : [...images, ...videos];
+  return all.slice(0, MAX_SLIDES);
 }
 
 function NewsCard({ item, index }: { item: NewsItem; index: number }) {
@@ -55,8 +52,6 @@ function NewsCard({ item, index }: { item: NewsItem; index: number }) {
   const tItem = useTranslations(`news.items.${item.id}`);
   const locale = useLocale();
   const media = useMemo(() => buildMedia(item), [item]);
-  const [active, setActive] = useState(0);
-  const current = media[active];
 
   const styles = CATEGORY_STYLES[item.category];
 
@@ -75,67 +70,7 @@ function NewsCard({ item, index }: { item: NewsItem; index: number }) {
     >
       <article className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-14">
         {/* Medios */}
-        <div>
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-dark shadow-lg ring-1 ring-black/5">
-            {current.kind === "image" ? (
-              <Image
-                key={current.src}
-                src={current.src}
-                alt={tItem("title")}
-                fill
-                sizes="(min-width: 1024px) 42vw, 100vw"
-                className={cn(
-                  isPortraitPhoto(current.src) ? "object-contain" : "object-cover"
-                )}
-              />
-            ) : (
-              <MediaVideo
-                key={current.src}
-                src={current.src}
-                poster={current.poster}
-                label={tItem("title")}
-                className="absolute inset-0 h-full w-full rounded-none object-contain shadow-none"
-              />
-            )}
-          </div>
-
-          {media.length > 1 && (
-            <ul
-              className="mt-3 flex gap-2 overflow-x-auto pb-1"
-              aria-label={t("gallery")}
-            >
-              {media.map((m, i) => (
-                <li key={m.src} className="shrink-0">
-                  <button
-                    type="button"
-                    onClick={() => setActive(i)}
-                    aria-label={`${tItem("title")} ${i + 1}`}
-                    aria-current={i === active}
-                    className={cn(
-                      "relative block h-14 w-20 overflow-hidden rounded-lg ring-2 ring-offset-2 transition-all duration-200 hover:opacity-100",
-                      i === active
-                        ? "opacity-100 ring-primary"
-                        : "opacity-60 ring-transparent"
-                    )}
-                  >
-                    <Image
-                      src={m.kind === "image" ? m.src : m.poster}
-                      alt=""
-                      fill
-                      sizes="80px"
-                      className="object-cover"
-                    />
-                    {m.kind === "video" && (
-                      <span className="absolute inset-0 flex items-center justify-center bg-dark/40">
-                        <Play className="h-4 w-4 fill-white text-white" />
-                      </span>
-                    )}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+        <MediaCarousel media={media} title={tItem("title")} />
 
         {/* Texto */}
         <div className="lg:pt-2">

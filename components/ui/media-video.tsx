@@ -9,6 +9,9 @@ interface MediaVideoProps {
   portrait?: boolean;
   label?: string;
   className?: string;
+  onPlay?: () => void;
+  onPause?: () => void;
+  onEnded?: () => void;
 }
 
 /**
@@ -21,6 +24,9 @@ export function MediaVideo({
   portrait,
   label,
   className,
+  onPlay,
+  onPause,
+  onEnded,
 }: MediaVideoProps) {
   return (
     <video
@@ -30,6 +36,9 @@ export function MediaVideo({
       playsInline
       preload="none"
       aria-label={label}
+      onPlay={onPlay}
+      onPause={onPause}
+      onEnded={onEnded}
       className={cn(
         "w-full rounded-2xl bg-dark object-cover shadow-lg",
         portrait ? "aspect-[9/16]" : "aspect-video",

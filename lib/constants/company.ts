@@ -59,10 +59,10 @@ export const PRODUCTS: Product[] = [
   // ── Granos Andinos y Superalimentos ──────────────────────────────────────
   p("canihua",           { category: "granos-andinos", tariffCode: "1008.90.20.00", availability: "all-year", imageSrc: "/productos/canihua.jpg" }),
   p("chocho-tarwi",      { category: "granos-andinos", tariffCode: "0713.39.99.00", availability: "all-year", imageSrc: "/productos/chocho-tarwi.jpg" }),
-  p("kiwicha",           { category: "granos-andinos", tariffCode: "1008.90.29.00", availability: "all-year", imageSrc: "/productos/kiwicha.jpg" }),
+  p("kiwicha",           { category: "granos-andinos", tariffCode: "1008.90.29.00", availability: "all-year", imageSrc: "/productos/kiwicha.jpg", featured: true }),
   p("maca-harina",       { category: "granos-andinos", tariffCode: "1106.20.10.00", availability: "all-year", imageSrc: "/productos/maca-harina.jpg" }),
   p("maiz-gigante-cusco",{ category: "granos-andinos", tariffCode: "1005.90.90.10", availability: "all-year", imageSrc: "/productos/maiz-gigante-cusco.jpg", featured: true }),
-  p("quinua-blanca",     { category: "granos-andinos", tariffCode: "1008.50.90.00", availability: "all-year", imageSrc: "/productos/quinua-blanca.jpg" }),
+  p("quinua-blanca",     { category: "granos-andinos", tariffCode: "1008.50.90.00", availability: "all-year", imageSrc: "/productos/quinua-blanca.jpg", featured: true }),
   p("quinua-roja",       { category: "granos-andinos", tariffCode: "1008.50.90.00", availability: "all-year", imageSrc: "/productos/quinua-roja.jpg" }),
   p("quinua-negra",      { category: "granos-andinos", tariffCode: "1008.50.90.00", availability: "all-year", imageSrc: "/productos/quinua-negra.jpg" }),
 

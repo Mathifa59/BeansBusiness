@@ -66,7 +66,10 @@ export function BehindTheScenes({ compact = false }: BehindTheScenesProps) {
 
       {compact ? (
         <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-12">
-          <AnimatedSection variants={fadeUp} className="lg:col-span-7">
+          <AnimatedSection
+            variants={fadeUp}
+            className="flex flex-col lg:col-span-7"
+          >
             <MediaVideo
               src={PROCESS_VIDEO.src}
               poster={PROCESS_VIDEO.poster}
@@ -79,6 +82,16 @@ export function BehindTheScenes({ compact = false }: BehindTheScenesProps) {
                 — {t("processCaption")}
               </span>
             </p>
+            {/* ocupa todo el alto sobrante para igualar la columna de fotos */}
+            <div className="group relative mt-5 min-h-48 flex-1 overflow-hidden rounded-2xl shadow-md ring-1 ring-black/5">
+              <Image
+                src={TEAM_PHOTOS.field}
+                alt={t("teamAlt")}
+                fill
+                sizes="(min-width: 1024px) 58vw, 100vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
           </AnimatedSection>
 
           <AnimatedSection

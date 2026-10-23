@@ -40,7 +40,7 @@ export const NEWS: NewsItem[] = [
     dateEnd: "2026-09-26",
     event: "Feria Expo Alimentaria 2026",
     cover: feria(1),
-    images: [feria(1), feria(3), feria(2)],
+    images: [feria(1), feria(2)],
     videos: [
       {
         src: "/media/video/feria-stand-1.mp4",

@@ -4,7 +4,6 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { Play } from "lucide-react";
-import { LinkedInIcon } from "@/components/layout/SocialIcons";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { MediaVideo } from "@/components/ui/media-video";
 import { SectionWrapper } from "@/components/ui/section-wrapper";
@@ -15,7 +14,6 @@ import {
   type NewsCategory,
   type NewsItem,
 } from "@/lib/constants/news";
-import { localizedUrl } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
 type Filter = "all" | NewsCategory;
@@ -60,7 +58,6 @@ function NewsCard({ item, index }: { item: NewsItem; index: number }) {
   const [active, setActive] = useState(0);
   const current = media[active];
 
-  const shareUrl = `${localizedUrl(locale, "/noticias")}#${item.id}`;
   const styles = CATEGORY_STYLES[item.category];
 
   const date = item.date
@@ -159,18 +156,6 @@ function NewsCard({ item, index }: { item: NewsItem; index: number }) {
           <p className="mt-4 text-base leading-relaxed text-gray-700">
             {tItem("description")}
           </p>
-
-          <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-dark transition-colors hover:text-primary"
-          >
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0a66c2] text-white">
-              <LinkedInIcon className="h-4 w-4" />
-            </span>
-            {t("share")}
-          </a>
         </div>
       </article>
     </AnimatedSection>

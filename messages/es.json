@@ -794,6 +794,7 @@
       "title": "Reclamación registrada",
       "codeLabel": "Código de reclamación",
       "message": "Hemos enviado una copia de su reclamación al correo electrónico registrado.",
+      "messageNoEmail": "Su reclamación quedó registrada, pero no pudimos enviar la copia a su correo electrónico. Guarde este código; nos pondremos en contacto con usted.",
       "deadline": "De acuerdo con la normativa vigente, Business Beans Perú SRL atenderá su reclamación en un plazo máximo de 15 días hábiles.",
       "newClaim": "Registrar nueva reclamación"
     },

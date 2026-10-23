@@ -14,10 +14,10 @@ import { AlertCircle } from "lucide-react";
 export function ReclamacionForm() {
   const t = useTranslations("reclamaciones");
   const tP = useTranslations("reclamaciones.proveedor");
-  const { form, status, codigo, onSubmit, reset } = useReclamacionForm();
+  const { form, status, codigo, constanciaEnviada, onSubmit, reset } = useReclamacionForm();
 
   if (status === "success" && codigo) {
-    return <FormSuccess codigo={codigo} onReset={reset} />;
+    return <FormSuccess codigo={codigo} constanciaEnviada={constanciaEnviada} onReset={reset} />;
   }
 
   return (

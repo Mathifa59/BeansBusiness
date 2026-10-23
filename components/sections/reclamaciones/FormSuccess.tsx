@@ -7,10 +7,11 @@ import { Button } from "@/components/ui/button";
 
 interface Props {
   codigo: string;
+  constanciaEnviada?: boolean;
   onReset: () => void;
 }
 
-export function FormSuccess({ codigo, onReset }: Props) {
+export function FormSuccess({ codigo, constanciaEnviada = true, onReset }: Props) {
   const t = useTranslations("reclamaciones.success");
 
   return (
@@ -39,7 +40,7 @@ export function FormSuccess({ codigo, onReset }: Props) {
       <div className="space-y-3">
         <div className="flex items-center gap-2 text-sm text-gray-700">
           <Mail className="h-4 w-4 shrink-0 text-primary" />
-          <p>{t("message")}</p>
+          <p>{t(constanciaEnviada ? "message" : "messageNoEmail")}</p>
         </div>
         <div className="flex items-center gap-2 text-sm text-gray-700">
           <Clock className="h-4 w-4 shrink-0 text-accent" />

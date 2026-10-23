@@ -794,6 +794,7 @@
       "title": "Complaint registered",
       "codeLabel": "Complaint code",
       "message": "We have sent a copy of your complaint to the registered email address.",
+      "messageNoEmail": "Your complaint has been registered, but we could not send the copy to your email address. Please keep this code; we will get in touch with you.",
       "deadline": "In accordance with current regulations, Business Beans Perú SRL will respond to your complaint within a maximum of 15 business days.",
       "newClaim": "Submit a new complaint"
     },

@@ -36,6 +36,8 @@ export interface ReclamacionFormData {
 export interface ReclamacionApiResponse {
   ok: boolean;
   codigo?: string;
+  /** false si el reclamo se registró pero la constancia al consumidor no pudo enviarse */
+  constancia?: boolean;
   error?: string;
 }
 

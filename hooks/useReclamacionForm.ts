@@ -11,6 +11,7 @@ type Status = "idle" | "loading" | "success" | "error";
 export function useReclamacionForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [codigo, setCodigo] = useState<string>("");
+  const [constanciaEnviada, setConstanciaEnviada] = useState(true);
 
   const form = useForm<ReclamacionSchema>({
     resolver: zodResolver(reclamacionSchema),
@@ -46,6 +47,7 @@ export function useReclamacionForm() {
     const result = await submitReclamacion(data);
     if (result.ok && result.codigo) {
       setCodigo(result.codigo);
+      setConstanciaEnviada(result.constancia !== false);
       setStatus("success");
     } else {
       setStatus("error");
@@ -56,7 +58,8 @@ export function useReclamacionForm() {
     form.reset();
     setStatus("idle");
     setCodigo("");
+    setConstanciaEnviada(true);
   };
 
-  return { form, status, codigo, onSubmit, reset };
+  return { form, status, codigo, constanciaEnviada, onSubmit, reset };
 }

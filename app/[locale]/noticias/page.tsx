@@ -49,7 +49,7 @@ export default async function NoticiasPage() {
       />
       <PageHero />
       <NewsList />
-      <ContactCta showImage={false} />
+      <ContactCta tone="green" />
     </>
   );
 }

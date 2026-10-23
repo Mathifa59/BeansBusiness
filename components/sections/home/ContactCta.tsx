@@ -9,26 +9,33 @@ import { SectionWrapper } from "@/components/ui/section-wrapper";
 import { whatsappUrl } from "@/lib/constants/company";
 
 interface ContactCtaProps {
-  showImage?: boolean;
+  /** "dark": degradado oscuro (Inicio). "green": degradado verde, para páginas
+   * interiores donde un fondo oscuro quedaría pegado al footer. */
+  tone?: "dark" | "green";
 }
 
-export function ContactCta({ showImage = true }: ContactCtaProps) {
+export function ContactCta({ tone = "dark" }: ContactCtaProps) {
   const t = useTranslations("home.finalCta");
   const tCommon = useTranslations("common");
+  const isGreen = tone === "green";
 
   return (
     <SectionWrapper
-      bg={showImage ? "dark" : "green"}
-      bgImage={showImage ? "/pallar-fondo.jpg" : undefined}
+      bg={isGreen ? "green" : "dark"}
+      bgImage="/pallar-fondo.jpg"
       bgOverlayClassName={
-        showImage ? "bg-gradient-to-br from-dark/95 via-dark/85 to-primary-dark/80" : undefined
+        isGreen
+          ? "bg-gradient-to-br from-primary-dark/90 via-primary/85 to-primary/80"
+          : "bg-gradient-to-br from-dark/95 via-dark/85 to-primary-dark/80"
       }
     >
       <AnimatedSection className="text-center">
         <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
           {t("title")}
         </h2>
-        <p className="mx-auto mt-4 max-w-xl text-lg text-white/70">
+        <p
+          className={`mx-auto mt-4 max-w-xl text-lg ${isGreen ? "text-white/90" : "text-white/70"}`}
+        >
           {t("subtitle")}
         </p>
 

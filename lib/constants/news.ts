@@ -14,6 +14,10 @@ export interface NewsItem {
   category: NewsCategory;
   /** ISO (YYYY-MM-DD). Opcional: se muestra solo si se conoce la fecha real. */
   date?: string;
+  /** ISO (YYYY-MM-DD) del último día, para eventos de varios días (con `date` como primer día). */
+  dateEnd?: string;
+  /** Nombre propio del evento (no se traduce). */
+  event?: string;
   /** imagen/poster principal de la tarjeta */
   cover: string;
   images: string[];
@@ -32,6 +36,9 @@ export const NEWS: NewsItem[] = [
   {
     id: "feria-stand",
     category: "eventos",
+    date: "2026-09-23",
+    dateEnd: "2026-09-26",
+    event: "Feria Expo Alimentaria 2026",
     cover: feria(1),
     images: [feria(1), feria(3), feria(2)],
     videos: [

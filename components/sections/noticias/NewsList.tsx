@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { CalendarDays } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { MediaCarousel, type MediaEntry } from "./MediaCarousel";
 import { SectionWrapper } from "@/components/ui/section-wrapper";
@@ -48,6 +49,17 @@ function buildMedia(item: NewsItem): MediaEntry[] {
   return all.slice(0, MAX_SLIDES);
 }
 
+/** Fecha o rango ("23 al 26 de septiembre de 2026" / "September 23 – 26, 2026"). */
+function formatNewsDate(item: NewsItem, locale: string): string | null {
+  if (!item.date) return null;
+  const fmt = new Intl.DateTimeFormat(locale, { dateStyle: "long", timeZone: "UTC" });
+  const start = new Date(item.date);
+  if (!item.dateEnd) return fmt.format(start);
+  const range = fmt.formatRange(start, new Date(item.dateEnd));
+  // En español el rango sale con guion ("23–26"); lo escribimos "23 al 26".
+  return locale === "es" ? range.replace(/\s*[–-]\s*/, " al ") : range;
+}
+
 function NewsCard({ item, index }: { item: NewsItem; index: number }) {
   const t = useTranslations("news");
   const tItem = useTranslations(`news.items.${item.id}`);
@@ -56,12 +68,7 @@ function NewsCard({ item, index }: { item: NewsItem; index: number }) {
 
   const styles = CATEGORY_STYLES[item.category];
 
-  const date = item.date
-    ? new Intl.DateTimeFormat(locale, {
-        dateStyle: "long",
-        timeZone: "UTC",
-      }).format(new Date(item.date))
-    : null;
+  const date = formatNewsDate(item, locale);
 
   return (
     <AnimatedSection
@@ -86,8 +93,21 @@ function NewsCard({ item, index }: { item: NewsItem; index: number }) {
           <h2 className="mt-5 text-2xl font-bold leading-tight tracking-tight text-primary-dark lg:text-3xl">
             {tItem("title")}
           </h2>
-          {date && (
-            <p className="mt-2 text-sm font-semibold text-gray-700">{date}</p>
+          {(date || item.event) && (
+            <div className="mt-3 flex flex-col gap-1.5 text-sm font-semibold text-gray-700 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3">
+              {date && (
+                <span className="inline-flex items-center gap-1.5">
+                  <CalendarDays className="h-4 w-4 text-primary" aria-hidden="true" />
+                  {date}
+                </span>
+              )}
+              {date && item.event && (
+                <span aria-hidden="true" className="hidden text-gray-300 sm:inline">
+                  •
+                </span>
+              )}
+              {item.event && <span className="text-primary-dark">{item.event}</span>}
+            </div>
           )}
           <p className="mt-4 text-base leading-relaxed text-gray-700">
             {tItem("description")}

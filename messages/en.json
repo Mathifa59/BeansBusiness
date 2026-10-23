@@ -672,6 +672,8 @@
       "produccion": "Production"
     },
     "gallery": "Photo gallery",
+    "previous": "Previous",
+    "next": "Next",
     "videos": "Videos",
     "empty": "There are no news in this category yet.",
     "items": {

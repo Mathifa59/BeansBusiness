@@ -41,6 +41,7 @@ function buildMedia(item: NewsItem): MediaEntry[] {
     kind: "video",
     src: v.src,
     poster: v.poster,
+    portrait: v.portrait,
   }));
   const coverIsVideo = (item.videos ?? []).some((v) => v.poster === item.cover);
   const all = coverIsVideo ? [...videos, ...images] : [...images, ...videos];

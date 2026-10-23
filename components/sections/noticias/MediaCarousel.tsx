@@ -1,15 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { MediaVideo } from "@/components/ui/media-video";
 import { cn } from "@/lib/utils";
 
 export type MediaEntry =
   | { kind: "image"; src: string }
-  | { kind: "video"; src: string; poster: string };
+  | { kind: "video"; src: string; poster: string; portrait?: boolean };
 
 /** cuánto se queda cada imagen en pantalla antes de pasar a la siguiente */
 const DWELL_MS = 4500;
@@ -46,13 +47,34 @@ export function MediaCarousel({ media, title }: MediaCarouselProps) {
 
   const goTo = (i: number) => {
     setPlaying(false);
-    setActive(i);
+    setActive(((i % count) + count) % count);
   };
+
+  // deslizar con el dedo en pantallas táctiles
+  const touchStartX = useRef<number | null>(null);
+  const onTouchEnd = (x: number) => {
+    if (touchStartX.current === null) return;
+    const dx = x - touchStartX.current;
+    if (Math.abs(dx) > 40) goTo(active + (dx < 0 ? 1 : -1));
+    touchStartX.current = null;
+  };
+
+  const isVideo = current.kind === "video";
+  const arrow =
+    "absolute z-20 flex w-14 cursor-pointer items-center opacity-0 transition-opacity duration-200 focus-visible:opacity-100 group-hover/media:opacity-100 [@media(hover:none)]:opacity-100";
+  // en videos las zonas laterales no cubren la barra de controles de abajo
+  const arrowSpan = isVideo ? "top-0 bottom-14" : "inset-y-0";
+  const arrowBtn =
+    "flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-dark shadow-lg ring-1 ring-black/10 transition-transform duration-200 group-hover/arrow:scale-110";
 
   return (
     <div>
       <div
-        className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-dark shadow-lg ring-1 ring-black/5"
+        className="group/media relative aspect-video w-full overflow-hidden rounded-2xl bg-dark shadow-lg ring-1 ring-black/5"
+        onTouchStart={(e) => {
+          touchStartX.current = e.touches[0].clientX;
+        }}
+        onTouchEnd={(e) => onTouchEnd(e.changedTouches[0].clientX)}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         onFocusCapture={() => setHovered(true)}
@@ -76,18 +98,60 @@ export function MediaCarousel({ media, title }: MediaCarouselProps) {
                 className="object-cover"
               />
             ) : (
-              <MediaVideo
-                src={current.src}
-                poster={current.poster}
-                label={title}
-                onPlay={() => setPlaying(true)}
-                onPause={() => setPlaying(false)}
-                onEnded={() => setPlaying(false)}
-                className="absolute inset-0 h-full w-full rounded-none object-contain shadow-none"
-              />
+              <>
+                {/* clips verticales: el poster difuminado rellena los costados */}
+                {current.portrait && (
+                  <Image
+                    src={current.poster}
+                    alt=""
+                    fill
+                    sizes="(min-width: 1024px) 42vw, 100vw"
+                    aria-hidden
+                    className="scale-125 object-cover opacity-70 blur-2xl"
+                  />
+                )}
+                <MediaVideo
+                  src={current.src}
+                  poster={current.poster}
+                  label={title}
+                  onPlay={() => setPlaying(true)}
+                  onPause={() => setPlaying(false)}
+                  onEnded={() => setPlaying(false)}
+                  className={cn(
+                    "absolute inset-0 h-full w-full rounded-none bg-transparent shadow-none",
+                    current.portrait ? "object-contain" : "object-cover"
+                  )}
+                />
+              </>
             )}
           </motion.div>
         </AnimatePresence>
+
+        {count > 1 && (
+          <>
+            {/* toda la franja lateral es clicable, no solo el círculo */}
+            <button
+              type="button"
+              onClick={() => goTo(active - 1)}
+              aria-label={t("previous")}
+              className={cn(arrow, arrowSpan, "group/arrow left-0 justify-center")}
+            >
+              <span className={arrowBtn}>
+                <ChevronLeft className="h-5 w-5" />
+              </span>
+            </button>
+            <button
+              type="button"
+              onClick={() => goTo(active + 1)}
+              aria-label={t("next")}
+              className={cn(arrow, arrowSpan, "group/arrow right-0 justify-center")}
+            >
+              <span className={arrowBtn}>
+                <ChevronRight className="h-5 w-5" />
+              </span>
+            </button>
+          </>
+        )}
       </div>
 
       {count > 1 && (

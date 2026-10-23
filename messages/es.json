@@ -694,6 +694,39 @@
       }
     }
   },
+  "links": {
+    "eyebrow": "AGROEXPORTADORA PERUANA",
+    "tagline": "Llevamos lo mejor del campo para el mundo",
+    "description": "Todos nuestros canales oficiales en un solo lugar.",
+    "items": {
+      "whatsapp": {
+        "label": "Escríbenos por WhatsApp"
+      },
+      "website": {
+        "label": "Visitar nuestro sitio web",
+        "hint": "businessbeans.com.pe"
+      },
+      "instagram": {
+        "label": "Instagram",
+        "hint": "@businessbeansperu"
+      },
+      "tiktok": {
+        "label": "TikTok",
+        "hint": "@businesbeansperu"
+      },
+      "linkedin": {
+        "label": "LinkedIn",
+        "hint": "Business Beans Perú SRL"
+      },
+      "facebook": {
+        "label": "Facebook",
+        "hint": "Síguenos en Facebook"
+      }
+    },
+    "meta": {
+      "description": "Todos los canales oficiales de Business Beans Perú en un solo lugar: sitio web, Instagram, TikTok, LinkedIn y Facebook."
+    }
+  },
   "footer": {
     "description": "Empresa agroexportadora peruana especializada en la selección, procesamiento y exportación de legumbres de alta calidad a los mercados internacionales más exigentes.",
     "company": {

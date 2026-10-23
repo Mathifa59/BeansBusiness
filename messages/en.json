@@ -694,6 +694,39 @@
       }
     }
   },
+  "links": {
+    "eyebrow": "PERUVIAN AGRO-EXPORTER",
+    "tagline": "Peruvian legumes for the world",
+    "description": "All our official channels in one place.",
+    "items": {
+      "whatsapp": {
+        "label": "Message us on WhatsApp"
+      },
+      "website": {
+        "label": "Visit our website",
+        "hint": "businessbeans.com.pe"
+      },
+      "instagram": {
+        "label": "Instagram",
+        "hint": "@businessbeansperu"
+      },
+      "tiktok": {
+        "label": "TikTok",
+        "hint": "@businesbeansperu"
+      },
+      "linkedin": {
+        "label": "LinkedIn",
+        "hint": "Business Beans Perú SRL"
+      },
+      "facebook": {
+        "label": "Facebook",
+        "hint": "Follow us on Facebook"
+      }
+    },
+    "meta": {
+      "description": "All the official channels of Business Beans Peru in one place: website, Instagram, TikTok, LinkedIn and Facebook."
+    }
+  },
   "footer": {
     "description": "Peruvian agro-export company specializing in the selection, processing, and export of high-quality legumes to the most demanding international markets.",
     "company": {

@@ -8,6 +8,7 @@ import { SITE_URL, OG_IMAGE, localizedUrl } from "@/lib/seo";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
+import { SiteChrome } from "@/components/layout/SiteChrome";
 
 interface Props {
   children: React.ReactNode;
@@ -74,10 +75,14 @@ export default async function LocaleLayout({ children, params }: Props) {
           __html: JSON.stringify(organizationJsonLd(locale)),
         }}
       />
-      <Navbar />
+      <SiteChrome>
+        <Navbar />
+      </SiteChrome>
       <main className="flex flex-1 flex-col">{children}</main>
-      <Footer />
-      <WhatsAppButton />
+      <SiteChrome>
+        <Footer />
+        <WhatsAppButton />
+      </SiteChrome>
     </NextIntlClientProvider>
   );
 }

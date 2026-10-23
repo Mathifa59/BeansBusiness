@@ -3,6 +3,8 @@
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { CalendarDays } from "lucide-react";
+import { InstagramIcon } from "@/components/layout/SocialIcons";
+import { buttonVariants } from "@/components/ui/button";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { MediaCarousel, type MediaEntry } from "./MediaCarousel";
 import { SectionWrapper } from "@/components/ui/section-wrapper";
@@ -112,6 +114,20 @@ function NewsCard({ item, index }: { item: NewsItem; index: number }) {
           <p className="mt-4 text-base leading-relaxed text-gray-700">
             {tItem("description")}
           </p>
+          {item.instagram && (
+            <a
+              href={item.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                buttonVariants({ variant: "outline", size: "lg" }),
+                "mt-6 h-11 rounded-full border-2 border-primary bg-transparent px-6 font-semibold text-primary hover:bg-primary hover:text-white"
+              )}
+            >
+              <InstagramIcon className="mr-2 h-4 w-4" aria-hidden="true" />
+              {t("instagramCta")}
+            </a>
+          )}
         </div>
       </article>
     </AnimatedSection>

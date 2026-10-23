@@ -18,6 +18,8 @@ export interface NewsItem {
   dateEnd?: string;
   /** Nombre propio del evento (no se traduce). */
   event?: string;
+  /** URL del post de Instagram de la noticia; muestra el botón "Míranos en Instagram". */
+  instagram?: string;
   /** imagen/poster principal de la tarjeta */
   cover: string;
   images: string[];
@@ -39,6 +41,7 @@ export const NEWS: NewsItem[] = [
     date: "2026-09-23",
     dateEnd: "2026-09-26",
     event: "Feria Expo Alimentaria 2026",
+    instagram: "https://www.instagram.com/p/DdCVuhZCWi8/",
     cover: feria(1),
     images: [feria(1), feria(2)],
     videos: [
@@ -84,6 +87,8 @@ export const NEWS: NewsItem[] = [
 /** Fotos del equipo para las secciones "humanas" (Conócenos / Detrás de cada producto). */
 export const TEAM_PHOTOS = {
   hero: equipo(6),
+  /** equipo en el stand de la feria, todos de frente (sección Conócenos) */
+  stand: feria(1),
   portrait: equipo(3),
   inspecting: equipo(2),
   group: equipo(5),

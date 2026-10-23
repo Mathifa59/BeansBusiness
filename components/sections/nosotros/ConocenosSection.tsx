@@ -24,7 +24,7 @@ export function ConocenosSection() {
         <AnimatedSection variants={slideInLeft} className="relative">
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-xl">
             <Image
-              src={TEAM_PHOTOS.hero}
+              src={TEAM_PHOTOS.stand}
               alt={t("photoAlt")}
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"

@@ -96,7 +96,7 @@
         "title": "Qué nos diferencia",
         "description": "Certificaciones FDA, SENASA y HACCP, selección tecnificada y trazabilidad completa desde el campo hasta el destino."
       },
-      "photoAlt": "Equipo de Business Beans en el campo"
+      "photoAlt": "Equipo de Business Beans en su stand de la feria Expo Alimentaria"
     },
     "behind": {
       "eyebrow": "DETRÁS DE CADA PRODUCTO",
@@ -675,6 +675,7 @@
     "previous": "Foto anterior",
     "next": "Foto siguiente",
     "videos": "Videos",
+    "instagramCta": "Míranos en Instagram",
     "empty": "Aún no hay noticias en esta categoría.",
     "items": {
       "feria-stand": {

@@ -10,7 +10,7 @@ import {
   PARTICIPANT_OPTIONS,
   PRODUCT_OPTIONS,
 } from "@/lib/validations/contactSchema";
-import { VISIBLE_PRODUCTS } from "@/lib/constants/company";
+import { VISIBLE_PRODUCTS, whatsappUrl } from "@/lib/constants/company";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -44,6 +44,7 @@ const PRODUCT_GROUPS = [
 export function ContactForm() {
   const t = useTranslations("contact.form");
   const tFilters = useTranslations("products.filters");
+  const tCommon = useTranslations("common");
   const searchParams = useSearchParams();
   const initialProduct = searchParams.get("producto") ?? undefined;
   const { form, status, onSubmit } = useContactForm(initialProduct);
@@ -245,9 +246,20 @@ export function ContactForm() {
       </div>
 
       {status === "error" && (
-        <div className="flex items-center gap-2 rounded-lg bg-destructive/10 px-4 py-3 text-sm text-destructive">
+        <div
+          role="alert"
+          className="flex flex-wrap items-center gap-x-2 gap-y-1 rounded-lg bg-destructive/10 px-4 py-3 text-sm text-destructive"
+        >
           <AlertCircle className="h-4 w-4 shrink-0" />
-          {t("error")}
+          <span>{t("error")}</span>
+          <a
+            href={whatsappUrl(tCommon("whatsappMessage"))}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold underline underline-offset-2 hover:no-underline"
+          >
+            {t("errorWhatsapp")}
+          </a>
         </div>
       )}
 

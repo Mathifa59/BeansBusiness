@@ -4,6 +4,7 @@
     "nosotros": "About Us",
     "productos": "Products",
     "presencia": "Presence",
+    "noticias": "News",
     "contacto": "Contact Us",
     "menuOpen": "Open menu",
     "menuClose": "Close menu"
@@ -78,6 +79,36 @@
       "eyebrow": "OUR STORY",
       "title": "We bring Peru's finest\nagriculture to the world",
       "subtitle": "We are a Peruvian company committed to quality, sustainability, and the development of the national agro-export sector."
+    },
+    "conocenos": {
+      "eyebrow": "GET TO KNOW US",
+      "title": "People who work hand in hand with Peruvian farmland",
+      "description": "Business Beans Peru is a Peruvian agro-export company based in Lambayeque. We select, process and export high-quality legumes and Andean grains, and follow every lot from the field to its destination.",
+      "who": {
+        "title": "Who we are",
+        "description": "A team committed to quality, traceability and the development of the national agro-export sector."
+      },
+      "offer": {
+        "title": "What we offer",
+        "description": "Beans, lima beans, quinoa, kiwicha, cañihua, sesame and other Peruvian legumes and grains, ready to export with the documentation each market requires."
+      },
+      "different": {
+        "title": "What sets us apart",
+        "description": "FDA, SENASA and HACCP certifications, technified selection and full traceability from the field to the destination."
+      },
+      "photoAlt": "Business Beans team in the field"
+    },
+    "behind": {
+      "eyebrow": "BEHIND EVERY PRODUCT",
+      "title": "The people and processes behind every shipment",
+      "description": "From the field to sorting and cleaning: this is the daily work behind every lot that leaves Business Beans.",
+      "processTitle": "Sorting and cleaning",
+      "processCaption": "How we work at the plant",
+      "institutionalTitle": "From the fields to the grains",
+      "institutionalCaption": "Our corporate video",
+      "teamAlt": "Business Beans team in the field",
+      "cta": "Learn more about us",
+      "ctaNews": "See more in News"
     },
     "missionVision": {
       "vision": {
@@ -614,7 +645,8 @@
       "submit": "Send request",
       "submitting": "Sending...",
       "success": "Request sent! Our commercial team will contact you soon.",
-      "error": "Error sending request. Please try again."
+      "error": "Error sending request. Please try again.",
+      "errorWhatsapp": "Message us on WhatsApp"
     },
     "info": {
       "title": "Contact information",
@@ -624,6 +656,42 @@
       "linkedin": "LinkedIn: Business Beans",
       "instagram": "Instagram: businessbeansperu",
       "whatsappCta": "Message on WhatsApp"
+    }
+  },
+  "news": {
+    "hero": {
+      "eyebrow": "NEWS",
+      "title": "Business Beans\nnews",
+      "subtitle": "Trade fair participation, updates on our processes and what happens day to day in the field and at the company."
+    },
+    "filters": {
+      "label": "Filter by category",
+      "all": "All",
+      "eventos": "Events",
+      "empresa": "Company",
+      "produccion": "Production"
+    },
+    "share": "Share on LinkedIn",
+    "gallery": "Photo gallery",
+    "videos": "Videos",
+    "empty": "There are no news in this category yet.",
+    "items": {
+      "feria-stand": {
+        "title": "Business Beans at an export trade fair",
+        "description": "We took part in an export trade fair with our booth D-16, under the motto “Peruvian legumes for the world”. We presented our range of Peruvian legumes and grains, displayed product samples and spoke with visitors and potential buyers."
+      },
+      "campo-a-granos": {
+        "title": "From the fields to the grains",
+        "description": "Our corporate video follows the path of our products, from Peruvian farmland to the selection and shipping of every grain, and introduces the team behind it."
+      },
+      "seleccion-limpieza": {
+        "title": "How we sort and clean our legumes",
+        "description": "A look inside our plant: mechanized sorting and cleaning of legumes, and our team working under the food-safety measures that exporting requires."
+      },
+      "equipo-en-campo": {
+        "title": "Our team in the field",
+        "description": "The people of Business Beans walk the crops, check grain quality in the field and work closely with Peruvian agriculture."
+      }
     }
   },
   "footer": {

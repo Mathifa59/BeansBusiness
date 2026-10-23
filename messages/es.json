@@ -4,6 +4,7 @@
     "nosotros": "Nosotros",
     "productos": "Productos",
     "presencia": "Presencia",
+    "noticias": "Noticias",
     "contacto": "Contáctanos",
     "menuOpen": "Abrir menú",
     "menuClose": "Cerrar menú"
@@ -78,6 +79,36 @@
       "eyebrow": "NUESTRA HISTORIA",
       "title": "Llevamos lo mejor del\ncampo peruano al mundo",
       "subtitle": "Somos una empresa peruana comprometida con la calidad, la sostenibilidad y el desarrollo del sector agroexportador nacional."
+    },
+    "conocenos": {
+      "eyebrow": "CONÓCENOS",
+      "title": "Personas que trabajan de la mano con el campo peruano",
+      "description": "Business Beans Perú es una empresa agroexportadora peruana con sede en Lambayeque. Seleccionamos, procesamos y exportamos legumbres y granos andinos de alta calidad, y acompañamos cada lote desde el campo hasta su destino.",
+      "who": {
+        "title": "Quiénes somos",
+        "description": "Un equipo comprometido con la calidad, la trazabilidad y el desarrollo del sector agroexportador nacional."
+      },
+      "offer": {
+        "title": "Qué ofrecemos",
+        "description": "Frejoles, pallares, quinua, kiwicha, cañihua, ajonjolí y otras legumbres y granos peruanos, listos para exportar con la documentación que cada mercado exige."
+      },
+      "different": {
+        "title": "Qué nos diferencia",
+        "description": "Certificaciones FDA, SENASA y HACCP, selección tecnificada y trazabilidad completa desde el campo hasta el destino."
+      },
+      "photoAlt": "Equipo de Business Beans en el campo"
+    },
+    "behind": {
+      "eyebrow": "DETRÁS DE CADA PRODUCTO",
+      "title": "Las personas y los procesos detrás de cada embarque",
+      "description": "Del campo a la selección y limpieza: este es el trabajo diario que hay detrás de cada lote que sale de Business Beans.",
+      "processTitle": "Selección y limpieza",
+      "processCaption": "Así trabajamos en planta",
+      "institutionalTitle": "Del campo a los granos",
+      "institutionalCaption": "Nuestro video institucional",
+      "teamAlt": "Equipo de Business Beans en el campo",
+      "cta": "Conoce más sobre nosotros",
+      "ctaNews": "Ver más en Noticias"
     },
     "missionVision": {
       "vision": {
@@ -614,7 +645,8 @@
       "submit": "Enviar solicitud",
       "submitting": "Enviando...",
       "success": "¡Solicitud enviada! Nuestro equipo comercial te contactará pronto.",
-      "error": "Error al enviar. Intenta nuevamente."
+      "error": "Error al enviar. Intenta nuevamente.",
+      "errorWhatsapp": "Escríbenos por WhatsApp"
     },
     "info": {
       "title": "Información de contacto",
@@ -624,6 +656,42 @@
       "linkedin": "LinkedIn: Business Beans",
       "instagram": "Instagram: businessbeansperu",
       "whatsappCta": "Escribir por WhatsApp"
+    }
+  },
+  "news": {
+    "hero": {
+      "eyebrow": "NOTICIAS",
+      "title": "Novedades de\nBusiness Beans",
+      "subtitle": "Participación en ferias, avances de nuestros procesos y lo que ocurre día a día en el campo y en la empresa."
+    },
+    "filters": {
+      "label": "Filtrar por categoría",
+      "all": "Todas",
+      "eventos": "Eventos",
+      "empresa": "Empresa",
+      "produccion": "Producción"
+    },
+    "share": "Compartir en LinkedIn",
+    "gallery": "Galería de fotos",
+    "videos": "Videos",
+    "empty": "Aún no hay noticias en esta categoría.",
+    "items": {
+      "feria-stand": {
+        "title": "Business Beans en feria de exportación",
+        "description": "Participamos en una feria de exportación con nuestro stand D-16, bajo el lema “Peruvian legumes for the world”. Presentamos nuestra oferta de legumbres y granos peruanos, exhibimos muestras de producto y conversamos con visitantes y potenciales compradores."
+      },
+      "campo-a-granos": {
+        "title": "Del campo a los granos",
+        "description": "Nuestro video institucional recorre el camino de nuestros productos, desde los campos de cultivo peruanos hasta la selección y el envío de cada grano, y presenta al equipo que está detrás."
+      },
+      "seleccion-limpieza": {
+        "title": "Así seleccionamos y limpiamos nuestras legumbres",
+        "description": "Un vistazo a nuestra planta: la selección y limpieza mecanizada de las legumbres y el trabajo de nuestro equipo bajo las medidas de inocuidad que exige la exportación."
+      },
+      "equipo-en-campo": {
+        "title": "Nuestro equipo en campo",
+        "description": "Las personas de Business Beans recorren los cultivos, revisan la calidad del grano en el campo y trabajan de cerca con la agricultura peruana."
+      }
     }
   },
   "footer": {

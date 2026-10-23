@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
 import { pageAlternates, breadcrumbJsonLd } from "@/lib/seo";
 import { PageHero } from "@/components/sections/nosotros/PageHero";
+import { ConocenosSection } from "@/components/sections/nosotros/ConocenosSection";
+import { BehindTheScenes } from "@/components/sections/shared/BehindTheScenes";
 import { MissionVision } from "@/components/sections/nosotros/MissionVision";
 import { ValuesSection } from "@/components/sections/nosotros/ValuesSection";
 import { ProcessSection } from "@/components/sections/nosotros/ProcessSection";
@@ -52,9 +54,11 @@ export default async function NosotrosPage() {
         }}
       />
       <PageHero />
+      <ConocenosSection />
       <MissionVision />
       <ValuesSection />
       <ProcessSection />
+      <BehindTheScenes />
       <CommitmentSection />
     </>
   );

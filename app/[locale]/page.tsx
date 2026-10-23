@@ -4,6 +4,7 @@ import { pageAlternates, websiteJsonLd } from "@/lib/seo";
 import { HeroSection } from "@/components/sections/home/HeroSection";
 import { StatsSection } from "@/components/sections/home/StatsSection";
 import { AboutPreview } from "@/components/sections/home/AboutPreview";
+import { BehindTheScenes } from "@/components/sections/shared/BehindTheScenes";
 import { ProductsPreview } from "@/components/sections/home/ProductsPreview";
 import { CertificationsSection } from "@/components/sections/home/CertificationsSection";
 import { ContactCta } from "@/components/sections/home/ContactCta";
@@ -27,6 +28,7 @@ export default function HomePage() {
       <HeroSection />
       <StatsSection />
       <AboutPreview />
+      <BehindTheScenes compact />
       <ProductsPreview />
       <CertificationsSection />
       <ContactCta />

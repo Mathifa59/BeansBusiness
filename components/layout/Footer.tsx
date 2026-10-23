@@ -32,7 +32,7 @@ export function Footer() {
               {t("company.title")}
             </h3>
             <ul className="space-y-3">
-              {["nosotros", "productos", "presencia", "contacto"].map((key) => (
+              {["nosotros", "productos", "presencia", "noticias", "contacto"].map((key) => (
                 <li key={key}>
                   <Link
                     href={`/${key}`}

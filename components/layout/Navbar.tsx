@@ -15,6 +15,7 @@ const LINKS = [
   { key: "nosotros", href: "/nosotros" },
   { key: "productos", href: "/productos" },
   { key: "presencia", href: "/presencia" },
+  { key: "noticias", href: "/noticias" },
   { key: "contacto", href: "/contacto" },
 ];
 

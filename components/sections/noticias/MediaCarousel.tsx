@@ -31,10 +31,14 @@ export function MediaCarousel({ media, title }: MediaCarouselProps) {
   const [active, setActive] = useState(0);
   const [hovered, setHovered] = useState(false);
   const [playing, setPlaying] = useState(false);
+  // si la persona ya le dio play a un video, no le quitamos el carrusel de
+  // encima aunque lo pause: vuelve a avanzar solo cuando ella navega.
+  const [engaged, setEngaged] = useState(false);
+  const boxRef = useRef<HTMLDivElement>(null);
 
   const count = media.length;
   const current = media[active];
-  const canAutoplay = count > 1 && !reduce && !hovered && !playing;
+  const canAutoplay = count > 1 && !reduce && !hovered && !playing && !engaged;
 
   useEffect(() => {
     if (!canAutoplay) return;
@@ -46,7 +50,11 @@ export function MediaCarousel({ media, title }: MediaCarouselProps) {
   }, [canAutoplay, active, count]);
 
   const goTo = (i: number) => {
+    // el video saliente sigue montado durante el fundido: lo pausamos para
+    // que no siga sonando mientras se desvanece
+    boxRef.current?.querySelector("video")?.pause();
     setPlaying(false);
+    setEngaged(false);
     setActive(((i % count) + count) % count);
   };
 
@@ -70,9 +78,12 @@ export function MediaCarousel({ media, title }: MediaCarouselProps) {
   return (
     <div>
       <div
+        ref={boxRef}
         className="group/media relative aspect-video w-full overflow-hidden rounded-2xl bg-dark shadow-lg ring-1 ring-black/5"
         onTouchStart={(e) => {
-          touchStartX.current = e.touches[0].clientX;
+          // arrastrar la barra de progreso/volumen de un video no es un deslizamiento
+          const onVideo = (e.target as HTMLElement).closest("video");
+          touchStartX.current = onVideo ? null : e.touches[0].clientX;
         }}
         onTouchEnd={(e) => onTouchEnd(e.changedTouches[0].clientX)}
         onMouseEnter={() => setHovered(true)}
@@ -114,7 +125,10 @@ export function MediaCarousel({ media, title }: MediaCarouselProps) {
                   src={current.src}
                   poster={current.poster}
                   label={title}
-                  onPlay={() => setPlaying(true)}
+                  onPlay={() => {
+                    setPlaying(true);
+                    setEngaged(true);
+                  }}
                   onPause={() => setPlaying(false)}
                   onEnded={() => setPlaying(false)}
                   className={cn(

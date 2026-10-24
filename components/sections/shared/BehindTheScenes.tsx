@@ -144,7 +144,7 @@ export function BehindTheScenes({ compact = false }: BehindTheScenesProps) {
           >
             <Photo src={TEAM_PHOTOS.group} alt={t("teamAlt")} />
             <Photo src={TEAM_PHOTOS.inspecting} alt={t("teamAlt")} />
-            <Photo src={TEAM_PHOTOS.portrait} alt={t("teamAlt")} />
+            <Photo src={TEAM_PHOTOS.hero} alt={t("teamAlt")} />
             <Photo src={TEAM_PHOTOS.handshake} alt={t("teamAlt")} />
           </AnimatedSection>
         </>

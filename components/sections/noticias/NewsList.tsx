@@ -57,9 +57,16 @@ function formatNewsDate(item: NewsItem, locale: string): string | null {
   const fmt = new Intl.DateTimeFormat(locale, { dateStyle: "long", timeZone: "UTC" });
   const start = new Date(item.date);
   if (!item.dateEnd) return fmt.format(start);
-  const range = fmt.formatRange(start, new Date(item.dateEnd));
-  // En español el rango sale con guion ("23–26"); lo escribimos "23 al 26".
-  return locale === "es" ? range.replace(/\s*[–-]\s*/, " al ") : range;
+  const end = new Date(item.dateEnd);
+  if (locale === "es") {
+    // "23 al 26 de septiembre de 2026". Se arma a mano (no con formatRange)
+    // para no depender de cómo cada motor ICU escribe el separador.
+    const sameMonth = item.date.slice(0, 7) === item.dateEnd.slice(0, 7);
+    return sameMonth
+      ? `${start.getUTCDate()} al ${fmt.format(end)}`
+      : `${fmt.format(start)} al ${fmt.format(end)}`;
+  }
+  return fmt.formatRange(start, end);
 }
 
 function NewsCard({ item, index }: { item: NewsItem; index: number }) {

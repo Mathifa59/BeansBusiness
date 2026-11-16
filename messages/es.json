@@ -837,7 +837,7 @@
   },
   "privacidad": {
     "title": "Política de Privacidad",
-    "lastUpdated": "Última actualización: Agosto 2026",
+    "lastUpdated": "Última actualización: Noviembre 2026",
     "sections": {
       "responsable": {
         "title": "1. Responsable del tratamiento",
@@ -857,7 +857,7 @@
       },
       "terceros": {
         "title": "5. Encargados de tratamiento y terceros",
-        "content": "Para el envío de correos electrónicos utilizamos proveedores de servicios de mensajería (correo corporativo propio y un proveedor externo de envío de correos), que actúan como encargados de tratamiento bajo obligación de confidencialidad. No vendemos ni compartimos sus datos con terceros para fines distintos a los aquí descritos."
+        "content": "Para el envío de correos electrónicos utilizamos proveedores de servicios de mensajería (correo corporativo propio y un proveedor externo de envío de correos), que actúan como encargados de tratamiento bajo obligación de confidencialidad. No vendemos ni compartimos sus datos con terceros para fines distintos a los aquí descritos. Si usted acepta las cookies de analítica, Google actúa como proveedor de Google Analytics y procesa datos de uso del sitio (como páginas visitadas, tipo de dispositivo y ubicación aproximada) según su propia política de privacidad."
       },
       "derechosArco": {
         "title": "6. Sus derechos (ARCO)",
@@ -869,7 +869,7 @@
       },
       "cookies": {
         "title": "8. Cookies",
-        "content": "Actualmente este sitio solo utiliza cookies técnicas esenciales para su funcionamiento; no usamos cookies de analítica ni de publicidad. Si en el futuro incorporamos herramientas de medición, actualizaremos esta política y solicitaremos su consentimiento antes de activarlas."
+        "content": "Este sitio utiliza cookies técnicas esenciales para su funcionamiento. Además, solo si usted pulsa «Aceptar» en el aviso de cookies, utiliza Google Analytics, un servicio de analítica web de Google que emplea cookies para medir de forma estadística cómo se usa el sitio (páginas visitadas, tiempo de permanencia, tipo de dispositivo y ubicación aproximada) y así mejorarlo. Si pulsa «Rechazar», estas cookies no se activan. Puede cambiar su decisión en cualquier momento desde «Preferencias de cookies» en el pie de página, y también eliminar las cookies desde la configuración de su navegador."
       },
       "cambios": {
         "title": "9. Cambios a esta política",
@@ -880,6 +880,14 @@
         "content": "Para consultas sobre esta Política de Privacidad o el tratamiento de sus datos, escríbanos a info@businessbeans.com."
       }
     }
+  },
+  "cookies": {
+    "ariaLabel": "Aviso de cookies",
+    "message": "Usamos Google Analytics para medir cómo se usa el sitio y mejorarlo. Solo se activa si lo aceptas.",
+    "policyLink": "Política de Privacidad",
+    "accept": "Aceptar",
+    "reject": "Rechazar",
+    "preferences": "Preferencias de cookies"
   },
   "notFound": {
     "eyebrow": "Error 404",

@@ -837,7 +837,7 @@
   },
   "privacidad": {
     "title": "Privacy Policy",
-    "lastUpdated": "Last updated: August 2026",
+    "lastUpdated": "Last updated: November 2026",
     "sections": {
       "responsable": {
         "title": "1. Data controller",
@@ -857,7 +857,7 @@
       },
       "terceros": {
         "title": "5. Data processors and third parties",
-        "content": "To send emails we use messaging service providers (our own corporate email and an external email delivery provider), which act as data processors under a confidentiality obligation. We do not sell or share your data with third parties for purposes other than those described here."
+        "content": "To send emails we use messaging service providers (our own corporate email and an external email delivery provider), which act as data processors under a confidentiality obligation. We do not sell or share your data with third parties for purposes other than those described here. If you accept analytics cookies, Google acts as the provider of Google Analytics and processes site usage data (such as pages visited, device type and approximate location) under its own privacy policy."
       },
       "derechosArco": {
         "title": "6. Your rights",
@@ -869,7 +869,7 @@
       },
       "cookies": {
         "title": "8. Cookies",
-        "content": "This site currently uses only essential technical cookies required for it to function; we do not use analytics or advertising cookies. If we add measurement tools in the future, we will update this policy and request your consent before activating them."
+        "content": "This site uses essential technical cookies required for it to function. In addition, only if you click “Accept” on the cookie notice, it uses Google Analytics, a web analytics service from Google that uses cookies to measure, in aggregate, how the site is used (pages visited, time on site, device type and approximate location) so we can improve it. If you click “Decline”, these cookies are not activated. You can change your decision at any time from “Cookie preferences” in the footer, and you can also delete cookies from your browser settings."
       },
       "cambios": {
         "title": "9. Changes to this policy",
@@ -880,6 +880,14 @@
         "content": "For questions about this Privacy Policy or how your data is processed, write to us at info@businessbeans.com."
       }
     }
+  },
+  "cookies": {
+    "ariaLabel": "Cookie notice",
+    "message": "We use Google Analytics to measure how the site is used and improve it. It only turns on if you accept.",
+    "policyLink": "Privacy Policy",
+    "accept": "Accept",
+    "reject": "Decline",
+    "preferences": "Cookie preferences"
   },
   "notFound": {
     "eyebrow": "Error 404",

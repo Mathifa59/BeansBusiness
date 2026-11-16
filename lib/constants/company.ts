@@ -12,6 +12,10 @@ export const COMPANY_INFO = {
   instagram: "https://www.instagram.com/businessbeansperu/",
 } as const;
 
+/** ID de medición de Google Analytics 4. NEXT_PUBLIC_GA_ID solo existe para
+ * probar el flujo con un ID falso sin enviar datos a la propiedad real. */
+export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-T5RYWHXDYF";
+
 const WHATSAPP_NUMBER = COMPANY_INFO.whatsapp.replace(/\D/g, "");
 
 /** Único punto de verdad para el link de WhatsApp — evita que los distintos

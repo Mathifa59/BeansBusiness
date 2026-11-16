@@ -2,6 +2,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { Link, getPathname } from "@/lib/i18n/navigation";
 import { Logo } from "./Logo";
 import { InstagramIcon, LinkedInIcon } from "./SocialIcons";
+import { CookiePreferencesButton } from "./CookieConsent";
 import { COMPANY_INFO, VISIBLE_PRODUCTS, CERTIFICATIONS } from "@/lib/constants/company";
 
 export function Footer() {
@@ -117,7 +118,7 @@ export function Footer() {
               DevHorses
             </a>
           </p>
-          <div className="flex items-center gap-6 text-xs text-white/40">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-white/40 sm:justify-end">
             <Link
               href="/terminos-y-condiciones"
               className="transition-colors hover:text-white"
@@ -130,6 +131,7 @@ export function Footer() {
             >
               {t("privacy")}
             </Link>
+            <CookiePreferencesButton className="transition-colors hover:text-white" />
             <Link
               href="/libro-de-reclamaciones"
               className="transition-colors hover:text-white"

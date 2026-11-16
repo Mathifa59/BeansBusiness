@@ -1,15 +1,16 @@
 "use client";
 
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { GoogleTagManager } from "@next/third-parties/google";
 import { useTranslations } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
-import { GA_MEASUREMENT_ID } from "@/lib/constants/company";
+import { GTM_CONTAINER_ID } from "@/lib/constants/company";
 import { resetConsent, setConsent, useConsent } from "@/lib/consent";
 
 /**
- * Aviso de cookies. Google Analytics NO se carga hasta que el visitante pulsa
- * "Aceptar" (la política de privacidad promete pedir consentimiento antes de
- * activar herramientas de medición). Solo se carga en producción.
+ * Aviso de cookies. Google Tag Manager (que a su vez carga Google Analytics)
+ * NO se carga hasta que el visitante pulsa "Aceptar" (la política de privacidad
+ * promete pedir consentimiento antes de activar herramientas de medición).
+ * Solo se carga en producción.
  */
 export function CookieConsent() {
   const t = useTranslations("cookies");
@@ -18,7 +19,7 @@ export function CookieConsent() {
   return (
     <>
       {consent === "granted" && process.env.NODE_ENV === "production" && (
-        <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
+        <GoogleTagManager gtmId={GTM_CONTAINER_ID} />
       )}
 
       {consent === "unset" && (

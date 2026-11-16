@@ -12,9 +12,15 @@ export const COMPANY_INFO = {
   instagram: "https://www.instagram.com/businessbeansperu/",
 } as const;
 
-/** ID de medición de Google Analytics 4. NEXT_PUBLIC_GA_ID solo existe para
- * probar el flujo con un ID falso sin enviar datos a la propiedad real. */
-export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-T5RYWHXDYF";
+/** Contenedor de Google Tag Manager (la "etiqueta de Google" del flujo web
+ * "Sitio web oficial" de la propiedad GA4). Solo se carga tras aceptar cookies.
+ * NEXT_PUBLIC_GTM_ID existe únicamente para probar el flujo con un ID falso
+ * sin enviar datos a la propiedad real. */
+export const GTM_CONTAINER_ID = process.env.NEXT_PUBLIC_GTM_ID ?? "GTM-T8G4XJJ9";
+
+/** ID de medición GA4 de la misma propiedad. Solo se usa para el interruptor de
+ * exclusión (`ga-disable-<ID>`) cuando el visitante rechaza o retira el consentimiento. */
+export const GA_MEASUREMENT_ID = "G-KX29Y9JHNY";
 
 const WHATSAPP_NUMBER = COMPANY_INFO.whatsapp.replace(/\D/g, "");
 
